@@ -1,2 +1,12 @@
-<h1>Menus#course</h1>
-<p>Find me in app/views/menus/course.html.erb</p>
+<h2>メニュー・コース一覧</h2>
+<% @menus.each do |menu|%>
+	<%= attachment_image_tag @menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %>
+	<%= menu.menu_title %></br>
+	<%= menu.introduce %></br>
+
+	<% menu.courses.each do |course| %>
+		<%= course.course_name %></br>
+		<%= course.course_time %>分 
+		<%= course.price %>円</br>
+	<% end %>
+<% end %>
