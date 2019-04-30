@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_name: MyString
+  user_kana_name: MyString
+  gender: MyString
+  user_email: MyString
+  user_phone_number: MyString
+  request_course: MyString
+  request_course_time: 1
+  reservation_date: 2019-04-30
+  start_time: 2019-04-30 09:31:44
+  restart_reservation_time: 2019-04-30 09:31:44
+  demand: MyText
+
+two:
+  user_name: MyString
+  user_kana_name: MyString
+  gender: MyString
+  user_email: MyString
+  user_phone_number: MyString
+  request_course: MyString
+  request_course_time: 1
+  reservation_date: 2019-04-30
+  start_time: 2019-04-30 09:31:44
+  restart_reservation_time: 2019-04-30 09:31:44
+  demand: MyText

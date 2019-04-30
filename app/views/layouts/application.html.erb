@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ichi</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+
+            <!-- 管理者ログイン時のヘッダー -->
+
+        <% if admin_signed_in?  %>
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarEexample3">
+                        <ul class="nav navbar-nav">
+                            <%= link_to top_path do %>
+                                <img src="/images/3488_logo_dog_01.jpg" class="header-logo" style="float:left; height:7%; width:7%;">
+                            <% end %>
+                            <div style="float:right;">
+                                <li class="text"><%= link_to "コース・料金", course_path %></li>
+                                <li class="text"><%= link_to "注意事項", note_path %></li>
+                                <li class="text"><%= link_to "アクセス", access_path %></li>
+                                <li class="text"><%= link_to "予約状況・予約フォーム",  reservation_index_path %></li>
+                                <li class="text"><%=link_to "管理者ページ", admins_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
+                                <li class="text"><%=link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        <% else %>
+
+            <!-- 一般ユーザーのヘッダー -->
+
+            <nav class="navbar navbar-default" style="display: flex;" >
+              <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarEexample3">
+                        <ul class="nav navbar-nav">
+                            <%= link_to top_path do %>
+                                <img src="/images/3488_logo_dog_01.jpg" class="header-logo" style="float:left; height:7%; width:7%;">
+                            <% end %>
+                            <div style="float:right;">
+                                <li class="text"><%= link_to "コース・料金", course_path %></li>
+                                <li class="text"><%= link_to "注意事項", note_path %></li>
+                                <li class="text"><%= link_to "アクセス", access_path %></li>
+                                <li class="text"><%= link_to "予約状況・予約フォーム", reservation_index_path %></li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        <% end %>
+
+    </header>
+    <%= yield %>
+    <footer class="footer-color">
+              <%=link_to "運営に質問する", "https://docs.google.com/forms/d/e/1FAIpQLSelvK_znRgNptqpfQkwrD-ev7FtCemK3y6qfIqXvynVoiOT9g/viewform", style:"color:black; margin-left: 70%; " %>
+              <h5 style="color: black; margin-bottom: 0px; margin-left: 70%;">電話受付開始時間：9:30
+              〜20:00</h5>
+              <h5 style="color: black; margin-bottom: 0px; margin-top: 10px; margin-left: 70%;">お電話：03-6904-1073</h5>
+              <h5 style="color: black; margin-bottom: 0px; margin-top: 10px; margin-left: 70%;">LINEID：ichi-1073</h5>
+        </footer>
+  </body>
+</html>
