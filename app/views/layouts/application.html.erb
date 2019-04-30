@@ -26,7 +26,7 @@
                                 <li class="text"><%= link_to "コース・料金", course_path %></li>
                                 <li class="text"><%= link_to "注意事項", note_path %></li>
                                 <li class="text"><%= link_to "アクセス", access_path %></li>
-                                <li class="text"><%= link_to "予約状況・予約フォーム",  reservation_index_path %></li>
+                                <li class="text"><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
                                 <li class="text"><%=link_to "管理者ページ", admins_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
                                 <li class="text"><%=link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
                             </div>
@@ -49,7 +49,7 @@
                                 <li class="text"><%= link_to "コース・料金", course_path %></li>
                                 <li class="text"><%= link_to "注意事項", note_path %></li>
                                 <li class="text"><%= link_to "アクセス", access_path %></li>
-                                <li class="text"><%= link_to "予約状況・予約フォーム", reservation_index_path %></li>
+                                <li class="text"><%= link_to "予約状況・予約フォーム", reservations_path %></li>
                             </div>
                         </ul>
                     </div>

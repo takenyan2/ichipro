@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   }
 
   resources :shops, only: [:new, :edit]
-  resources :reservation, only: [:index,:new, :show, :edit, :create, :destroy]
+  resources :reservations, only: [:index, :new, :show, :edit, :create, :destroy]
   resources :admins, only: [:index, :update, :destroy]
   resources :menus, only: [:index, :edit,:create, :update, :delete]
   root 'menus#top'

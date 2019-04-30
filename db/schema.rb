@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_04_30_093628) do
   end
 
   create_table "courses", force: :cascade do |t|
+    t.integer "menu_id"
     t.string "course_name"
     t.integer "course_time"
     t.integer "price"
