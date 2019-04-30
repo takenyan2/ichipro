@@ -3,6 +3,8 @@ class MenusController < ApplicationController
   end
 
   def course
+    @menus = Menu.all
+    @couses = Course.all
   end
 
   def access

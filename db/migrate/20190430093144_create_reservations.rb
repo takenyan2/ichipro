@@ -12,6 +12,7 @@ class CreateReservations < ActiveRecord::Migration[5.2]
       t.datetime :start_time
       t.datetime :restart_reservation_time
       t.text :demand
+      t.boolean :sales, null: false, default: false
 
       t.timestamps
     end
