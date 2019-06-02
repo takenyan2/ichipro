@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'menus/add' => "menus#add", as: "add_menu"
   get '/menus/:id/edit_menu' => "menus#edit_menu", as: "renew_menu"
   post 'menus/add' => "menus#create_menu"
-  patch '/menus/:id/update_menu' => "menus#update_menu"
+  patch '/menus/:id/edit_menu' => "menus#update_menu"
   delete '/menus/:id/destroy_menu' => "menus#destroy_menu"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

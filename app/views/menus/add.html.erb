@@ -1,2 +1,15 @@
-<h1>Menus#add</h1>
-<p>Find me in app/views/menus/add.html.erb</p>
+<h1>メニューの追加</h1>
+	<%= form_with(model: @menu) do |f|%>
+      <div class="form">
+        <h4>メニュー名</h4>
+        <%= f.text_field :menu_title %>
+        <h4>画像</h4>
+        <%= f.attachment_field :menu_image %>
+      </div>
+      <div class="form">
+        <h4>紹介文</h4>
+        <%= f.text_area :introduce %>
+        <%= f.hidden_field :permission, value: true %>
+      </div>
+        <%= f.submit "追加する" %>
+    <% end %>

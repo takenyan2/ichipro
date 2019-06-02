@@ -1,2 +1,19 @@
-<h1>Menus#edit_menu</h1>
-<p>Find me in app/views/menus/edit_menu.html.erb</p>
+<h1>メニューを編集する</h1>
+
+	<%#= form_for(@menu, url: {controller: menus, action:update_menu }) do |f|%>
+	<%= form_with(model: @menu) do |f|%>
+
+	<%#= form_with(model: @menu, url: {controller: menus, action:update_menu }, local: false) do |f| %>
+      <div class="form">
+        <h4>メニュー名</h4>
+        <%= f.text_field :menu_title %>
+        <h4>画像</h4>
+        <%= f.attachment_field :image %>
+      </div>
+      <div class="form">
+        <h4>紹介文</h4>
+        <%= f.text_area :introduce %>
+        <%= f.hidden_field :permission, value: true %>
+      </div>
+        <%= f.submit "更新する"%>
+      <% end %>
