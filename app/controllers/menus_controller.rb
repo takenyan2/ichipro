@@ -4,7 +4,8 @@ class MenusController < ApplicationController
 
   def course
     @menus = Menu.all
-    @course = Course.new#(course_params)
+    @menu = Menu.new
+    @menu.courses.build
   end
 
   def access
@@ -51,18 +52,15 @@ class MenusController < ApplicationController
         @menu = Menu.new(menu_params)
         @menu.save
         # flash[:notice] = "保存しました"
-        redirect_to course_path
       elsif params[:permission] == "false"
-        @course = Course.new(params[:permission],[:menu_id], [:course_name], [:course_time], [:price])
-        binding.pry
+        @course = Course.new(course_params)
         @course.save
         # flash[:notice] = "保存しました"
-        redirect_to course_path
       end
     else
       flash[:danger] = "登録に失敗しました"
-      redirect_to course_path
     end
+    redirect_to course_path
   end
 
   def update
@@ -85,7 +83,7 @@ class MenusController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:menu_id, :course_name, :course_time, :price)
+    params.require(:menu).permit(:menu_id, [:course_name, :course_time, :price])
   end
 
 end

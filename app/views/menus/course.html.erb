@@ -1,5 +1,6 @@
 <div class="alert alert-success"><%= flash[:notice] %></div>
 <div class="alert alert-danger"><%= flash[:danger] %></div>
+
 <h2>メニュー・コース一覧</h2>
 <% @menus.each do |menu|%>
 	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %>
@@ -24,7 +25,6 @@
       </div>
         <%= f.submit "追加する" %>
     <% end %>
-
 
 <% end %>
 
