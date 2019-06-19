@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'reservations/done' => "reservation#done", as: "reservation_done"
   get 'menus/top' => "menus#top", as: "top"
   get 'menus/course' => "menus#course", as: "course"
+  post 'menus/course' => "menus#create", as: "course_new"
   get 'menus/access' => "menus#access", as: "access"
   get 'menus/note' => "menus#note", as: "note"
   get 'menus/add' => "menus#add", as: "add_menu"

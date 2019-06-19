@@ -1,4 +1,4 @@
-<h1>メニューの追加</h1>
+<h1>コースの追加</h1>
 	<%= form_with(model: @menu,local: true) do |f| %>
       <div class="form">
         <h4>メニュー名</h4>
@@ -11,6 +11,6 @@
         <%= f.text_area :introduce %>
         <%= f.hidden_field :permission, value: true %>
       </div>
-        <%#= f.hidden_field :menu_id, value: false%>
+        <%= f.hidden_field :menu_id, value: false%>
         <%= f.submit "追加する" %>
     <% end %>
