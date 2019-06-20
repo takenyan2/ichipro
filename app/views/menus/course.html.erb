@@ -4,13 +4,17 @@
 <h2>メニュー・コース一覧</h2>
 <% @menus.each do |menu|%>
 	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %>
-	<%= menu.menu_title %></br>
+	<%= menu.menu_title %> 
+	<%= link_to "編集", edit_menu_path(menu.id) %>
+	<%= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
 	<%= menu.introduce %></br>
 
+
 	<% menu.courses.each do |course| %>
-		<%= course.course_name %></br>
+		<%= course.course_name %> 
 		<%= course.course_time %>分
-		<%= course.price %>円</br>
+		<%= course.price %>円 
+		<%= link_to "削除", renew_menu_path(course.id), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
 	<% end %>
 
 	<h4>【コースの追加】</h4>

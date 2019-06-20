@@ -26,7 +26,7 @@ class MenusController < ApplicationController
   def update_menu
     menu = Menu.find(params[:id])
     if  menu.update#(menu_params)
-        flash[:notice] = "successfully! 保存しました"
+        flash[:notice] = "保存しました"
         redirect_to course_path
     else
       flash[:danger] = "登録に失敗しました"
@@ -73,6 +73,13 @@ class MenusController < ApplicationController
   end
 
   def destroy
+    menu = Menu.find(params[:id])
+    menu.destroy
+
+    course = Course.find(params[:id])
+    course.destroy
+    flash[:notice] = "削除しました"
+    redirect_to course_path
   end
 
   private
