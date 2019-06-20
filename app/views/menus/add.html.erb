@@ -9,7 +9,7 @@
       <div class="form">
         <h4>紹介文</h4>
         <%= f.text_area :introduce %>
-        <%= f.hidden_field :permission, value: true %>
+        <%= hidden_field_tag :permission, true %>
       </div>
         <%#= f.hidden_field :menu_id, value: false%>
         <%= f.submit "追加する" %>

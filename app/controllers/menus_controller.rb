@@ -15,15 +15,13 @@ class MenusController < ApplicationController
   end
 
   def add
-    @menu = Menu.new(menu_params)
+    @menu = Menu.new
   end
 
   def edit_menu
     @menu = Menu.find(params[:id])
   end
 
-  def create_menu
-  end
 
   def update_menu
     menu = Menu.find(params[:id])
