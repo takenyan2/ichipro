@@ -14,14 +14,14 @@
 	<% end %>
 
 	<h4>【コースの追加】</h4>
-	<%= form_with(url: menus_path, method: :post ,local: true) do |f| %>
+	<%= form_with(model: @menu, url: menus_path, method: :post ,local: true) do |f| %>
       <div class="form">
       	<%#= f.hidden_field :menu_id, :value => menu.id %>
       	<%= f.hidden_field :menu_id, value: menu.id %>
       	コース名：<%= f.text_field :course_name %></br>
         <%= f.select :course_time, [["15", 15],["30", 30], ["45", 45], ["60", 60], ["75", 75], ["90", 90], ["105", 105], ["120", 120], ["135", 135], ["150", 150], ["165", 165], ["180", 180]]  %>分</br>
         <%= f.number_field :price %>円</br>
-        <%= f.hidden_field :permission, value: false %>
+        <%= hidden_field_tag :permission, false %>
       </div>
         <%= f.submit "追加する" %>
     <% end %>
