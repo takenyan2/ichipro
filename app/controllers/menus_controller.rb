@@ -73,12 +73,17 @@ class MenusController < ApplicationController
   end
 
   def destroy
-    menu = Menu.find(params[:id])
-    menu.destroy
-
-    course = Course.find(params[:id])
-    course.destroy
-    flash[:notice] = "削除しました"
+    if params[:permission]
+      if params[:permission] == "true"
+        menu = Menu.find(params[:id])
+        menu.destroy
+        flash[:notice] = "削除しました"
+      elsif params[:permission] == "false"
+        course = Course.find(params[:id])
+        course.destroy
+        flash[:notice] = "削除しました"
+      end
+    end
     redirect_to course_path
   end
 

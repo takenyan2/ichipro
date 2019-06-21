@@ -6,7 +6,9 @@
 	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %>
 	<%= menu.menu_title %> 
 	<%= link_to "編集", edit_menu_path(menu.id) %>
-	<%= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
+	<%#= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
+	<%= link_to "削除", renew_menu_path(menu.id, permission: true), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
+
 	<%= menu.introduce %></br>
 
 
@@ -14,7 +16,7 @@
 		<%= course.course_name %> 
 		<%= course.course_time %>分
 		<%= course.price %>円 
-		<%= link_to "削除", renew_menu_path(course.id), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
+		<%= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
 	<% end %>
 
 	<h4>【コースの追加】</h4>
