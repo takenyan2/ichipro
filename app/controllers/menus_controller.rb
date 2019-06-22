@@ -27,12 +27,11 @@ class MenusController < ApplicationController
     menu = Menu.find(params[:id])
     if  menu.update#(menu_params)
         flash[:notice] = "保存しました"
-        redirect_to course_path
     else
       flash[:danger] = "登録に失敗しました"
-        # render :edit_menu
-        redirect_to course_path
+        render :edit
     end
+    redirect_to course_path
   end
 
   def destroy_menu
@@ -63,16 +62,26 @@ class MenusController < ApplicationController
   end
 
   def update
-    menu = Menu.find(params[:id])
-    course = Course.find(params[:id])
-    if menu.update(menu_params)
-        flash[:notice] = "更新しました"
-    else
-      flash[:danger] = "更新に失敗しました"
-        render :edit_menu
+    if params[:permission]
+      if params[:permission] == "true"
+        menu = Menu.find(params[:id])
+        if menu.update(menu_params)
+            flash[:notice] = "更新しました"
+        else
+          flash[:danger] = "更新に失敗しました"
+            render :edit_menu
+        end
+      elsif params[:permission] == "false"
+        course = Course.find(params[:id])
+        if course.update(course_params)
+            flash[:notice] = "更新しました"
+        else
+          flash[:danger] = "更新に失敗しました"
+            render :edit
+        end
+      end
+      redirect_to course_path
     end
-    redirect_to course_path
-
   end
 
   def destroy
@@ -100,7 +109,7 @@ class MenusController < ApplicationController
   end
 
   def course_params
-    params.require(:menu).permit(:course_name, :course_time, :price)
+    params.require(:course).permit(:course_name, :course_time, :price)
   end
 
 end
