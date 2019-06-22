@@ -42,6 +42,7 @@ class MenusController < ApplicationController
   end
 
   def edit
+    @course = Course.find(params[:id])
   end
 
   def create
@@ -51,7 +52,7 @@ class MenusController < ApplicationController
         @menu.save
         # flash[:notice] = "保存しました"
       elsif params[:permission] == "false"
-        @course = Course.new(course_params)
+        @course = Course.new(menu_course_params)
         @course.save
         # flash[:notice] = "保存しました"
       end
@@ -63,13 +64,15 @@ class MenusController < ApplicationController
 
   def update
     menu = Menu.find(params[:id])
-    if  menu.update#(menu_params)
+    course = Course.find(params[:id])
+    if menu.update(menu_params)
         flash[:notice] = "更新しました"
-        redirect_to course_path
     else
       flash[:danger] = "更新に失敗しました"
         render :edit_menu
     end
+    redirect_to course_path
+
   end
 
   def destroy
@@ -92,8 +95,12 @@ class MenusController < ApplicationController
     params.require(:menu).permit(:menu_title, :introduce, :menu_image)
   end
 
-  def course_params
+  def menu_course_params
     params.require(:menu).permit(:menu_id, [:course_name, :course_time, :price])
+  end
+
+  def course_params
+    params.require(:menu).permit(:course_name, :course_time, :price)
   end
 
 end
