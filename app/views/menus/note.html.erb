@@ -1,2 +1,25 @@
 <h1>Menus#note</h1>
 <p>Find me in app/views/menus/note.html.erb</p>
+<div class="alert alert-success"><%= flash[:notice] %></div>
+<div class="alert alert-danger"><%= flash[:danger] %></div>
+
+<% @questions.each do |question|%>
+	Q.<%= question.user_question %> 
+	<%= link_to "編集", edit_note_path(question.id) %>
+	<%= link_to "削除", edit_note_path(question.id, permission: true), delete: "question", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
+
+	A.<%= question.answer %></br>
+<% end %>
+
+
+<h3>Q&Aの追加</h3>
+	<%= form_with(model: @question, url: menus_note_path ,local: true) do |f| %>
+      <div class="form">
+        <h4>質問文</h4>
+        <%= f.text_field :user_question %>
+        <h4>答え</h4>
+        <%= f.text_area :answer %>
+      </div>
+        <%#= f.hidden_field :id, value: @question.id %>
+        <%= f.submit "追加する" %>
+    <% end %>

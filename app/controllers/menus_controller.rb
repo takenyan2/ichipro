@@ -12,6 +12,43 @@ class MenusController < ApplicationController
   end
 
   def note
+    @question = Question.new
+    @questions = Question.all
+  end
+
+  def create_note
+    question = Question.new(question_params)
+    if question.save
+      flash[:notice] = "保存しました"
+    else
+      flash[:danger] = "登録に失敗しました"
+    end
+    redirect_to note_path
+  end
+
+  def edit_note
+    @question = Question.find(params[:id])
+  end
+
+  def update_note
+    question = Question.find(params[:id])
+    if  question.update(question_params)
+        flash[:notice] = "保存しました"
+    else
+      flash[:danger] = "登録に失敗しました"
+        render :edit_note
+    end
+    redirect_to note_path
+  end
+
+  def destroy_note
+    question = Question.find(params[:id])
+    if question.destroy
+      flash[:notice] = "削除しました"
+    else
+      flash[:danger] = "削除に失敗しました"
+    end
+    redirect_to note_path
   end
 
   def add
@@ -25,7 +62,7 @@ class MenusController < ApplicationController
 
   def update_menu
     menu = Menu.find(params[:id])
-    if  menu.update#(menu_params)
+    if  menu.update(menu_params)
         flash[:notice] = "保存しました"
     else
       flash[:danger] = "登録に失敗しました"
@@ -37,9 +74,6 @@ class MenusController < ApplicationController
   def destroy_menu
   end
 
-  def index
-  end
-
   def edit
     @course = Course.find(params[:id])
   end
@@ -49,11 +83,11 @@ class MenusController < ApplicationController
       if params[:permission] == "true"
         @menu = Menu.new(menu_params)
         @menu.save
-        # flash[:notice] = "保存しました"
+        flash[:notice] = "保存しました"
       elsif params[:permission] == "false"
         @course = Course.new(menu_course_params)
         @course.save
-        # flash[:notice] = "保存しました"
+        flash[:notice] = "保存しました"
       end
     else
       flash[:danger] = "登録に失敗しました"
@@ -110,6 +144,10 @@ class MenusController < ApplicationController
 
   def course_params
     params.require(:course).permit(:course_name, :course_time, :price)
+  end
+
+  def question_params
+    params.require(:question).permit(:user_question, :answer)
   end
 
 end
