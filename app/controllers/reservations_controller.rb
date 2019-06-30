@@ -17,8 +17,10 @@ class ReservationsController < ApplicationController
   def create
     reservation = Reservation.new(reservation_params)
     # 次の予約開始時間を設定。
-    restart_reservation_time = reservation.start_time + Rational(reservation.request_course_time,24*60) + Rational(30,24*60)
-    restart_reservation_time = reservation.restart_reservation_time
+    add_time = reservation.start_time
+    add_time =+ Rational(reservation.request_course_time,24*60) 
+    add_time =+ Rational(30,24*60)
+    reservation.restart_reservation_time = add_time
     if reservation.save
       flash[:notice] = "保存しました"
     else
