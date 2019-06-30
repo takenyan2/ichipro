@@ -39,7 +39,7 @@
 
                 <h4>ご希望のコース</h4>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
                 <%#= f.text_field :request_course %>
-                <%= f.select :request_course, [["揉みほぐし", "揉みほぐし"] %>
+                <%= f.select :request_course, [["揉みほぐし", "揉みほぐし"]] %>
                 <%#= f.collection_select :request_course, Course.all, :course_name, :course_name %>
                 <!-- ↑のセレクトは、courseから引っ張ってくる -->
 
