@@ -7,7 +7,6 @@ class CreateReservations < ActiveRecord::Migration[5.2]
       t.string :user_email
       t.string :user_phone_number
       t.string :request_course
-      t.integer :request_course_time
       t.date :reservation_date
       t.datetime :start_time
       t.datetime :restart_reservation_time

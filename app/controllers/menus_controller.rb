@@ -22,6 +22,7 @@ class MenusController < ApplicationController
       flash[:notice] = "保存しました"
     else
       flash[:danger] = "登録に失敗しました"
+      render :edit_note
     end
     redirect_to note_path
   end

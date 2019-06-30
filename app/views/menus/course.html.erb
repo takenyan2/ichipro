@@ -3,7 +3,8 @@
 
 <h2>メニュー・コース一覧</h2>
 <% @menus.each do |menu|%>
-	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %>
+	<div style= "width :30%;">
+	<%= attachment_image_tag menu, :menu_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %></div>
 	<%= menu.menu_title %> 
 	<%= link_to "編集", renew_menu_path(menu.id) %>
 	<%#= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %>

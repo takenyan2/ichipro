@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   get '/menus/:id/edit_menu' => "menus#edit_menu", as: "renew_menu"
   patch '/menus/:id/edit_menu' => "menus#update_menu"
   delete '/menus/:id/edit_menu' => "menus#destroy"
+  get '/reservations/done' => 'reservations#done'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

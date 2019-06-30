@@ -16,21 +16,32 @@
 
         <% if admin_signed_in?  %>
             <nav class="navbar navbar-default">
-              <div class="container-fluid">
+                <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarEexample3">
-                        <ul class="nav navbar-nav">
-                            <%= link_to top_path do %>
-                                <img src="/images/3488_logo_dog_01.jpg" class="header-logo" style="float:left; height:7%; width:7%;">
-                            <% end %>
-                            <div style="float:right;">
-                                <li class="text"><%= link_to "コース・料金", course_path %></li>
-                                <li class="text"><%= link_to "注意事項", note_path %></li>
-                                <li class="text"><%= link_to "アクセス", access_path %></li>
-                                <li class="text"><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
-                                <li class="text"><%=link_to "管理者ページ", admins_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
-                                <li class="text"><%=link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
-                            </div>
-                        </ul>
+
+                    <div id="nav-drawer">
+                        <input id="nav-input" type="checkbox" class="nav-unshown">
+                        <label id="nav-open" for="nav-input"><span></span></label>
+                        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+                        <div id="nav-content">
+                            <ul class="nav navbar-nav">
+                                <%= link_to top_path do %>
+                                    <img src="/images/3488_logo_dog_01.jpg" class="header-logo" style="float:left; height:7%; width:7%;">
+                                <% end %>
+
+
+
+                                <!-- <div style="float:right;"> -->
+                                    <li class="text"><%= link_to "コース・料金", course_path %></li>
+                                    <li class="text"><%= link_to "注意事項", note_path %></li>
+                                    <li class="text"><%= link_to "アクセス", access_path %></li>
+                                    <li class="text"><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
+                                    <li class="text"><%=link_to "管理者ページ", admins_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
+                                    <li class="text"><%=link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
+                                <!-- </div> -->
+                            </ul>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </nav>
@@ -41,18 +52,26 @@
             <nav class="navbar navbar-default" style="display: flex;" >
               <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarEexample3">
-                        <ul class="nav navbar-nav">
-                            <%= link_to top_path do %>
-                                <img src="/images/3488_logo_dog_01.jpg" class="header-logo" style="float:left; height:7%; width:7%;">
-                            <% end %>
-                            <div style="float:right;">
-                                <li class="text"><%= link_to "コース・料金", course_path %></li>
-                                <li class="text"><%= link_to "注意事項", note_path %></li>
-                                <li class="text"><%= link_to "アクセス", access_path %></li>
-                                <li class="text"><%= link_to "予約状況・予約フォーム", reservations_path %></li>
-                                <li class="text"><%= link_to "(管理者のみ)メニュー追加ページ", add_menu_path %></li>
+                        <%= link_to top_path do %>
+                            <img src="/images/3488_logo_dog_01.jpg" class="header-logo" style="float:left; height:7%; width:7%;">
+                        <% end %>
+                        <div id="nav-drawer">
+                            <input id="nav-input" type="checkbox" class="nav-unshown">
+                            <label id="nav-open" for="nav-input"><span></span></label>
+                            <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+                            <div id="nav-content">
+                            <ul class="nav navbar-nav">
+
+                                <!-- <div style="float:right;"> -->
+                                    <li class="text"><%= link_to "コース・料金", course_path %></li>
+                                    <li class="text"><%= link_to "注意事項", note_path %></li>
+                                    <li class="text"><%= link_to "アクセス", access_path %></li>
+                                    <li class="text"><%= link_to "予約状況・予約フォーム", reservations_path %></li>
+                                    <li class="text"><%= link_to "(管理者のみ)メニュー追加ページ", add_menu_path %></li>
+                                </div>
+                            </ul>
                             </div>
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
