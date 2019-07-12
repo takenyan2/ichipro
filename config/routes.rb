@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :meetings
    devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
