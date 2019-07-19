@@ -1,4 +1,6 @@
-<h1>予約状況・予約フォーム</h1>
+<div class="main">
+<div class="block reservation_block">
+<h2 class="bg_sunflower">予約状況・予約フォーム</h2>
 <p>もし、管理者ログインだったらsalesカラムのフォームを表示させて、開店日のままと閉店日にするを選ぶことができる。</p>
 
 <!-- 一般ユーザーのフォーム -->
@@ -20,54 +22,57 @@
     <% end %>
 
     <h3>予約フォーム</h3>
-
-            <h4>性別</h4>
-            <label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />男性</label>
-            <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />女性</label>
+<div class="contents">
+            <div class="form-outer">
+                <dt class="form-title">性別</dt>
+            <dd class="form-item"><label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />男性</label>
+            <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />女性</label></dd>
 
             <!-- <label><%#= f.radio_button :gender, "男性" %>男性</label> -->
-      		<!-- <label><%#= f.radio_button :gender, "女性" %>女性</label> -->
+            <!-- <label><%#= f.radio_button :gender, "女性" %>女性</label> -->
 
 
             <div id="firstBox">
                 <%= form_with(model: @reservation,local: true) do |f| %>
                 <div class="form">
-                    <h4>予約者名</h4>
-                    <%= f.text_field :user_name %>
+                   <dl>
+                    <dt class="form-title">予約者名</dt>
+                    <dd class="form-item"><%= f.text_field :user_name %></dd>
 
-                    <h4>予約者カナ名</h4>
-                    <%= f.text_field :user_kana_name %>
+                    <dt class="form-title">予約者カナ名</dt>
+                    <dd class="form-item"><%= f.text_field :user_kana_name %></dd>
 
-                    <%= f.hidden_field :gender, value: "男性" %>
+                    <dd class="form-item"><%= f.hidden_field :gender, value: "男性" %></dd>
 
-                    <h4>予約者メールアドレス</h4>
-                    <%= f.email_field :user_email %>
+                    <dt class="form-title">予約者メールアドレス</dt>
+                    <dd class="form-item"><%= f.email_field :user_email %></dd>
 
-                    <h4>電話番号</h4>
-                    <%= f.number_field :user_phone_number %>
+                    <dt class="form-title">電話番号</dt>
+                    <dd class="form-item"><%= f.number_field :user_phone_number %></dd>
 
-                    <h4>ご希望のコース</h4>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
+                    <dt class="form-title">ご希望のコース</dt>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
                     <%#= f.text_field :request_course %>
-                    <%= f.select :request_course, [["揉みほぐし", "揉みほぐし"]] %>
+                    <dd class="form-item"><%= f.select :request_course, [["揉みほぐし", "揉みほぐし"]] %></dd>
                     <%#= f.collection_select :request_course, Course.all, :course_name, :course_name %>
                     <!-- ↑のセレクトは、courseから引っ張ってくる -->
 
-                    <h4>コースの長さ</h4>
-                    <%= f.select :request_course_time, [[30, 30],[60, 60]] %>
+                    <dt class="form-title">コースの長さ</dt>
+                    <dd class="form-item"><%= f.select :request_course_time, [[30, 30],[60, 60]] %></dd>
 
-                    <h4>予約日付</h4>
-                    <%= f.date_field :reservation_date %>
+                    <dt class="form-title">予約日付</dt>
+                    <dd class="form-item"><%= f.date_field :reservation_date %></dd>
 
-                    <h4>施術開始時間</h4>
-                    <%= f.time_field :start_time %>
-                    <h4>要望</h4>
-                    <%= f.text_area :demand %>
+                    <dt class="form-title">施術開始時間</dt>
+                    <dd class="form-item"><%= f.time_field :start_time %></dd>
+                    <dt class="form-title">要望</dt>
+                    <dd class="form-item"><%= f.text_area :demand %></dd>
                     <p>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。</p>
                     <!-- 次の予約開始時間 -->
-                    <%= f.hidden_field :restart_reservation_time, value: true %>
+                    <dd class="form-item"><%= f.hidden_field :restart_reservation_time, value: true %></dd>
                     <!-- 管理者ログイン時は、trueにする。 -->
-                    <%= f.hidden_field :sales, value: false %>
-                    <%= f.submit "男性として追加する" %>
+                    <dd class="form-item"><%= f.hidden_field :sales, value: false %></dd>
+                    <dd class="form-item"><%= f.submit "男性として追加する" %></dd>
+                    </dl>
                 </div>
                 <% end %>
             </div>
@@ -76,43 +81,49 @@
             <div id="secondBox">
                 <%= form_with(model: @reservation,local: true) do |f| %>
                 <div class="form">
-                    <h4>予約者名</h4>
-                    <%= f.text_field :user_name %>
+                    <dl>
+                    <dt class="form-title">予約者名</dt>
+                    <dd class="form-item"><%= f.text_field :user_name %></dd>
 
-                    <h4>予約者カナ名</h4>
-                    <%= f.text_field :user_kana_name %>
+                    <dt class="form-title">予約者カナ名</dt>
+                    <dd class="form-item"><%= f.text_field :user_kana_name %></dd>
 
-                    <%= f.hidden_field :gender, value: "女性" %>
+                    <dd class="form-item"><%= f.hidden_field :gender, value: "女性" %></dd>
 
-                    <h4>予約者メールアドレス</h4>
-                    <%= f.email_field :user_email %>
+                    <dt class="form-title">予約者メールアドレス</dt>
+                    <dd class="form-item"><%= f.email_field :user_email %></dd>
 
-                    <h4>電話番号</h4>
-                    <%= f.number_field :user_phone_number %>
+                    <dt class="form-title">電話番号</dt>
+                    <dd class="form-item"><%= f.number_field :user_phone_number %></dd>
 
-                    <h4>ご希望のコース</h4>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
+                    <dt class="form-title">ご希望のコース</dt>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
                     <%#= f.text_field :request_course %>
-                    <%= f.collection_select :request_course, Menu.all, :menu_title, :menu_title %>
+                    <dd class="form-item"><%= f.collection_select :request_course, Menu.all, :menu_title, :menu_title %></dd>
 
-                    <h4>コースの長さ</h4>
-                    <%= f.select :request_course_time, [[30, 30],[60, 60]] %>
+                    <dt class="form-title">コースの長さ</dt>
+                    <dd class="form-item"><%= f.select :request_course_time, [[30, 30],[60, 60]] %></dd>
 
-                    <h4>予約日付</h4>
-                    <%= f.date_field :reservation_date %>
+                    <dt class="form-title">予約日付</dt>
+                    <dd class="form-item"><%= f.date_field :reservation_date %></dd>
 
-                    <h4>施術開始時間</h4>
-                    <%= f.time_field :start_time %>
-                    <h4>要望</h4>
-                    <%= f.text_area :demand %>
+                    <dt class="form-title">施術開始時間</dt>
+                    <dd class="form-item"><%= f.time_field :start_time %></dd>
+                    <dt class="form-title">要望</dt>
+                    <dd class="form-item"><%= f.text_area :demand %></dd>
                     <p>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。</p>
                     <%# restart_reservation_time = start_time + Rational(request_course_time,24*60) + Rational(30,24*60)%>
                     <%#= f.hidden_field :restart_reservation_time, value: true %><!-- 次の予約開始時間はコントローラーでぶちこむ -->
-                    <%= f.hidden_field :sales, value: false %><!-- 管理者ログイン時は、trueにする。 -->
+                    <dd class="form-item"><%= f.hidden_field :sales, value: false %><!-- 管理者ログイン時は、trueにする。 --></dd>
                     <%#= f.hidden_field :menu_id, value: false%>
-                    <%= f.submit "女性として追加する" %>
+                    <dd class="form-item"><%= f.submit "女性として追加する" %></dd>
+                    </dl>
                 </div>
                 <% end %>
             </div>
+        </div>
+    </div>
+</div>
+</div>
 
 
 
@@ -133,3 +144,5 @@ document.getElementById('secondBox').style.display = "";
 //オンロードさせ、リロード時に選択を保持
 window.onload = entryChange1;
 </script>
+
+

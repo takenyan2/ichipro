@@ -1,3 +1,88 @@
-// Place all the styles related to the reservations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@charset "UTF-8";
+/*--------------------------------------
+form class
+--------------------------------------*/
+.form-outer{
+	padding:40px 40px 40px;
+	border: 1px solid #dfdfdf;
+	border-top: 2px solid #B2C769;
+	font-size: 14px;
+	line-height: 1.75;
+}
+
+.page-title{
+	margin-bottom: 20px;
+	padding: 0 0 15px 0;
+	background:url(../images/form/border_1.gif) no-repeat left bottom;
+	font-size: 24px;
+}
+.page-title__indent{
+	display: inline-block;
+	color:#B2C769;
+}
+.form-list{
+	margin-bottom: 40px;
+	border-bottom:1px solid #dfdfdf;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.form-title{
+	padding:5px 10px;
+	background:#68b2d4;
+	text-aline:center;
+	color:#ffffff;
+	border-radius:4px;
+}
+
+.form-item:first-of-type{
+	border-top:none;
+}
+.form-item{
+	width: 75%;
+	padding:10px 0 20px;
+}
+.form-parts{
+	-webkit-appearance:none;
+	appearance:none;
+	background: #e9e9e9;
+	border: none;
+	width: 100%;
+	padding: 5px;
+}
+.form-parts__textarea{
+	vertical-align: top;
+}
+.form-parts__submit{
+	width:100%;
+	max-width:298px;
+	height: 47px;
+	margin-bottom: 20px;
+	border: none;
+	background: url(../images/form/btn_bg_1.png) no-repeat;
+	color:#fff;
+}
+
+@media screen and (max-width:768px){
+/*--------------------------------------
+form class
+--------------------------------------*/
+.form-list{
+	border-bottom: none;
+}
+	
+.form-outer{
+	padding: 10px 20px;
+}
+	
+.form-title{
+	width: 100%;
+	padding:20px 0 0;
+	border-top: none;
+}
+.form-item{
+	width: 100%;
+	padding: 10px 0;
+	border-top: none;
+}
+}

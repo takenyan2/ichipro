@@ -1,0 +1,95 @@
+#faq_block dl{
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border:dotted #3abae6 2px;
+}
+
+#faq_block dt{
+  background-color:rgba(130,173,196,0.44);
+  padding: 10px;
+  border-radius: 5px;
+}
+#faq_block dd{
+  padding: 10px;
+}
+
+button{
+   background-color:yellow;
+}
+
+/*全体*/
+.hidden_box {
+    margin: 2em 0;/*前後の余白*/
+    padding: 0;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+  padding: 15px;
+  font-weight: bold;
+  border: solid 2px #ffffff;
+  background-color:yellow;
+  float: right;
+}
+
+/*ボタンホバー時*/
+.hidden_box label:hover {
+  opacity:0.6;
+
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+  clear:both;
+
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
+textarea{
+  width:100%;
+  height:100px;
+  resize:vertical;
+}
+input[type=submit] {
+   float: right;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  display: block;
+  line-height: 30px;
+  width: 160px;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  background-color: yellow;
+  border-bottom: 4px solid yellow;
+  cursor:pointer;
+  box-sizing: content-box;
+  transition:0.1s ease all
+}
+input[type=submit]:hover{
+  opacity:0.6;
+}
+
+input[type=submit]:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+
+

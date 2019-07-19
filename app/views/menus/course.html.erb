@@ -1,10 +1,40 @@
+<div class="main">
+<div class="block　course_block">
 <div class="alert alert-success"><%= flash[:notice] %></div>
 <div class="alert alert-danger"><%= flash[:danger] %></div>
 
-<h2>メニュー・コース一覧</h2>
+<h2 class="bg_sunflower">メニュー・コース一覧</h2>
+\
+		<div class="contents">
+			<h3>改善基本コース</h3>
+			<p>身体の土台である軸と重心バランスを整えて体の歪みをリセット。<br>
+			じっくり全身をもみほぐして筋肉バランスを整える疲労回復改善コース。<br>
+			慢性的な首、肩、背中、腰の辛さがある方、冷え、頭痛持ちがある方に
+			オススメのコースとなっております。</p>
+			<div class="course_box1">
+				<dl><dt>全身整体ベーシック</dt><dd>60分</dd><dd>5000円</dd><dd class="btn-reserve">予約する</dd></dl>
+				<dl><dt>全身整体ベーシック</dt><dd>120分</dd><dd>12000円</dd><dd class="btn-reserve">予約する</dd></dl><p>※初回のみ　3500円　足つぼ＋1000円</p>
+			</div>
+
+		<div class="course_box2">
+			<h3>極上リラクゼーションコース</h3>
+			<p>身体の土台である軸と重心バランスを整えて体の歪みをリセットした後、
+			全身を優しくゆったりとアロマトリートメント。<br>
+			心身の緊張をほぐす癒しメニューが組み合わせになった改善コース。<br>
+			慢性的な首、肩、背中、腰の辛さがある方、冷え、頭痛持ちがある方に
+			オススメのコースとなっております。</p>
+
+			<dl><dt>極上整体プレミアム　90分</dt><dd>13000円</dd><dd class="btn-reserve">予約する</dd></dl>
+			<dl><dt>極上整体プレミアム　120分</dt><dd>15000円</dd><dd class="btn-reserve">予約する</dd></dl>
+\
+
+			</div>
+		</div>
+	</div>
+
+	<p class="course_add_button">コースを追加</p>
 <% @menus.each do |menu|%>
-	<div style= "width :30%;">
-	<%= attachment_image_tag menu, :menu_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %></div>
+	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %>
 	<%= menu.menu_title %> 
 	<%= link_to "編集", renew_menu_path(menu.id) %>
 	<%#= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %>
@@ -35,4 +65,5 @@
     <% end %>
 
 <% end %>
-
+</div>
+</div>

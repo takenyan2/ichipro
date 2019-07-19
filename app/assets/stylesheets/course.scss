@@ -1,0 +1,66 @@
+
+
+dd.btn-reserve{
+	background: #68b2d4;
+	color:#ffffff;
+}
+.course_box1 dl,
+.course_box2 dl{
+	display: block;
+	width: 100%;
+	letter-spacing: -.40em;
+	max-width: 800px;
+	margin: 0 auto 30px;
+	text-align:center;
+	border:1px solid #000000;
+	border-radius:5px;
+
+}
+
+.course_box1 dl dt,
+.course_box1 dl dd{
+	display: inline-block;
+	*display:inline;
+	*zoom: 1;
+	letter-spacing: normal;
+	width: 25%;
+	box-sizing:border-box;
+}
+
+.course_box1 dl dt,
+.course_box1 dl dd,
+.course_box2 dl dt,
+.course_box2 dl dd{
+	margin-bottom:0;
+	padding:4px;
+	border-right:1px solid #000000;
+}
+.course_box1 dl dt,
+.course_box2 dl dt{
+	font-weight:bold;
+	background-color:#f8f9fa;
+	border-radius:5px 0 0 5px;
+
+}
+.course_box1 dl dd:last-child,
+.course_box2 dl dd:last-child{
+	border-right:none;
+	border-radius:0 5px 5px 0;
+}
+.course_box2 dl dt,
+.course_box2 dl dd{
+	display: inline-block;
+	*display:inline;
+	*zoom: 1;
+	letter-spacing: normal;
+	width: 33.3333%;
+}
+.course_add_button
+ {
+	padding: 15px;
+	font-weight: bold;
+	border: solid 2px #ffffff;
+	background-color:yellow;
+	float: right;
+
+   }
