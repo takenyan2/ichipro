@@ -1,20 +1,25 @@
 #faq_block dl{
   margin-bottom: 10px;
-  border-radius: 5px;
-  border:dotted #3abae6 2px;
 }
 
 #faq_block dt{
-  background-color:rgba(130,173,196,0.44);
+  background-color:#68b2d4;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
 }
 #faq_block dd{
   padding: 10px;
+  border:dotted #68b2d4 2px;
+  border-top:none;
+  border-radius: 0 0 5px 5px;
+
 }
 
 button{
    background-color:yellow;
+}
+button:hover{
+opacity: 0.6;
 }
 
 /*全体*/
@@ -75,7 +80,7 @@ input[type=submit] {
   width: 160px;
   text-align: center;
   font-size: 13px;
-  color: #fff;
+  color: #000;
   background-color: yellow;
   border-bottom: 4px solid yellow;
   cursor:pointer;

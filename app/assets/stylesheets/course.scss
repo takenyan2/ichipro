@@ -4,19 +4,26 @@ dd.btn-reserve{
 	background: #68b2d4;
 	color:#ffffff;
 }
+.course_box1,
+.course_box2{
+margin-bottom:30px;
+}
 .course_box1 dl,
 .course_box2 dl{
 	display: block;
 	width: 100%;
 	letter-spacing: -.40em;
 	max-width: 800px;
-	margin: 0 auto 30px;
+	margin: 0 auto 10px;
 	text-align:center;
 	border:1px solid #000000;
 	border-radius:5px;
 
 }
-
+.course_box1 dl:last-of-type,
+.course_box2 dl:last-of-type{
+	margin-bottom:0;
+}
 .course_box1 dl dt,
 .course_box1 dl dd{
 	display: inline-block;
@@ -62,5 +69,34 @@ dd.btn-reserve{
 	border: solid 2px #ffffff;
 	background-color:yellow;
 	float: right;
+
+   }
+
+   @media only screen and (max-width: 619px){
+
+.course_box1 dl dt,
+.course_box1 dl dd,
+.course_box2 dl dt,
+.course_box2 dl dd{
+border-right:none;
+border-bottom:1px solid #000000;
+width:100%;
+}
+
+.course_box1 dl dt,
+.course_box2 dl dt,
+{
+   border-radius: 5px 5px 0 0;
+}
+.course_box1 dl dd:last-child,
+.course_box2 dl dd:last-child{
+	border-bottom:none;
+}
+.course_box1 dl dd:last-child,
+.course_box2 dl dd:last-child {
+  border-right: none;
+  border-radius: 0 0 5px 5px;
+}
+
 
    }
