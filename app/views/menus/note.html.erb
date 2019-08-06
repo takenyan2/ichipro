@@ -1,3 +1,5 @@
+<div class="alert alert-success"><%= flash[:notice] %></div>
+<div class="alert alert-danger"><%= flash[:danger] %></div>
 <div class="main">
   <div class="block">
      <h2 class="bg_sunflower">注意事項</h2>
@@ -39,9 +41,6 @@
      <label for="label1"><button type="button" class="btn">Q&Aを追加</button></label>
      <div class="hidden_show">
        <!--非表示ここから-->
-       <div class="alert alert-success"><%= flash[:notice] %></div>
-       <div class="alert alert-danger"><%= flash[:danger] %></div>
-
        <% @questions.each do |question|%>
         Q.<%= question.user_question %> 
         <%= link_to "編集", edit_note_path(question.id) %>
