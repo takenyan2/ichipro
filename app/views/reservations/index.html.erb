@@ -21,6 +21,19 @@
         <%#= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %>
     <% end %>
 
+
+    <%= month_calendar events: @meetings do |date, meetings| %>
+        <%= link_to reservation_path(@r.id) do %>
+            <%= date %>
+        <% end %>
+      <% meetings.each do |meeting| %>
+        <div>
+          <%= meeting.name %>
+        </div>
+      <% end %>
+    <% end %>
+
+
     <h3>予約フォーム</h3>
 <div class="contents">
             <div class="form-outer">

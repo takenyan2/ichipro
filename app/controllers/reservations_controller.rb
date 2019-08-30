@@ -3,12 +3,17 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @reservations = Reservation.all
     @course = Course.all
+    @meetings = Meeting.all
+    @reservations.each do |reservation|
+      @r = reservation
+    end
   end
 
   def done
   end
 
   def show
+    @reservation = Reservation.find(params[:id])
   end
 
   def edit

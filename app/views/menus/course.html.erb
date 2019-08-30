@@ -34,19 +34,20 @@
 
 	<p class="course_add_button">コースを追加</p>
 <% @menus.each do |menu|%>
-	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "50x50" %>
-	<%= menu.menu_title %> 
+<div class="course_box2">
+	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
+	<h3><%= menu.menu_title %></h3>
 	<%= link_to "編集", renew_menu_path(menu.id) %>
 	<%#= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %>
 	<%= link_to "削除", renew_menu_path(menu.id, permission: true), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
 
-	<%= menu.introduce %></br>
+	<p><%= menu.introduce %></p></br>
 
 
 	<% menu.courses.each do |course| %>
-		<%= course.course_name %> 
-		<%= course.course_time %>分
-		<%= course.price %>円 
+		<dl><dt><%= course.course_name %></dt>
+			<dd><%= course.course_time %>分</dd>
+		<dd><%= course.price %>円</dd> </dd></dl>
 		<%= link_to "編集", edit_menu_path(course.id) %>
 		<%= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
 	<% end %>
