@@ -9,6 +9,11 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def date
+    params[:date]
+   redirect_to top_path
+  end
+
   def done
   end
 

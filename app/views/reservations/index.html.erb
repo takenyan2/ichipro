@@ -11,27 +11,23 @@
         メール：<%= reservation.user_email %></br>
         電話番号：<%= reservation.user_phone_number %></br>
         ご希望のコース：<%= reservation.request_course %></br>
-        ご希望のコース：<%= reservation.request_course_time %></br>
-        ご希望のコース：<%= reservation.reservation_date %></br>
+        何分コースか：<%= reservation.request_course_time %></br>
+        ご希望日：<%= reservation.reservation_date %></br>
         開始時間：<%= reservation.start_time %></br>
         次の施術開始時間：<%= reservation.restart_reservation_time %></br>
         要望：<%= reservation.demand %></br>
         開店日or閉店日 識別：<%= reservation.sales %></br>
+        ーーーーーーーーーーーーーーーーーーーーーーーーー</br>
         <%#= link_to "編集", edit_menu_path(course.id) %>
         <%#= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %>
     <% end %>
 
 
-    <%#= month_calendar events: @meetings do |date, meetings| %>
-        <%#= link_to reservation_path(@r.id) do %>
-            <%#= date %>
-        <%# end %>
-      <%# meetings.each do |meeting| %>
-        <div>
-          <%#= meeting.name %>
-        </div>
-      <%# end %>
-    <%# end %>
+    <%= month_calendar events: @meetings do |date, meetings| %>
+        <%= link_to date_path(date) do %>
+            <%= date %>
+        <% end %>
+    <% end %>
 
 
 
