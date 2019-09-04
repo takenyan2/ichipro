@@ -22,16 +22,17 @@
     <% end %>
 
 
-    <%= month_calendar events: @meetings do |date, meetings| %>
-        <%= link_to reservation_path(@r.id) do %>
-            <%= date %>
-        <% end %>
-      <% meetings.each do |meeting| %>
+    <%#= month_calendar events: @meetings do |date, meetings| %>
+        <%#= link_to reservation_path(@r.id) do %>
+            <%#= date %>
+        <%# end %>
+      <%# meetings.each do |meeting| %>
         <div>
-          <%= meeting.name %>
+          <%#= meeting.name %>
         </div>
-      <% end %>
-    <% end %>
+      <%# end %>
+    <%# end %>
+
 
 
     <h3>予約フォーム</h3>
