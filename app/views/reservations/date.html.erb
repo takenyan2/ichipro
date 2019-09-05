@@ -1,0 +1,98 @@
+<h2><%= "#{params[:date]}のご予約" %></h2>
+<% @reservations.each do |reservation|%>
+<div style = "margin-left: 15%" >・<%= reservation.user_name %>様 <%= reservation.request_course %>コース <%= reservation.request_course_time %>分のご予約</br></div>
+<%end%>
+
+
+    <h3>予約フォーム</h3>
+<div class="contents">
+            <div class="form-outer">
+                <dt class="form-title">性別</dt>
+            <dd class="form-item"><label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />男性</label>
+            <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />女性</label></dd>
+
+
+            <div id="firstBox">
+                <%= form_with(model: @reservation,local: true) do |f| %>
+                <div class="form">
+                   <dl>
+
+                    <dt class="form-title">ご希望のコース</dt>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
+                    <%#= f.text_field :request_course %>
+                    <dd class="form-item"><%= f.select :request_course, [["揉みほぐし", "揉みほぐし"]] %></dd>
+                    <%#= f.collection_select :request_course, Course.all, :course_name, :course_name %>
+                    <!-- ↑のセレクトは、courseから引っ張ってくる -->
+                    <dt class="form-title">コースの長さ</dt>
+                    <dd class="form-item"><%= f.select :request_course_time, [[30, 30],[60, 60]] %></dd>
+
+                    <dd class="form-item"><%= f.hidden_field :date ,value: params[:date] %></dd>
+
+                    <dd class="form-item">
+                    	<%= link_to reservation_time_path do %>
+                    	<%="#{params[:date]}で予約する"%>
+                    	<% end %>
+                    </dd>
+                </div>
+                <% end %>
+            </div>
+
+
+            <div id="secondBox">
+                <%= form_with(model: @reservation,local: true) do |f| %>
+                <div class="form">
+                    <dl>
+
+                    <dt class="form-title">ご希望のコース</dt>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
+                    <%#= f.text_field :request_course %>
+                    <dd class="form-item"><%= f.collection_select :request_course, Menu.all, :menu_title, :menu_title %></dd>
+
+                    <dt class="form-title">コースの長さ</dt>
+                    <dd class="form-item"><%= f.select :request_course_time, [[30, 30],[60, 60]] %></dd>
+
+                    <dd class="form-item"><%= f.hidden_field :date ,value: params[:date] %></dd>
+
+                    <dd class="form-item">
+                    	<%= link_to reservation_time_path do %>
+                    	<%="#{params[:date]}で予約する"%>
+                    	<% end %>
+                    </dd>
+
+                    </dl>
+                </div>
+                <% end %>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function entryChange1(){
+radio = document.getElementsByName('entryPlan') 
+if(radio[0].checked) {
+//フォーム
+document.getElementById('firstBox').style.display = "";
+document.getElementById('secondBox').style.display = "none";
+}else if(radio[1].checked) {
+//フォーム
+document.getElementById('firstBox').style.display = "none";
+document.getElementById('secondBox').style.display = "";
+}
+}
+//オンロードさせ、リロード時に選択を保持
+window.onload = entryChange1;
+</script>
+
+

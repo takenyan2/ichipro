@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   patch '/menus/:id/edit_menu' => "menus#update_menu"
   delete '/menus/:id/edit_menu' => "menus#destroy"
   get '/reservations/done' => 'reservations#done'
-  post 'reservations/:date' => "reservations#date", as: "date"
+  get '/calendar/:date' => "reservations#date", as: "reservation_date"
+  get '/reservation_time/:date' => "reservations#time", as: "reservation_time"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
