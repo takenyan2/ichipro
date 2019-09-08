@@ -10,18 +10,22 @@ class ReservationsController < ApplicationController
   end
 
   def date
-    params[:date]
     @reservation = Reservation.new
     @reservations = Reservation.where(reservation_date: params[:date])
-    session[:dete] = params[:date]
+    session[:date] = params[:date]
+    puts "session[:date] => #{session[:date]}"
   end
 
   def time
     @reservations = Reservation.where(reservation_date: params[:date])
     @reservation = Reservation.new
-    session[:request_course] = @reservation.request_course
-    session[:request_course_time] = @reservation.request_course_time
 
+    # こんな風に、モデルの変数に値を入れればフォームに自動入力される。
+    @reservation.user_name = "taro"
+
+    # sessionに値が入っているか確かめるなら putsメソッド使えば
+    session[:request_course] = @reservation.request_course
+    puts "session[:request_course]: => #{session[:request_course]}"
   end
 
   def confirme

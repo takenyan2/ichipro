@@ -35,7 +35,7 @@
 	<p class="course_add_button">コースを追加</p>
 <% @menus.each do |menu|%>
 <div class="course_box2">
-	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
+	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: '100x100' %>
 	<h3><%= menu.menu_title %></h3>
 	<%= link_to "編集", renew_menu_path(menu.id) %>
 	<%#= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %>
