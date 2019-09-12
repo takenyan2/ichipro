@@ -20,7 +20,7 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.where(reservation_date: params[:date])
     @reservation = Reservation.new
     session[:request_course] = @reservation.request_course
-    session[:request_course_time] = @reservation.request_course_time
+    # session[:request_course_time] = @reservation.request_course_time
 
   end
 

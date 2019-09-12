@@ -53,11 +53,13 @@
       <h4>Q&Aの追加</h4>
        <%= form_with(model: @question, url: menus_note_path ,local: true) do |f| %>
             <div class="form">
-              <h4>質問文</h4>
+				<dl>
+				<dt class="form-title">質問文</dt>
               <div style= "height: 20px;">
-              <%= f.text_field :user_question %></div>
-              <h4>答え</h4>
-              <%= f.text_area :answer %>
+              <dd><%= f.text_field :user_question %></dd></div>
+              <dt class="form-title">答え</dt>
+              <dd><%= f.text_area :answer %></dd>
+				</dl>
             </div>
               <%#= f.hidden_field :id, value: @question.id %>
               <%= f.submit "追加する" %>

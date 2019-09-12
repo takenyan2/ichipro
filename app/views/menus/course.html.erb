@@ -7,25 +7,31 @@
 
 		<div class="contents">
 			<h3>改善基本コース</h3>
-			<p>身体の土台である軸と重心バランスを整えて体の歪みをリセット。<br>
+			<div class="course_description">
+			<p class="course_photo">写真</p>
+			<p class="course_text">身体の土台である軸と重心バランスを整えて体の歪みをリセット。<br>
 			じっくり全身をもみほぐして筋肉バランスを整える疲労回復改善コース。<br>
 			慢性的な首、肩、背中、腰の辛さがある方、冷え、頭痛持ちがある方に
 			オススメのコースとなっております。</p>
-			<div class="course_box1">
-				<dl><dt>全身整体ベーシック</dt><dd>60分</dd><dd>5000円</dd><dd class="btn-reserve">予約する <i class="fas fa-angle-right"></i></dd></dl>
-				<dl><dt>全身整体ベーシック</dt><dd>120分</dd><dd>12000円</dd><dd class="btn-reserve">予約する <i class="fas fa-angle-right"></i></dd></dl><p>※初回のみ　3500円　足つぼ＋1000円</p>
+			</div>
+			<div class="course_box">
+				<dl><dt>全身整体ベーシック</dt><dd>60分</dd><dd>5000円</dd></dl>
+				<dl><dt>全身整体ベーシック</dt><dd>120分</dd><dd>12000円</dd></dl><p>※初回のみ　3500円　足つぼ＋1000円</p>
 			</div>
 
-		<div class="course_box2">
+		<div class="course_box">
 			<h3>極上リラクゼーションコース</h3>
-			<p>身体の土台である軸と重心バランスを整えて体の歪みをリセットした後、
+			<div class="course_description">
+			<p class="course_photo">写真</p>
+			<p class="course_text">身体の土台である軸と重心バランスを整えて体の歪みをリセットした後、
 			全身を優しくゆったりとアロマトリートメント。<br>
 			心身の緊張をほぐす癒しメニューが組み合わせになった改善コース。<br>
 			慢性的な首、肩、背中、腰の辛さがある方、冷え、頭痛持ちがある方に
 			オススメのコースとなっております。</p>
+			</div>
 
-			<dl><dt>極上整体プレミアム　90分</dt><dd>13000円</dd><dd class="btn-reserve">予約する <i class="fas fa-angle-right"></i></dd></dl>
-			<dl><dt>極上整体プレミアム　120分</dt><dd>15000円</dd><dd class="btn-reserve">予約する <i class="fas fa-angle-right"></i></dd></dl>
+			<dl><dt>極上整体プレミアム　90分</dt><dd>13000円</dd></dl>
+			<dl><dt>極上整体プレミアム　120分</dt><dd>15000円</dd></dl>
 
 
 			</div>
@@ -34,7 +40,7 @@
 
 	<p class="course_add_button">コースを追加</p>
 <% @menus.each do |menu|%>
-<div class="course_box2">
+<div class="course_box">
 	<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
 	<h3><%= menu.menu_title %></h3>
 	<%= link_to "編集", renew_menu_path(menu.id) %>
@@ -51,20 +57,21 @@
 		<%= link_to "編集", edit_menu_path(course.id) %>
 		<%= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %></br>
 	<% end %>
-
+</div>
 	<h4>【コースの追加】</h4>
 	<%= form_with(model: @menu, url: menus_path, method: :post ,local: true) do |f| %>
-      <div class="form">
+      <div class="form"><dl>
       	<%#= f.hidden_field :menu_id, :value => menu.id %>
       	<%= f.hidden_field :menu_id, value: menu.id %>
-      	コース名：<%= f.text_field :course_name %></br>
-        <%= f.select :course_time, [["15", 15],["30", 30], ["45", 45], ["60", 60], ["75", 75], ["90", 90], ["105", 105], ["120", 120], ["135", 135], ["150", 150], ["165", 165], ["180", 180]]  %>分</br>
-        <%= f.number_field :price %>円</br>
-        <%= hidden_field_tag :permission, false %>
+      	<dt class="form-title">コース名：<%= f.text_field :course_name %></dt>
+       <dd> <%= f.select :course_time, [["15", 15],["30", 30], ["45", 45], ["60", 60], ["75", 75], ["90", 90], ["105", 105], ["120", 120], ["135", 135], ["150", 150], ["165", 165], ["180", 180]]  %>分</dd>
+        <dd><%= f.number_field :price %>円
+        <%= hidden_field_tag :permission, false %></dd>
+		 </dl> 
       </div>
         <%= f.submit "追加する" %>
     <% end %>
 
 <% end %>
-</div>
+
 </div>

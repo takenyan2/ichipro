@@ -148,118 +148,163 @@ a{
 a:hover{
   color: #CCC;
 }
-li{
-  list-style-type: none
-}
+
 nav{
   width: 100%;
   height: 70px;
   position: relative;
-  sbackground-color:#ffffff;
+  background-color:#ffffff;
 
 }
 
-.drawer{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+
+
+header {
+  padding:10px;
+  background: #68b2d4;
+}
+
+#nav-drawer {
   position: relative;
-  /*height: 70px;*/
-  padding: 0 1em;
 }
 
-.navbar_toggle{
-  z-index:9999;
+/*チェックボックス等は非表示に*/
+.nav-unshown {
+  display:none;
 }
 
-.navbar_toggle_icon {
-  position: relative;
-  display: block;
-  height: 2px;
+/*アイコンのスペース*/
+#nav-open {
+  display: inline-block;
   width: 30px;
-  background: #5c6b80;
-  -webkit-transition: ease .5s;
-  transition: ease .5s;
+  height: 22px;
+  vertical-align: middle;
 }
 
-.navbar_toggle_icon:nth-child(1) {
-    top: 0;
+/*ハンバーガーアイコンをCSSだけで表現*/
+#nav-open span, #nav-open span:before, #nav-open span:after {
+  position: absolute;
+  height: 3px;/*線の太さ*/
+  width: 25px;/*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: '';
+  cursor: pointer;
 }
-.navbar_toggle_icon:nth-child(2) {
-    margin: 8px 0;
+#nav-open span:before {
+  bottom: -8px;
 }
-.navbar_toggle_icon:nth-child(3) {
-    top: 0;
-}
-
-.menu.open {
-  -webkit-transform:translateX(0);
-  transform:translateX(0);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  background:#ffffff;
-}
-
-.navbar_toggle.open .navbar_toggle_icon:nth-child(1) {
-  top: 10px;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+#nav-open span:after {
+  bottom: -16px;
 }
 
-.navbar_toggle.open .navbar_toggle_icon:nth-child(2) {
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  opacity: 0;
-}
-
-.navbar_toggle.open .navbar_toggle_icon:nth-child(3) {
-  top: -10px;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.menu{
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
-  -webkit-transition:ease .5s;
-  transition:ease .5s;
-  z-index:1000;
-  background-color:#ffffff !important;
-}
-
-.menu ul li{
-  padding: 2em;
-  border-bottom: 1px solid #CCC;
-  background-color:#ffffff !important;
-}
-
-/*レスポンシブ*/
-@media screen and (min-width: 720px) {
-nav{
-  display: flex;
-  flex-direction: row;
-}
-.navbar_toggle{
-  display: none;
-}
-.menu{
+/*閉じる用の薄黒カバー*/
+#nav-close {
+  display: none;/*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;/*全体に広がるように*/
+  left: 0;
   width: 100%;
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
+  height: 100%;
+  background: black;
+  opacity: 0;
+  transition: .3s ease-in-out;
 }
-.menu ul{
-  height: 70px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: center;
+
+/*中身*/
+#nav-content {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;/*最前面に*/
+  width: 90%;/*右側に隙間を作る（閉じるカバーを表示）*/
+  max-width: 330px;/*最大幅（調整してください）*/
+  height: 100%;
+  background: #fff;/*背景色*/
+  transition: .3s ease-in-out;/*滑らかに表示*/
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);/*左に隠しておく*/
 }
-.menu ul li{
-  padding: 0 1em;
-  border-bottom: none;
+
+/*チェックが入ったらもろもろ表示*/
+#nav-input:checked ~ #nav-close {
+  display: block;/*カバーを表示*/
+  opacity: .5;
 }
-.navbar_brand a img{
-  left:50%;
+
+#nav-input:checked ~ #nav-content {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);/*中身を表示（右へスライド）*/
+  box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+
+	#nav-content ul li:hover{
+		background: #68b2d4;
+		padding: 10px;
+	}
+#nav-content-pc{
+	display: none;
+}
+@media screen and (min-width:768px) {
+  #nav-open {
+    display:none;
+  }
+#nav-content-pc{
+	display:block;
+}
+#nav-content-pc ul{
+	display: table;
+}
+#nav-content-pc ul li{
+	display: table-cell;
+	text-align: center;
+}
+	#nav-content-pc ul li:hover{
+		background: #ffffff;
+	}
+	
+}
+
+
+
+
+.form-list{
+	margin-bottom: 40px;
+	border-bottom:1px solid #dfdfdf;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.form-title{
+	padding:5px 10px;
+	background:#68b2d4;
+	text-aline:center;
+	color:#ffffff;
+	border-radius:4px;
+}
+
+.form-item:first-of-type{
+	border-top:none;
+}
+.form-item{
+	width: 75%;
+	padding:10px 0 20px;
+}
+
+@media screen and (max-width:768px){
+/*--------------------------------------
+form class
+--------------------------------------*/
+.form-title{
+	width: 100%;
+	border-top: none;
+}
+.form-item{
+	width: 100%;
+	padding: 10px 0;
+	border-top: none;
 }
 }

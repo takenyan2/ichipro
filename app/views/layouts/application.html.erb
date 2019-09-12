@@ -14,67 +14,83 @@
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>$(function(){$('.navbar_toggle').on('click',function(){$(this).toggleClass('open');$('.menu').toggleClass('open');});});</script>
-
-
   </head>
 
 
   <body>
-    <header>
-            <!-- 管理者ログイン時のヘッダー -->
-            <nav>
-                <div class="drawer">
-        <% if admin_signed_in?  %>
+	<header>
+	<!-- 管理者ログイン時のヘッダー -->
+		<div id="nav-drawer">
+			<input id="nav-input" type="checkbox" class="nav-unshown">
+			<label id="nav-open" for="nav-input"><span></span></label>
+			<label class="nav-unshown" id="nav-close" for="nav-input"></label>
+			<% if admin_signed_in?  %>
+			<%= link_to top_path do %>
+			<img src="/images/ichi_logo.png" style="float:right; width:52px;">
+			<% end %>
+			<div id="nav-content-pc">
+				<ul>
+					<li><%= link_to "コース・料金", course_path %></li>
+					<li><%= link_to "注意事項", note_path %></li>
+					<li><%= link_to "アクセス", access_path %></li>
+					<li><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
+					<li><%=link_to "管理者ページ", admins_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
+					<li><%=link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
 
-            <%= link_to top_path do %>
-                <img src="/images/ichi_logo.png" style="float:left; width:52px;">
-            <% end %>
-             <div class="navbar_toggle">
-                  <span class="navbar_toggle_icon"></span>
-                  <span class="navbar_toggle_icon"></span>
-                  <span class="navbar_toggle_icon"></span>
-                </div>
-                </div>
-                <div class="menu">
-                  <ul>
-                <li><%= link_to "コース・料金", course_path %></li>
-                <li><%= link_to "注意事項", note_path %></li>
-                <li><%= link_to "アクセス", access_path %></li>
-                <li><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
-                <li><%=link_to "管理者ページ", admins_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
-                <li><%=link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
+					<% else %>
+				</ul>
+			</div>
 
-        <% else %>
-              </ul>
-            </div>
+			<div id="nav-content">
+				<ul>
+					<li><%= link_to "コース・料金", course_path %></li>
+					<li><%= link_to "注意事項", note_path %></li>
+					<li><%= link_to "アクセス", access_path %></li>
+					<li><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
+					<li><%=link_to "管理者ページ", admins_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
+					<li><%=link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
 
-            <!-- 一般ユーザーのヘッダー -->
+					<% else %>
+				</ul>
+			</div>
+		</div>
 
-                <div class="drawer">
-                            <%= link_to top_path do %>
-                                <img src="/images/ichi_logo.png" style="float:left; width:52px;">
-                            <% end %>
-                <div class="navbar_toggle">
-                  <span class="navbar_toggle_icon"></span>
-                  <span class="navbar_toggle_icon"></span>
-                  <span class="navbar_toggle_icon"></span>
-                </div>
-                </div>
-                <div class="menu">
-                  <ul>
-                    <li><%= link_to "コース・料金", course_path %></li>
-                    <li><%= link_to "注意事項", note_path %></li>
-                    <li><%= link_to "アクセス", access_path %></li>
-                    <li><%= link_to "予約状況・予約フォーム", reservations_path %></li>
-                    <li><%= link_to "(管理者のみ)メニュー追加ページ", add_menu_path %></li>
-                        <% end %>
-                  </ul>
-                </div>
-            </nav>
 
-    </header>
-    <%= yield %>
+	<!-- 一般ユーザーのヘッダー -->
+
+		<div id="nav-drawer">
+			<input id="nav-input" type="checkbox" class="nav-unshown">
+			<label id="nav-open" for="nav-input"><span></span></label>
+			<label class="nav-unshown" id="nav-close" for="nav-input"></label>
+			<%= link_to top_path do %>
+			<img src="/images/ichi_logo.png" style="float:right; width:52px;">
+			<% end %>
+			<div id="nav-content-pc">
+				<ul>
+					<li><%= link_to "コース・料金", course_path %></li>
+					<li><%= link_to "注意事項", note_path %></li>
+					<li><%= link_to "アクセス", access_path %></li>
+					<li><%= link_to "予約状況・予約フォーム", reservations_path %></li>
+					<li><%= link_to "(管理者のみ)メニュー追加ページ", add_menu_path %></li>
+					<% end %>
+				</ul>
+			</div>
+			<div id="nav-content">
+				<ul>
+					<li><%= link_to "コース・料金", course_path %></li>
+					<li><%= link_to "注意事項", note_path %></li>
+					<li><%= link_to "アクセス", access_path %></li>
+					<li><%= link_to "予約状況・予約フォーム", reservations_path %></li>
+					<li><%= link_to "(管理者のみ)メニュー追加ページ", add_menu_path %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+ 
     <footer class="footer-color">
+		 <%= yield %>
         <div class="footer-box">
               <i class="fas fa-question-circle"></i> <%=link_to "運営に質問する", "https://docs.google.com/forms/d/e/1FAIpQLSelvK_znRgNptqpfQkwrD-ev7FtCemK3y6qfIqXvynVoiOT9g/viewform", style:"color:black;" %>
               <h5>電話受付開始時間：9:30

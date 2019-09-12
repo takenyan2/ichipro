@@ -7,42 +7,45 @@
 }
 #pro_info h3{
   margin-bottom:30px;
+    color:#FFF;
+    font-size:24px;
+    line-height:1.0em;
+    padding:17px 0 12px;
+    text-align:center;	
 }
 
 #pro_info .profile{
-  box-sizing:border-box;
-  margin:0 auto;
-  padding-left:302px;
-  position:relative;
-  width:1000px;
-}
+    background-image:url(/images/ph_profile.jpg);
+    background-position:center top !important;
+    background-repeat:no-repeat !important;
+    box-sizing:border-box;
+    margin-left:5px;
+    margin-right:5px;
+    padding:310px 0 0 0;
+    position:relative;
+    width:calc(100% - 10px) !important;
+  }
 
-/* 2カラム仕様のスタイル START
 
-#pro_info .profile{
-  box-sizing:border-box;
-  padding-left:302px;
-  position:relative;
-  width:600px;
-}
-
- 2カラム仕様のスタイル END */
 
 #pro_info .profile h4,
 #pro_info .profile h5,
 #pro_info .profile dt,
 #pro_info .profile dd{
-  padding-left:20px;
-}
+  padding-left:10px;
+
 #pro_info .profile h4{
   font-size:24px;
   font-weight:bold;
-  padding-top:10px;
+	padding-top:5px;
+	text-align:center;
+  }
+
 }
 
 #pro_info dl.history dt{
   display:inline-block;
-  margin-right:20px;
+  margin-right:0px;
 }
 #pro_info dl.history dd{
   display:inline-block;
@@ -61,15 +64,12 @@
     box-sizing:border-box;
     display:inline-block;
     vertical-align:top;
-    width:20%;
+    width:28%;
   }
   #pro_info dd{
     box-sizing:border-box;
     display:inline-block;
-    width:75%;
-  }
-  #pro_info dl.history dt{
-    margin-right:0;
+    width:67%;
   }
   
   #pro_info dl{
@@ -84,80 +84,9 @@
   background:url(/images/ph_profile.jpg) no-repeat;
   /*float:left;*/
   margin-top:100px;
-}
-
-
-
-@media screen and (max-width: 1199px){
-  #pro_info .profile{
-    margin-left:20px;
-    margin-right:20px;
-    width:calc(100% - 40px) !important;
-  }
-  #pro_info dt{
-    box-sizing:border-box;
-    display:inline-block;
-    vertical-align:top;
-    width:28%;
-  }
-  #pro_info dd{
-    box-sizing:border-box;
-    display:inline-block;
-    width:67%;
-  }
-  #pro_info dl.history dt{
-    margin-right:0;
-  }
-}
-
-@media screen and (max-width: 767px){
-  #pro_info h3{
-    color:#FFF;
-    font-size:24px;
-    line-height:1.0em;
-    padding:17px 0 12px;
-    text-align:center;
-  }
-  #pro_info .profile{
-    background-image:url(/images/ph_profile.jpg);
-    background-position:center top !important;
-    background-repeat:no-repeat !important;
-    box-sizing:border-box;
-    margin-left:5px;
-    margin-right:5px;
-    padding:310px 0 0 0;
-    position:relative;
-    width:calc(100% - 10px) !important;
-  }
- #pro_info .profile#hirosawa{
       text-aline:center;
- }
-  #pro_info .profile h4,
-  #pro_info .profile h5,
-  #pro_info .profile dt,
-  #pro_info .profile dd{
-    padding-left:10px;
-  }
-  #pro_info .profile h4{
-    padding-top:5px;
-    text-align:center;
-  }
-
-  #pro_info dt{
-    box-sizing:border-box;
-    display:inline-block;
-    vertical-align:top;
-    width:28%;
-  }
-  #pro_info dd{
-    box-sizing:border-box;
-    display:inline-block;
-    width:67%;
-  }
-  #pro_info dl.history dt{
-    margin-right:0;
-  }
 }
+
 
 
 
