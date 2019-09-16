@@ -51,11 +51,7 @@
   display:inline-block;
 }
 #pro_info .profile dt{
-  color:#ff686f;
-  font-size:14px;
-}
-#pro_info .profile dd{
-  font-size:13px;
+  color:#CC5289;
 }
 
 
@@ -63,7 +59,7 @@
   #pro_info dt{
     box-sizing:border-box;
     display:inline-block;
-    vertical-align:top;
+    vertical-align:middle;
     width:28%;
   }
   #pro_info dd{
@@ -73,7 +69,12 @@
   }
   
   #pro_info dl{
-    padding:2px 0;
+    padding:10px 0;
+    border-bottom:1px dashed #CC5289;
+    margin:0;
+  }
+  #pro_info dl:first-child{
+    padding-top:0;
   }
   #pro_info dl.technique,
   #pro_info dl.message{

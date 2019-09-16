@@ -14,6 +14,7 @@
   *= require_self　
   *= scaffolds.scss
   *=　application.scss
+  *= registrations.scss
  *= require_tree .
 
  */
@@ -32,7 +33,7 @@ html{
 }
 
 body,p,ol,ul,td{
-  color: #000000;
+  color: #404040;
   font-size: 1.5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -55,7 +56,7 @@ li{
   list-style: none;
 }
 .my-blue{
-  color:#007bff;
+  color:#A0c0c0;
 }
 .contents{
   max-width: 790px;
@@ -67,7 +68,7 @@ li{
 
 p,th{
   font-weight: normal; 
-  color: #000000;
+  color: #404040;
   font-size: 1.5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -80,9 +81,6 @@ p,th{
 }
 }
 
-h1{
-  width: 52px;
-}
 
 h2{
 font-weight:bold;
@@ -113,7 +111,6 @@ h3{
   position:relative;
   line-height:2em;
   text-indent:2em;
-  display:inline-block;
   z-index: -1;
 }
 h3:before{
@@ -129,43 +126,42 @@ h3:before{
 }
 
 
-footer{
-  background:#68b2d4; 
-  clear: both;
- 
-}
-
-.footer-box{
-  padding: 40px;
-}
-
 
 a{
-  color: #333;
+  color: #404040;
   text-decoration: none;
 }
 
 a:hover{
-  color: #CCC;
+  text-decoration: none;
+   color: #ffffff;
+   opacity:0.6;
 }
 
-nav{
-  width: 100%;
-  height: 70px;
-  position: relative;
-  background-color:#ffffff;
+dt{
+font-weight: normal;
+}
 
+h4{
+  padding:10px;
+  background:#A0c0c0;
+  border-radius: 4px;
+  color:#ffffff;
 }
 
 
 
 header {
-  padding:10px;
-  background: #68b2d4;
+  padding:8px;
+  background: #A0c0c0;
+  position: relative;
 }
 
 #nav-drawer {
   position: relative;
+}
+#nav-drawer img{
+ display:none; 
 }
 
 /*チェックボックス等は非表示に*/
@@ -240,36 +236,61 @@ header {
   transform: translateX(0%);/*中身を表示（右へスライド）*/
   box-shadow: 6px 0 25px rgba(0,0,0,.15);
 }
-
-	#nav-content ul li:hover{
-		background: #68b2d4;
+  #nav-content ul li a{
+    padding: 10px;
+    width:100%;
+  }
+	#nav-content ul li a:hover{
+		background: #A0c0c0;
 		padding: 10px;
+    color:#ffffff;
 	}
 #nav-content-pc{
 	display: none;
 }
-@media screen and (min-width:768px) {
+@media screen and (min-width:949px) {
+header {
+  height:90px;
+}
+#nav-drawer img{
+  display:block;
+}
   #nav-open {
     display:none;
   }
 #nav-content-pc{
 	display:block;
+  position:absolute;
+  top:36px;
 }
 #nav-content-pc ul{
 	display: table;
+
 }
 #nav-content-pc ul li{
 	display: table-cell;
 	text-align: center;
 }
-	#nav-content-pc ul li:hover{
-		background: #ffffff;
+#nav-content-pc ul li a{
+  padding:8px;
+  color:#ffffff;
+  height:100%;
+  border-bottom:1px dashed #dfdfdf;
+  margin:0 8px;
+}
+#nav-content-pc ul li a:hover{
+  background: #ffffff;
+  color:#A0c0c0;
+
 	}
+
 	
 }
 
 
-
+.form{
+  margin-bottom:20px;
+}
 
 .form-list{
 	margin-bottom: 40px;
@@ -280,7 +301,7 @@ header {
 }
 .form-title{
 	padding:5px 10px;
-	background:#68b2d4;
+	background:#A0c0c0;
 	text-aline:center;
 	color:#ffffff;
 	border-radius:4px;
@@ -292,6 +313,11 @@ header {
 .form-item{
 	width: 75%;
 	padding:10px 0 20px;
+}
+.form-item input,
+.form-item select,
+.form-item textarea{
+  border: 2px solid #dfdfdf;
 }
 
 @media screen and (max-width:768px){
@@ -307,4 +333,65 @@ form class
 	padding: 10px 0;
 	border-top: none;
 }
+}
+
+
+
+input[type=submit] {
+margin:0 auto;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  display: block;
+  line-height: 30px;
+  width: 160px;
+  text-align: center;
+  font-size: 13px;
+  color: #404040;
+  background-color: yellow;
+  border-bottom: 4px solid yellow;
+  cursor:pointer;
+  box-sizing: content-box;
+  transition:0.1s ease all;
+}
+input[type=submit]:hover{
+  opacity:0.6;
+}
+
+input[type=submit]:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+footer{
+  background:#A0c0c0; 
+  clear: both;
+ font-weight:normal;
+}
+
+.footer-box a,
+.footer-box p
+{
+  color:#ffffff　!important;
+  margin:10px 5px;
+  padding:5px;
+  display:inline;
+  border-bottom:1px dashed #dfdfdf;
+  font-size:16px;
+}
+
+.footer-box a:hover,
+.footer-box p:hover
+{
+background: #3333;
+}
+
+.footer-box{
+
+  padding: 40px;
+  
+}
+
+label {
+  margin-bottom: 0px; 
 }

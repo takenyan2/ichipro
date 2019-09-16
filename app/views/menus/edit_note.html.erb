@@ -1,11 +1,12 @@
-<h1>Q&Aを編集する</h1>
-
+<h2>Q&Aを編集する</h2>
+<div class="contents">
 	<%= form_with(model: @question, url:edit_note_path, local: true) do |f| %>
       <div class="form">
         <h4>質問文</h4>
-        <%= f.text_field :user_question %>
+        <dd class="form-item"><%= f.text_field :user_question %></dd>
         <h4>答え</h4>
-        <%= f.text_area :answer %>
+        <dd class="form-item"><%= f.text_area :answer %></dd>
       </div>
         <%= f.submit "追加する" %>
     <% end %>
+ </div>

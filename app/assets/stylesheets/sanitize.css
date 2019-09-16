@@ -197,7 +197,7 @@ dfn {
 
 mark {
 	background-color: #ffff00;
-	color: #000000;
+	color: #404040;
 }
 
 /**
@@ -245,13 +245,13 @@ sup {
 
 ::-moz-selection {
 	background-color: #b3d4fc; /* 1 */
-	color: #000000; /* 1 */
+	color: #404040; /* 1 */
 	text-shadow: none;
 }
 
 ::selection {
 	background-color: #b3d4fc; /* 1 */
-	color: #000000; /* 1 */
+	color: #404040; /* 1 */
 	text-shadow: none;
 }
 

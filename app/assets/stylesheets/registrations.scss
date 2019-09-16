@@ -1,0 +1,36 @@
+.registration-block input[type=submit] {
+    display: block;
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center;
+    width: 200px;
+    margin: 10px auto;
+    color: #ffffff;
+
+
+
+    margin:10px auto　0;
+    font-weight: normal;
+    border: none;
+    outline: none;
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    font-size: 13px;
+    background-color: #CC5289;
+    cursor: pointer;
+    box-sizing: content-box;
+    transition: 0.1s ease all;
+}
+.registration-block a{
+    padding: 5px;
+    width:100%;
+    border: 2px solid #A0c0c0;
+    border-radius: 3px;
+    text-aline:center;
+  }
+.registration-block a:hover{
+	background: #A0c0c0;
+   	color:#ffffff;
+    border: 2px solid #A0c0c0;
+	}

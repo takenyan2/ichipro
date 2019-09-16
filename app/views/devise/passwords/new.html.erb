@@ -1,5 +1,5 @@
-<h2>パスワードの再設定</h2>
-<div class="contents">
+<h2 class="bg_sunflower">パスワードの再発行</h2>
+<div class="contents registration-block">
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -7,13 +7,13 @@
 		<div class="form">
 			<dl>
 				<dt class="form-title"><%= f.label :メールアドレス %><dt>
-				<dd><%= f.email_field :email, autofocus: true, autocomplete: "email" %></dd>
+				<dd class="form-item"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></dd>
 			</dl>
 		</div>
 	</div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "パスワードの再発行" %>
   </div>
 <% end %>
 

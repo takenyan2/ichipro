@@ -1,11 +1,12 @@
-<h2><%= "#{params[:date]}のご予約" %></h2>
+<h2 class="bg_sunflower"><%= "#{params[:date]}のご予約" %></h2>
 <% @reservations.each do |reservation|%>
 <div style = "margin-left: 15%" >・<%= reservation.user_name %>様 <%= reservation.request_course %>コース <%= reservation.request_course_time %>分のご予約</br></div>
 <%end%>
 
 
+    
+<div class="contents reservation_date_block">
     <h3>予約フォーム</h3>
-<div class="contents">
             <div class="form-outer">
                 <dt class="form-title">性別</dt>
             <dd class="form-item"><label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />男性</label>
@@ -27,11 +28,11 @@
 
                     <dd class="form-item"><%= f.hidden_field :date ,value: params[:date] %></dd>
 
-                    <dd class="form-item">
+                    </dl>
                     	<%= link_to reservation_time_path do %>
                     	<%="#{params[:date]}で予約する"%>
                     	<% end %>
-                    </dd>
+                    
                 </div>
                 <% end %>
             </div>
@@ -50,14 +51,14 @@
                     <dd class="form-item"><%= f.select :request_course_time, [[30, 30],[60, 60]] %></dd>
 
                     <dd class="form-item"><%= f.hidden_field :date ,value: params[:date] %></dd>
-
-                    <dd class="form-item">
+                    </dl>
+                    
                     	<%= link_to reservation_time_path do %>
                     	<%="#{params[:date]}で予約する"%>
                     	<% end %>
-                    </dd>
+                    
 
-                    </dl>
+                    
                 </div>
                 <% end %>
             </div>
