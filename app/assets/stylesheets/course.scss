@@ -1,67 +1,52 @@
 
-
-dd.btn-reserve{
-	background: #68b2d4;
+.btn-reserve{
 	color:#ffffff;
 }
-.course_box1,
-.course_box2{
+.course_box
+{
 margin-bottom:30px;
 }
-.course_box1 dl,
-.course_box2 dl{
-	display: block;
+.course_box dl{
+	display: table;
 	width: 100%;
-	letter-spacing: -.40em;
-	max-width: 800px;
+	max-width: 80%;
 	margin: 0 auto 10px;
 	text-align:center;
-	border:1px solid #000000;
+	border:1px solid #A0c0c0;
 	border-radius:5px;
-
+	overflow: hidden;
 }
-.course_box1 dl:last-of-type,
-.course_box2 dl:last-of-type{
+.course_box dl:last-of-type,
+ dl:last-of-type{
 	margin-bottom:0;
 }
-.course_box1 dl dt,
-.course_box1 dl dd{
-	display: inline-block;
-	*display:inline;
-	*zoom: 1;
-	letter-spacing: normal;
-	width: 25%;
-	box-sizing:border-box;
-}
 
-.course_box1 dl dt,
-.course_box1 dl dd,
-.course_box2 dl dt,
-.course_box2 dl dd{
-	margin-bottom:0;
+.course_box dl dt,
+.course_box dl dd{
+	margin:0;
 	padding:4px;
-	border-right:1px solid #000000;
+	border-right:1px solid #A0c0c0;
+	display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+	min-width: 100px;
+	max-width: 200px;
 }
-.course_box1 dl dt,
-.course_box2 dl dt{
-	font-weight:bold;
-	background-color:#f8f9fa;
-	border-radius:5px 0 0 5px;
 
+
+
+.course_box dl dt{
+	background: #A0c0c0;
+	color:#ffffff;
 }
-.course_box1 dl dd:last-child,
-.course_box2 dl dd:last-child{
+
+
+
+.course_box dl dd:last-child:last-child{
 	border-right:none;
 	border-radius:0 5px 5px 0;
 }
-.course_box2 dl dt,
-.course_box2 dl dd{
-	display: inline-block;
-	*display:inline;
-	*zoom: 1;
-	letter-spacing: normal;
-	width: 33.3333%;
-}
+
 .course_add_button
  {
 	padding: 15px;
@@ -73,30 +58,118 @@ margin-bottom:30px;
    }
 
    @media only screen and (max-width: 619px){
-
-.course_box1 dl dt,
-.course_box1 dl dd,
-.course_box2 dl dt,
-.course_box2 dl dd{
-border-right:none;
-border-bottom:1px solid #000000;
-width:100%;
-}
-
-.course_box1 dl dt,
-.course_box2 dl dt,
+     .course_box dl{
+       display:block;
+       width:100%;
+       letter-spacing: -.40em;
+     }
+.course_box dl dt,
+.course_box dl dd
 {
-   border-radius: 5px 5px 0 0;
+  border-right:none;
+  border-bottom:1px solid #A0c0c0;
+  width:100%;
+  display:block;
+	letter-spacing: normal;
+	box-sizing:border-box;
+	max-width: 100%;
 }
-.course_box1 dl dd:last-child,
-.course_box2 dl dd:last-child{
-	border-bottom:none;
+
+.course_box dl dt
+{
+  
+	
 }
-.course_box1 dl dd:last-child,
-.course_box2 dl dd:last-child {
-  border-right: none;
+.course_box dl dd:last-child{
+  border-bottom:none;
   border-radius: 0 0 5px 5px;
 }
+  }
 
 
-   }
+.course_description{
+	width: 100%;
+	display: block;
+	letter-spacing: -.40em;
+}
+.course_photo{
+	width: 30%;
+	background: coverx;
+
+	display: inline-block;
+	*display:inline;
+	*zoom: 1;
+	letter-spacing: normal;
+}
+.course_text{
+	width: 60%;
+	display: inline-block;
+	*display:inline;
+	*zoom: 1;
+	letter-spacing: normal;
+	padding-left:10%;
+}
+.btn_reservation{
+margin-top: 10px; 
+background: #CC5289; 
+display:block; 
+padding: 5px; 
+border-radius: 3px; 
+text-align: center; 
+width: 200px; 
+margin:10px auto; 
+color:#ffffff;
+}
+
+@media only screen and (max-width: 619px){
+.course_text,
+.course_photo
+{
+  width:100%;
+  display:block;
+}
+
+  }
+
+
+  button{
+   background-color:yellow;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+    padding: 15px;
+    font-weight: bold;
+    border: solid 2px #ffffff;
+    background-color: yellow;
+    float: right;
+}
+
+
+/*チェックは見えなくする
+.hidden_box input {
+    display: none;
+}
+*/
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+      max-width: 790px;
+  margin-right:auto;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
+textarea{
+  width:100%;
+  height:100px;
+  resize:vertical;
+}

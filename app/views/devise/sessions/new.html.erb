@@ -1,26 +1,35 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<h2 class="bg_sunflower">ログイン</h2>
+<div class="contents registration-block">
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field"><div class="form">
+   <dl>
+<dt class="form-title"><%= f.label :メールアドレス %><dt>
+    <dd class="form-item"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></dd></dl>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+	  
+   <div class="field"><div class="form">
+   <dl>
+<dt class="form-title"><%= f.label :パスワード %><dt>
+   <dd class="form-item"> <%= f.password_field :password, autocomplete: "current-password" %></dd></dl>
   </div>
+    </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+	   <% if devise_mapping.rememberable? %>
+  <div class="field"><div class="form">
+   <dl>
+      <dd><%= f.check_box :remember_me %><span style="padding-left: 5px;">次回ログインからパスワードの入力を省略</span></dd>
+     </dl>
+    </div>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+     <p class="form-item"><a href="/admins/password/new"><%= f.label :パスワードをお忘れの方はこちら %></a></p>
+    <%= f.submit "ログイン" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+  </div>
+</div>

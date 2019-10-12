@@ -30,13 +30,13 @@
         <% end %>
     <% end %>
 
-
+<div class="contents">
 
     <h3>予約フォーム</h3>
-<div class="contents">
+
             <div class="form-outer">
                 <dt class="form-title">性別</dt>
-            <dd class="form-item"><label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />男性</label>
+           <dd class="form-item"><label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />男性</label>
             <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />女性</label></dd>
 
             <!-- <label><%#= f.radio_button :gender, "男性" %>男性</label> -->
@@ -77,13 +77,13 @@
                     <dd class="form-item"><%= f.time_select :start_time,{ start_hour:10, end_hour:20 ,minute_step: 15} %></dd>
                     <dt class="form-title">要望</dt>
                     <dd class="form-item"><%= f.text_area :demand %></dd>
-                    <p>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。</p>
+                    <
+                   
+                    </dl>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。
                     <!-- 次の予約開始時間 -->
-                    <dd class="form-item"><%= f.hidden_field :restart_reservation_time, value: true %></dd>
+                    <%= f.hidden_field :restart_reservation_time, value: true %>
                     <!-- 管理者ログイン時は、trueにする。 -->
-                    <dd class="form-item"><%= f.hidden_field :sales, value: false %></dd>
-                    <dd class="form-item"><%= f.submit "男性として追加する" %></dd>
-                    </dl>
+                    <%= f.hidden_field :sales, value: false %><%= f.submit "男性として追加する" %>
                 </div>
                 <% end %>
             </div>
@@ -121,13 +121,13 @@
                     <dd class="form-item"><%= f.time_field :start_time %></dd>
                     <dt class="form-title">要望</dt>
                     <dd class="form-item"><%= f.text_area :demand %></dd>
-                    <p>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。</p>
+                    
+                    </dl>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。
                     <%# restart_reservation_time = start_time + Rational(request_course_time,24*60) + Rational(30,24*60)%>
                     <%#= f.hidden_field :restart_reservation_time, value: true %><!-- 次の予約開始時間はコントローラーでぶちこむ -->
-                    <dd class="form-item"><%= f.hidden_field :sales, value: false %><!-- 管理者ログイン時は、trueにする。 --></dd>
+                    <%= f.hidden_field :sales, value: false %><!-- 管理者ログイン時は、trueにする。 -->
                     <%#= f.hidden_field :menu_id, value: false%>
-                    <dd class="form-item"><%= f.submit "女性として追加する" %></dd>
-                    </dl>
+                    <%= f.submit "女性として追加する" %>
                 </div>
                 <% end %>
             </div>
@@ -138,22 +138,32 @@
 
 
 
-
 <script type="text/javascript">
+  window.onload = function(){
+document.getElementById('firstBox').style.display = "";
+document.getElementById('secondBox').style.display = "none";
+}
+ 
 function entryChange1(){
 radio = document.getElementsByName('entryPlan') 
 if(radio[0].checked) {
-//フォーム
+
 document.getElementById('firstBox').style.display = "";
 document.getElementById('secondBox').style.display = "none";
 }else if(radio[1].checked) {
-//フォーム
+
 document.getElementById('firstBox').style.display = "none";
 document.getElementById('secondBox').style.display = "";
 }
 }
 //オンロードさせ、リロード時に選択を保持
 window.onload = entryChange1;
+
 </script>
+
+
+
+
+
 
 
