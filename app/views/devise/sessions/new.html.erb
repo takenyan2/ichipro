@@ -19,12 +19,13 @@
   <div class="field"><div class="form">
    <dl>
       <dd><%= f.check_box :remember_me %><span style="padding-left: 5px;">次回ログインからパスワードの入力を省略</span></dd>
-      <dd class="form-item"><a href="/admins/password/new"><%= f.label :パスワードをお忘れの方はこちら %></a></dd></dl>
+     </dl>
     </div>
     </div>
   <% end %>
 
   <div class="actions">
+     <p class="form-item"><a href="/admins/password/new"><%= f.label :パスワードをお忘れの方はこちら %></a></p>
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
