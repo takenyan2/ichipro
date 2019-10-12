@@ -38,13 +38,10 @@
 			</div>
 
 			</div>
-		</div>
 
 
-<div class="hidden_box">
-    <label for="label1">コースを追加</label>
-    <input type="checkbox" id="label1" style="display: none;"/>
-    <div class="hidden_show">
+
+
 	<div class="contents">
 	<% @menus.each do |menu|%>
 
@@ -66,14 +63,17 @@
 			<dd><%= course.course_time %>分</dd>
 			<dd><%= course.price %>円</dd> </dd>
 		</dl>
-			<p class="btn_reservation">予約する ></p>
+			
 	</div>
 			<p style="background-color: yellow; padding:5px 10px; display: inline-block; float: right;"><%= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %></p>
 			<p style="background-color: yellow; padding:5px 10px; display: inline-block; float: right; margin-right: 5px;"><%= link_to "編集", edit_menu_path(course.id) %></p>
 			
 		<% end %>
-
-	<div class="contents" style="clear: both;">
+			</div>	
+<div class="hidden_box contents">
+    <label for="label1">コースを追加</label>
+    <input type="checkbox" id="label1" style="display: none;"/>
+    <div class="hidden_show" style="clear: both;">
 			<dt class="form-title">【コースの追加】</dt>
 		<%= form_with(model: @menu, url: menus_path, method: :post ,local: true) do |f| %>
 	      <div class="form"><dl>
@@ -87,11 +87,10 @@
 	      </div>
 	        <%= f.submit "追加する" %>
 	    <% end %>
-
+<p class="btn_reservation"><a href="/reservations">予約する ></a></p>
 	<% end %>
+	
 	</div>
 	</div>
 	</div>
-	</div>
-</div>
 </div>

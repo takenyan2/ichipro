@@ -1,4 +1,4 @@
-<h2 class="bg_sunflower">ユーザー登録</h2>
+<h2 class="bg_sunflower">新規ユーザー登録</h2>
 <div class="contents registration-block">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -15,7 +15,7 @@
    <dl>
 <dt class="form-title"> <%= f.label :パスワード %></dt>
     <dd class="form-item"><% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上の半角英数字で登録して下さい)</em>
     <% end %></dd>
     <dd class="form-item"><%= f.password_field :password, autocomplete: "new-password" %></dd>
 </dl>

@@ -21,40 +21,40 @@
 
   <div class="block">
      <h2 class="bg_pinkflower">よくあるご質問</h2>
-     <% @questions.each do |question|%>
-      <div class="contents" id="faq_block"><dl><dt>Q.当日予約はできますか？<%= question.user_question %>
-      <button style="background: yellow;"><%= link_to "編集", edit_note_path(question.id) %></button>
-      <button style="background: yellow;"><%= link_to "削除", edit_note_path(question.id, permission: true), delete: "question", method: :delete,"data-confirm" => "本当に削除しますか？" %></button></dt>
-      <dd>A.できます。完全予約制のため、当日のご予約につきましては、お電話にてご予約を承っております。出来るだけ余裕をもってのご予約をお勧めしております。<%= question.answer %></dd></dl>
+      <div class="contents" id="faq_block">
+      <dl><dt>Q.当日予約はできますか？</dt>
+      <dd>A.できます。完全予約制のため、当日のご予約につきましては、お電話にてご予約を承っております。出来るだけ余裕をもってのご予約をお勧めしております。</dd></dl>
 
-      <dl><dt>Q.予約内容は変更できますか？<%= question.user_question %>
-      <button style="background: yellow;"><%= link_to "編集", edit_note_path(question.id) %></button>
-      <button style="background: yellow;"><%= link_to "削除", edit_note_path(question.id, permission: true), delete: "question", method: :delete,"data-confirm" => "本当に削除しますか？" %></button></dt>
+      <dl><dt>Q.予約内容は変更できますか？</dt>
       <dd>A.はい。当日ご来店されてからの変更は、ご希望に添えない場合もございますので、
-     できるだけ前日までにご連絡をお願いいたします。<%= question.answer %></dd></dl>
+     できるだけ前日までにご連絡をお願いいたします。</dd></dl>
 
-      <dl><dt>Q.生理中や妊娠中でも大丈夫ですか？<%= question.user_question %>
-      <button style="background: yellow;"><%= link_to "編集", edit_note_path(question.id) %></button>
-      <button style="background: yellow;"><%= link_to "削除", edit_note_path(question.id, permission: true), delete: "question", method: :delete,"data-confirm" => "本当に削除しますか？" %></button></dt>
-      <dd>A.生理中でもお受けいただけます。体内循環が活性されるので、一時的に経血が多くなる場合もありますが、「出るべきものが早く出る」ということで、体への影響は心配ありません。妊娠中の方、妊娠している可能性のある方については、安全面を考慮しご遠慮いただいております。<%= question.answer %></dd></dl>
+      <dl><dt>Q.生理中や妊娠中でも大丈夫ですか？</dt>
+      <dd>A.生理中でもお受けいただけます。体内循環が活性されるので、一時的に経血が多くなる場合もありますが、「出るべきものが早く出る」ということで、体への影響は心配ありません。妊娠中の方、妊娠している可能性のある方については、安全面を考慮しご遠慮いただいております。</dd></dl>
 
-      <dl><dt>Q.オイルによって肌荒れ等が起きる場合がありますか？<%= question.user_question %>
-      <button style="background: yellow;"><%= link_to "編集", edit_note_path(question.id) %></button>
-      <button style="background: yellow;"><%= link_to "削除", edit_note_path(question.id, permission: true), delete: "question", method: :delete,"data-confirm" => "本当に削除しますか？" %></button></dt>
+      <dl><dt>Q.オイルによって肌荒れ等が起きる場合がありますか？</dt>
       <dd>A.当店はお肌に優しいオイルを使用しておりますが、
        お客様の体質・体調によってオイルとの相性がございます。皮膚に合わない場合は、
-       肌荒れやただれの原因になりますので、不安なお客様はお控えくださいませ。<%= question.answer %></dd></dl>
+       肌荒れやただれの原因になりますので、不安なお客様はお控えくださいませ。</dd></dl>
 
-      <dl><dt> Qオイルによって肌荒れ等が起きる場合がありますか？<%= question.user_question %>
+      <dl><dt>Qオイルによって肌荒れ等が起きる場合がありますか？</dt>
+         <dd> A.当店はお肌に優しいオイルを使用しておりますが、
+       お客様の体質・体調によってオイルとの相性がございます。皮膚に合わない場合は、
+       肌荒れやただれの原因になりますので、不安なお客様はお控えくださいませ。</dd></dl>
+          
+
+   
+     <% @questions.each do |question|%>
+           <dl><dt> Q.<%= question.user_question %>
       <button style="background: yellow;"><%= link_to "編集", edit_note_path(question.id) %></button>
       <button style="background: yellow;"><%= link_to "削除", edit_note_path(question.id, permission: true), delete: "question", method: :delete,"data-confirm" => "本当に削除しますか？" %></button></dt> 
 
-         <dd> A.当店はお肌に優しいオイルを使用しておりますが、
-       お客様の体質・体調によってオイルとの相性がございます。皮膚に合わない場合は、
-       肌荒れやただれの原因になりますので、不安なお客様はお控えくださいませ。<%= question.answer %></dd></dl>
-          <% end %>
-  </div>
-  </div>
+         <dd> A.<%= question.answer %></dd></dl>
+     <% end %>
+      </div>
+    </div>
+    
+  
   <div class="hidden_box">
     <label for="label1">Q&Aを追加</label>
     <input type="checkbox" id="label1" style="display: none;"/>
@@ -71,12 +71,11 @@
                <dd class="form-item"><%= f.text_field :user_question %></dd>
                 <dt class="form-title">答え</dt>
                 <dd class="form-item"><%= f.text_area :answer %></dd>
-              </dl>
-            </div>
+              </dl>            
           <%#= f.hidden_field :id, value: @question.id %>
           <%= f.submit "追加する" %>
           <% end %>
-          
+    </div>
           <!--ここまで-->
         </div>  
      

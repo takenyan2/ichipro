@@ -18,8 +18,8 @@
 	   <% if devise_mapping.rememberable? %>
   <div class="field"><div class="form">
    <dl>
-<%= f.check_box :remember_me %>
-      <dd class="form-item"><%= f.label :パスワードをお忘れの方はこちら %></dd></dl>
+      <dd><%= f.check_box :remember_me %><span style="padding-left: 5px;">次回ログインからパスワードの入力を省略</span></dd>
+      <dd class="form-item"><a href="/admins/password/new"><%= f.label :パスワードをお忘れの方はこちら %></a></dd></dl>
     </div>
     </div>
   <% end %>

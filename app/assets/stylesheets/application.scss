@@ -40,9 +40,13 @@ body,p,ol,ul,td{
   line-height: 3.0rem;
   font-family: "Sawarabi Mincho";
 }
+
+
+
 .header,.main,.footer,img {
     width: 100%;
 }
+
 .header{
   border-bottom:1px gray solid;
 }
@@ -62,7 +66,7 @@ li{
   max-width: 790px;
   margin: 0 auto;
   text-align: left;
-  padding: 40px 10px 70px;
+  padding: 20px 10px 40px;
   display:block;
 }
 
@@ -74,7 +78,15 @@ p,th{
   -moz-osx-font-smoothing:grayscale;
   line-height: 3.0rem;
 }
+@media only screen and (max-width: 899px){
 
+body,p,ol,ul,td{
+line-height: 2.6rem;
+}
+.contents{
+    padding: 20px 20px 30px;
+}
+}
 @media only screen and (min-width: 900px){
 .main{
   text-align: center;
@@ -126,7 +138,6 @@ h3:before{
 }
 
 
-
 a{
   color: #404040;
   text-decoration: none;
@@ -159,17 +170,15 @@ header {
 
 #nav-drawer {
   position: relative;
-}
-#nav-drawer img{
- display:none; 
+  min-height:71px;
 }
 
-/*チェックボックス等は非表示に*/
+/*チェックボックス非表示に*/
 .nav-unshown {
   display:none;
 }
 
-/*アイコンのスペース*/
+
 #nav-open {
   display: inline-block;
   width: 30px;
@@ -177,13 +186,13 @@ header {
   vertical-align: middle;
 }
 
-/*ハンバーガーアイコンをCSSだけで表現*/
+/*ハンバーガー*/
 #nav-open span, #nav-open span:before, #nav-open span:after {
   position: absolute;
-  height: 3px;/*線の太さ*/
-  width: 25px;/*長さ*/
+  height: 3px;
+  width: 25px;
   border-radius: 3px;
-  background: #555;
+  background: #ffffff;
   display: block;
   content: '';
   cursor: pointer;
@@ -197,10 +206,10 @@ header {
 
 /*閉じる用の薄黒カバー*/
 #nav-close {
-  display: none;/*はじめは隠しておく*/
+  display: none;
   position: fixed;
   z-index: 99;
-  top: 0;/*全体に広がるように*/
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -215,35 +224,36 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;/*最前面に*/
-  width: 90%;/*右側に隙間を作る（閉じるカバーを表示）*/
-  max-width: 330px;/*最大幅（調整してください）*/
+  z-index: 9999;
+  width: 90%;
+  max-width: 330px;
   height: 100%;
-  background: #fff;/*背景色*/
-  transition: .3s ease-in-out;/*滑らかに表示*/
+  background: #A0c0c0;
+  transition: .3s ease-in-out;
   -webkit-transform: translateX(-105%);
-  transform: translateX(-105%);/*左に隠しておく*/
+  transform: translateX(-105%);
+  padding:20px;
 }
 
-/*チェックが入ったらもろもろ表示*/
+
 #nav-input:checked ~ #nav-close {
-  display: block;/*カバーを表示*/
+  display: block;
   opacity: .5;
 }
 
 #nav-input:checked ~ #nav-content {
   -webkit-transform: translateX(0%);
-  transform: translateX(0%);/*中身を表示（右へスライド）*/
+  transform: translateX(0%);
   box-shadow: 6px 0 25px rgba(0,0,0,.15);
 }
   #nav-content ul li a{
     padding: 10px;
     width:100%;
+    color:#ffffff;
   }
 	#nav-content ul li a:hover{
-		background: #A0c0c0;
-		padding: 10px;
-    color:#ffffff;
+		background: #ffffff;
+    color:#A0c0c0;
 	}
 #nav-content-pc{
 	display: none;
@@ -252,9 +262,7 @@ header {
 header {
   height:90px;
 }
-#nav-drawer img{
-  display:block;
-}
+
   #nav-open {
     display:none;
   }
@@ -283,8 +291,6 @@ header {
   color:#A0c0c0;
 
 	}
-
-	
 }
 
 
@@ -380,11 +386,7 @@ footer{
   font-size:16px;
 }
 
-.footer-box a:hover,
-.footer-box p:hover
-{
-background: #3333;
-}
+
 
 .footer-box{
 
