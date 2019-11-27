@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   resources :meetings
-   devise_for :admins
+  #review/#3
+  devise_for :admins
 
   resources :shops, only: [:new, :edit]
   resources :reservations, only: [:index, :new, :show, :edit, :create, :destroy]
