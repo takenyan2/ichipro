@@ -53,32 +53,30 @@
      <% end %>
       </div>
     </div>
-    
-  
+
   <div class="hidden_box">
     <label for="label1">Q&Aを追加</label>
     <input type="checkbox" id="label1" style="display: none;"/>
       <div class="hidden_show">
           <!--非表示ここから-->
           <div class="contents">
- 
+
   <h4>Q&Aの追加</h4>
     <div class="form">
-              <dl>
-         
+          <dl>
          <%= form_with(model: @question, url: menus_note_path ,local: true) do |f| %>
                 <dt class="form-title">質問文</dt>
                <dd class="form-item"><%= f.text_field :user_question %></dd>
                 <dt class="form-title">答え</dt>
                 <dd class="form-item"><%= f.text_area :answer %></dd>
-              </dl>            
           <%#= f.hidden_field :id, value: @question.id %>
           <%= f.submit "追加する" %>
           <% end %>
+          </dl>
     </div>
           <!--ここまで-->
-        </div>  
-     
+        </div>
+
       </div>
     </div>
 </div>

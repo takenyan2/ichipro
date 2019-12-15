@@ -1,3 +1,7 @@
+<!-- <h2 class="bg_sunflower">Reservations#show</h2>
+<div class="contents reservation_date_block"><p>Find me in app/views/reservations/show.html.erb</p></div> -->
+<%#= @reservation.reservation_date %><!-- のご予約 -->
+
 <% provide(:title, 'ミーティングスペース予約画面') %>
 ​
 <div class="container mb-5">
@@ -8,13 +12,13 @@
     <p class="mb-5">また、カレンダーで日時を選択することで、予約することができます。</p>
     <div class="card border-light card-width mx-auto">
       <strong class="card-header">
-       　予約状況一覧
+        予約状況一覧
       </strong>
       <% @reservation.each do |reservation| %>
         <ul class="list-group list-group-flush">
           <li class="list-group-item d-flex">
             <span class="mr-auto my-auto">
-              <%#= @reserv_info_from = l(reservation.start_time, format: :index) %>〜<%#= @reserv_info_to = l(reservation.finish_time, format: :time) %>
+              <%= @reserv_info_from = l(reservation.start_time, format: :index) %>〜<%= @reserv_info_to = l(reservation.finish_time, format: :time) %>
             </span>
             <%= link_to(reservation_path(reservation), method: :delete, \
                           data: {confirm: "【#{@reserv_info_from}〜#{@reserv_info_to}】\nの予約情報を削除してよろしいですか？" }, \
@@ -77,3 +81,7 @@ $(function(){
   $('.reservation_week_form_table_body').scrollTop(570);
 });
 </script>
+
+
+
+

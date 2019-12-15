@@ -1,34 +1,12 @@
+<div class="modal-dialog">
+  <div class="modal-content">
 <div class="main">
 <div class="block reservation_block">
 <h2 class="bg_sunflower">予約状況・予約フォーム</h2>
 <p>もし、管理者ログインだったらsalesカラムのフォームを表示させて、開店日のままと閉店日にするを選ぶことができる。</p>
 
-<!-- 一般ユーザーのフォーム -->
-    <% @reservations.each do |reservation| %>
-        名前：<%= reservation.user_name %> </br>
-        カナ：<%= reservation.user_kana_name %></br>
-        性別：<%= reservation.gender %></br>
-        メール：<%= reservation.user_email %></br>
-        電話番号：<%= reservation.user_phone_number %></br>
-        ご希望のコース：<%= reservation.request_course %></br>
-        何分コースか：<%= reservation.request_course_time %></br>
-        ご希望日：<%= reservation.reservation_date %></br>
-        開始時間：<%= reservation.start_time %></br>
-        次の施術開始時間：<%= reservation.restart_reservation_time %></br>
-        要望：<%= reservation.demand %></br>
-        開店日or閉店日 識別：<%= reservation.sales %></br>
-        ーーーーーーーーーーーーーーーーーーーーーーーーー</br>
-        <%#= link_to "編集", edit_menu_path(course.id) %>
-        <%#= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %>
-    <% end %>
 
 
-    <%= month_calendar events: @meetings do |date, meetings| %>
-        <%#= link_to date_path(date) do %>
-        <%= link_to reservation_date_path(date) do %>
-            <%= date %>
-        <% end %>
-    <% end %>
 
 <div class="contents">
 
@@ -69,19 +47,36 @@
 
                     <dt class="form-title">コースの長さ</dt>
                     <dd class="form-item"><%= f.select :request_course_time, [[30, 30],[60, 60]] %></dd>
+                    <!-- ここのリンクで、カレンダーから予約時刻を選択してリンクを飛ばす。 -->
+                    <%#= link_to '', new_user_reservation_url(@user, :started_at => l(time,format: :shorttime),:week_day => week_day),remote:true %>
 
-                    <dt class="form-title">予約日付</dt>
-                    <dd class="form-item"><%= f.date_field :reservation_date %></dd>
+                   <!--  <dt class="form-title">予約日付</dt>
+                    <dd class="form-item"><%#= f.date_field :reservation_date %></dd> -->
 
                     <dt class="form-title">施術開始時間</dt>
-                    <dd class="form-item"><%= f.time_select :start_time,{ start_hour:10, end_hour:20 ,minute_step: 15} %></dd>
+                    <dd class="form-item">
+                        <%#= f.time_select :start_time,{ start_hour:10, end_hour:20 ,minute_step: 15} %></dd>
+                        <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+                          <%= raw sprintf(f.datetime_select(
+                                                        :start_time,
+                                                        default: Time.zone.local(@today.year,@today.month,@today.day),
+                                                                                # @selected_started_at.to_time.hour,@selected_started_at.to_time.min),
+                                                        minute_step: 15,
+                                                        start_hour:10,
+                                                        end_hour:20,
+                                                        start_year: Time.now.year,
+                                                        end_year: Time.now.since(2.month).year,
+                                                        use_month_numbers: true
+                                                        # date_separator: '%s',
+                                                        # time_separator: "%s",
+                                                        # datetime_separator: '%s'
+                                                        ), '年', '月', '日',"時") %>
                     <dt class="form-title">要望</dt>
                     <dd class="form-item"><%= f.text_area :demand %></dd>
-                    <
-                   
+
                     </dl>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。
                     <!-- 次の予約開始時間 -->
-                    <%= f.hidden_field :restart_reservation_time, value: true %>
+                    <%#= f.hidden_field :restart_reservation_time, value: true %>
                     <!-- 管理者ログイン時は、trueにする。 -->
                     <%= f.hidden_field :sales, value: false %><%= f.submit "男性として追加する" %>
                 </div>
@@ -118,10 +113,26 @@
                     <dd class="form-item"><%= f.date_field :reservation_date %></dd>
 
                     <dt class="form-title">施術開始時間</dt>
-                    <dd class="form-item"><%= f.time_field :start_time %></dd>
+                    <dd class="form-item"><%#= f.time_field :start_time %>
+                        <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+                          <%= raw sprintf(f.datetime_select(
+                                                        :start_time,
+                                                        default: Time.zone.local(@today.year,@today.month,@today.day),
+                                                                                # @selected_started_at.to_time.hour,@selected_started_at.to_time.min),
+                                                        minute_step: 15,
+                                                        start_hour:10,
+                                                        end_hour:20,
+                                                        start_year: Time.now.year,
+                                                        end_year: Time.now.since(2.month).year,
+                                                        use_month_numbers: true
+                                                        # date_separator: '%s',
+                                                        # time_separator: "%s",
+                                                        # datetime_separator: '%s'
+                                                        ), '年', '月', '日',"時") %>
+                    </dd>
                     <dt class="form-title">要望</dt>
                     <dd class="form-item"><%= f.text_area :demand %></dd>
-                    
+
                     </dl>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。
                     <%# restart_reservation_time = start_time + Rational(request_course_time,24*60) + Rational(30,24*60)%>
                     <%#= f.hidden_field :restart_reservation_time, value: true %><!-- 次の予約開始時間はコントローラーでぶちこむ -->
@@ -135,6 +146,9 @@
     </div>
 </div>
 </div>
+
+
+<%= link_to "ここがnewへの入り口だよ", new_reservation_path, remote: true %>
 
 
 
@@ -163,7 +177,6 @@ window.onload = entryChange1;
 
 
 
-
-
-
+</div>
+</div>
 
