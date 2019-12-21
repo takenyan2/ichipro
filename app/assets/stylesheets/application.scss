@@ -255,6 +255,15 @@ header {
 		background: #ffffff;
     color:#A0c0c0;
 	}
+	#nav-content ul .dropdown-menu li a{
+    padding: 10px;
+    width:100%;
+    color:#A0c0c0;
+  }
+  #nav-content ul .dropdown-menu li a:hover{
+		background: #ffffff;
+    color:#A0c0c0;
+	}
 #nav-content-pc{
 	display: none;
 }
@@ -290,6 +299,17 @@ header {
   background: #ffffff;
   color:#A0c0c0;
 
+	}
+#nav-content-pc ul .dropdown-menu li a{
+  padding:8px;
+  color:#A0c0c0;
+  height:100%;
+  border-bottom:1px dashed #dfdfdf;
+  margin:0 8px;
+}
+#nav-content-pc ul .dropdown-menu li a:hover{
+  background: #ffffff;
+  color:black;
 	}
 }
 

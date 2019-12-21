@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   resources :shops, only: [:new, :edit]
   resources :reservations, only: [:index, :new, :show, :edit, :create, :destroy]
-  resources :admins, only: [:index, :update, :destroy]
   resources :menus, only: [:edit,:create, :update, :delete]
   root 'menus#top'
   get 'reservations/done' => "reservation#done", as: "reservation_done"

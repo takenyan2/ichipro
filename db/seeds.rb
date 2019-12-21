@@ -19,3 +19,4 @@ Course.create(menu_id: 2, course_name: "足つぼしっかりコース", course_
 Course.create(menu_id: 3, course_name: "腸ケアコース(ヘッドマッサージ付き)", course_time: 60, price: 6000)
 Course.create(menu_id: 4, course_name: "基本コース", course_time: 60, price: 16000)
 Course.create(menu_id: 4, course_name: "しっかり燃焼コース", course_time: 120, price: 32000)
+Admin.create(admin_name: "admin", email: "test@gmail.com", password: "password")
