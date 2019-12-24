@@ -19,7 +19,7 @@ class MenusController < ApplicationController
   def create_note
     question = Question.new(question_params)
     if question.save
-      flash[:notice] = "保存しました"
+      flash[:success] = "保存しました"
     else
       flash[:danger] = "登録に失敗しました"
       render :edit_note
@@ -34,7 +34,7 @@ class MenusController < ApplicationController
   def update_note
     question = Question.find(params[:id])
     if  question.update(question_params)
-        flash[:notice] = "保存しました"
+        flash[:success] = "保存しました"
     else
       flash[:danger] = "登録に失敗しました"
         render :edit_note
@@ -45,7 +45,7 @@ class MenusController < ApplicationController
   def destroy_note
     question = Question.find(params[:id])
     if question.destroy
-      flash[:notice] = "削除しました"
+      flash[:success] = "削除しました"
     else
       flash[:danger] = "削除に失敗しました"
     end

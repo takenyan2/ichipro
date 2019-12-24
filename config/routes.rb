@@ -4,9 +4,22 @@ Rails.application.routes.draw do
   #review/#3
   devise_for :admins
 
+  devise_scope :admins do
+    get "/sign_in" => "devise/sessions#new"
+    # get "/sign_up" => "devise/registrations#new"
+  end
+
   resources :shops, only: [:new, :edit]
   resources :reservations, only: [:index, :new, :show, :edit, :create, :destroy]
-  resources :admins, only: [:index, :update, :destroy]
+  resources :admins, only: [:index, :update, :destroy, :new]
+
+  # POST /admins/generate deviseのcreateが上手く動かないため定義
+  resources :admins, only: [] do
+    collection do
+      post :generate
+    end
+  end
+
   resources :menus, only: [:edit,:create, :update, :delete]
   root 'menus#top'
   get 'reservations/done' => "reservation#done", as: "reservation_done"
