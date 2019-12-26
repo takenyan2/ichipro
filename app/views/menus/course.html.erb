@@ -32,8 +32,8 @@
 			</div>
 		</div>
 
-		<%# FIXME: コース一つずつに「追加するボタン」がいるのか、ページに一つあれば良いのか %>
-		<div class="contents">
+`		<%# FIXME: コース一つずつに「追加するボタン」がいるのか、ページに一つあれば良いのか %>
+`		<div class="contents">
 		  <% @menus.each.with_index do |menu, i| %>
 				<h3><%= menu.menu_title %></h3>
 	  		<div class="course_description">
@@ -59,7 +59,7 @@
 						<br>
 	    		<% end %>
 	    	</div>
-			<div class="hidden_box contents">
+			<div class="hidden_box contents" style="display: inline-block; padding-left: 200px;">
       	<label for="label1">コースを追加</label>
       	<input type="checkbox" id="label1" style="display: none;"/>
       	<div class="hidden_show" style="clear: both;">
