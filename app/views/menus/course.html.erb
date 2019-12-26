@@ -42,8 +42,8 @@
 	  		    <%#= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
 	  		  <%# </p> %>
 	  		  <p class="course_text"><%= menu.introduce %></p>
-	  		  <p style="background-color: yellow; padding:5px 10px; display: inline-block; margin-left: 5px; letter-spacing: 1px;"><%= link_to "削除", renew_menu_path(menu.id, permission: true), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></p>
-	  		  <p style="background-color: yellow; padding:5px 10px; display: inline-block; margin-left: 5px; letter-spacing: 0.25px;"><%= link_to "編集", renew_menu_path(menu.id) %></p>
+	  		  <p style="background-color: yellow; padding:5px 10px; display: inline-block; margin-left: 5px; letter-spacing: 1px; float: right;"><%= link_to "削除", renew_menu_path(menu.id, permission: true), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></p>
+	  		  <p style="background-color: yellow; padding:5px 10px; display: inline-block; margin-left: 5px; letter-spacing: 0.25px; float: right;"><%= link_to "編集", renew_menu_path(menu.id) %></p>
 	  		</div>
 	  		<%#= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %>
         <div class="course_box" style="clear: both;">
