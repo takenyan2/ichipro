@@ -1,20 +1,15 @@
 class ReservationsController < ApplicationController
   def index
-    @reservation = Reservation.new
-    @reservations = Reservation.all
-    @course = Course.all
-    @meetings = Meeting.all
-    @today = Date.today
-    @reservations.each do |reservation|
-      @r = reservation
-    end
+    @first_day = Date.current
+    set_reservation_schedule
+    @reservations = Reservation.where(start_time: Time.zone.now..Float::INFINITY).order(start_time: :asc)
   end
 
   def new
-    # @user = User.find(params[:user_id])
     @reservation = Reservation.new
     @course = Course.all
     @today = Date.today
+    
     @times24 = []
     minutes = ["00","30"]
     i = 0
@@ -24,9 +19,9 @@ class ReservationsController < ApplicationController
       }
       i += 1
     end
-    # binding.pry
-    @selected_started_at = params[:started_at]
+    @selected_start_time = params[:start_time]
     @week_day = params[:week_day]
+    
   end
 
   def date
@@ -60,19 +55,17 @@ class ReservationsController < ApplicationController
     @reservation.save
   end
 
-  # def schedule
-  #   @reservation = Reservation.all(params[:id])
-  #   @reservations = Reservation.find(params[:id])
-  #   @times24 = []
-  #   i = 0
-  #   minutes = ["00","30"]
-  #   while(i <= 23) do
-  #     minutes.each { |minute|
-  #     @times24.push(i.to_s + ":" + minute)
-  #     }
-  #     i += 1
-  #   end
-  # end
+  def change_schedule
+    if params[:prev]
+      day = params[:prev]
+    elsif params[:next]
+      day = params[:next]
+    end  
+    if day
+      @first_day = day.to_date
+      set_reservation_schedule
+    end
+  end
 
   def show
     
@@ -109,47 +102,41 @@ class ReservationsController < ApplicationController
 
 
   def create
-    reservation = Reservation.new(reservation_params)
-    # 次の予約開始時間を設定。
-    # add_time = reservation.start_time
-    # # 予約開始時間にリクエストされたコースの分数を加算。
-    # add_time =+ Rational(params[:request_course_time],24*60)
-    # # さらに、インターバルの30分を加算して、restart_reservation_timeに次の予約開始可能な時刻をぶっ込みたい。
-    # add_time =+ Rational(30,24*60)
-    # reservation.restart_reservation_time = add_time
-
-    @request_course_time = params[:reservation][:request_course_time].to_i
-    # request_course_time =reservation.request_course_time.to_i  上記と同意
-    # start_timeの値は、これで受け取れる。params[:reservation]["start_time(1i)"]
-
-    # reservation.finish_time = reservation.start_time + @request_course_time.minutes
-
-    # ↑これをやりたい。やりたいんだけどreservation.start_timeが時間として取得できない
-    # 下記で文字列として開始年月日を取得。これを時刻に直す必要がある。
-    start_time = params[:reservation]["start_time(1i)"] + params[:reservation]["start_time(2i)"] + params[:reservation]["start_time(3i)"] + params[:reservation]["start_time(4i)"] + params[:reservation]["start_time(5i)"] + "00"
-    t = Time.parse(start_time)
-    reservation.finish_time = t +  @request_course_time.minutes
-
-    if reservation.save
-      flash[:notice] = "保存しました"
+    # byebug
+    @reservation = Reservation.new(reservation_params)
+    # @reservation.course_id = Course.find_by(course_name: params[:reservation][:course_name]).id
+    @course_time = Course.find_by(id: params[:reservation][:course_id]).course_time.to_i
+    # @course_time = params[:course_time].to_i
+    @reservation.finish_time = @reservation.start_time + @course_time.minutes
+    if @reservation.save
+      flash[:success] = "予約が完了しました。"
     else
-      flash[:danger] = "登録に失敗しました"
-      render :index
+      flash[:danger] = "予約ができませんでした。"
     end
-
-    redirect_to reservations_path
+    redirect_to action: 'index'
   end
 
   def destroy
   end
 
   private
-  def reservation_params
-    # params.require(:reservation).permit(:user_name, :user_kana_name, :gender, :user_email, :user_phone_number, :request_course, :request_course_time, :start_time,:finish_time, :demand, :sales)
-  end
+  
   def kari_params
-    params.require(:reservation).permit(:user_name, :user_kana_name, :gender, :user_email, :user_phone_number, :start_time, :demand, :sales)
+    params.require(:reservation).permit(:user_name, :user_kana_name, :gender, :user_email, :user_phone_number, :start_time, :demand, :sales, :course_name, :request_course)
   end
 
+
+  private
+  
+  def set_reservation_schedule
+      @week_day = (@first_day..@first_day.since(7.days))
+      @reservations = Reservation.where("finish_time > ?",Time.zone.now)
+      @times = 48.times.map.each_with_index {|i| Time.parse("0:00")+30.minutes*i}
+      @time_number = 23.times.map.each_with_index {|i| l(Time.parse("1:00")+1.hours*i,format: :shorttime)}
+  end
+    
+  def reservation_params
+      params.require(:reservation).permit(:user_name, :user_kana_name, :user_email, :user_phone_number, :start_time, :demand, :course_id)
+    end
 
 end
