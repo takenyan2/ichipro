@@ -85,13 +85,15 @@
       <% end %>
     </header>
 
-    <div class="container flash-message-area">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>">
-          <%= message %>
-        </div>
-      <% end %>
-    </div>
+    <% if flash.present? %>
+      <div class="container flash-message-area">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 
     <%= yield %>
 
