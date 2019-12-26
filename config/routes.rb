@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :menus, only: [:edit,:create, :update, :delete]
   root 'menus#top'
   get 'reservations/done' => "reservation#done", as: "reservation_done"
-  get 'reservations/schedule' => "reservations#schedule", as: "reservation_schedule"
+  get 'change/schedule' => "reservations#change_schedule", as: "change_schedule"
   get 'menus/top' => "menus#top", as: "top"
   get 'menus/course' => "menus#course", as: "course"
   post 'menus/course' => "menus#create", as: "course_new"

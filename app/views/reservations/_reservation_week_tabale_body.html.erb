@@ -17,24 +17,24 @@
               <% datetime = Time.zone.local(week_day.year,week_day.month,week_day.day,time.hour,time.min) %> 
               <% if datetime >= Time.current && Date.current.since(2.months) >= datetime %>
                 <li class="time-schedule-cell">
-                  <%= link_to '', new_user_reservation_url(@user, :started_at => l(time,format: :shorttime),:week_day => week_day),remote:true %>
+                  <%= link_to '', new_reservation_url(:start_time => l(time,format: :shorttime),:week_day => week_day),remote:true %>
                 </li>
               <% else %>
                 <li class="time-schedule-cell post_time"></li>
               <% end %>
             <% end %>
           </ul>
-          <% @day_reservations = @reservations.where(started_at: week_day.in_time_zone.all_day)
-          .or(@reservations.where("started_at <= ? and finished_at > ?", week_day.midnight, week_day.midnight)) %>
+          <% @day_reservations = @reservations.where(start_time: week_day.in_time_zone.all_day)
+          .or(@reservations.where("start_time <= ? and finish_time > ?", week_day.midnight, week_day.midnight)) %>
           <% if @day_reservations.present? %>
             <% @day_reservations.each do |reservation| %>
-              <% reservation_height = get_height(reservation.started_at,reservation.finished_at,week_day) %>
-              <% top_position = get_position(reservation.started_at,reservation.finished_at,week_day) %>
-              <% if current_user.admin? || (!current_user.admin && current_user.id == reservation.user_id) %>
+              <% reservation_height = get_height(reservation.start_time,reservation.finish_time,week_day) %>
+              <% top_position = get_position(reservation.start_time,reservation.finish_time,week_day) %>
+              <% if admin_signed_in? %>
                 <%= link_to(edit_user_reservation_url(@user,reservation),remote:true,class: 'text-color') do %>
                   <div class="reserved text-center text-truncate" style="height:<%= reservation_height %>px; top:<%= top_position %>px;">
                     <%= reservation.telmail_name %>様</br>
-                    <%= l(reservation.started_at,format: :time) %> ~ <%= l(reservation.finished_at,format: :time) %>
+                    <%= l(reservation.start_time,format: :time) %> ~ <%= l(reservation.finish_time,format: :time) %>
                   </div>
                 <% end %>
               <% else %>
@@ -48,7 +48,3 @@
     </tr>
  </tbody>
 </table>
-折りたたむ
-
-
-
