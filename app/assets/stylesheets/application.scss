@@ -16,10 +16,14 @@
   *=　application.scss
   *= registrations.scss
  *= require_tree .
+ 
 
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "reservations";
+@import "font-awesome";
+@import "tempusdominus-bootstrap-4.css";
 
 
 
