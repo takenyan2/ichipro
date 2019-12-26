@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.5'
+ruby '2.6.3'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -35,6 +37,11 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'rails-i18n'
+# 日付と時間のフォーム用
+gem "bootstrap4-datetime-picker-rails"
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'font-awesome-rails', '~> 4.7.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -64,8 +71,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-gem 'bootstrap', '~> 4.1.1'
-gem 'jquery-rails'
 gem 'simple_calendar', '~> 2.0'
 gem "pry-rails"
 gem 'ffi', '1.9.18'
