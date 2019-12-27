@@ -14,11 +14,12 @@
               <span class="mr-auto my-auto">
                 <%= @reserv_info_from = l(reservation.start_time, format: :index) %>〜<%= @reserv_info_to = l(reservation.finish_time, format: :time) %>
               </span>
-              <%= link_to(user_reservation_path(@user, reservation), method: :delete, \
-                          data: {confirm: "【#{@reserv_info_from}〜#{@reserv_info_to}】\nの予約情報を削除してよろしいですか？" }, \
-                          class: "btn btn-outline-danger d-block d-md-inline-block px-2 py-1 ml-auto") do %>
-                <i class="fas fa-trash-alt"></i>
+              <%= link_to(edit_reservation_path(reservation), remote: true, class: "btn btn-outline-primary d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
+                <i class="fas fa-pen"></i>
               <% end %>
+               <%= link_to(reservation_path(reservation), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger d-block d-md-inline-block px-2 py-1 ml-auto") do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
             </li>
           </ul>
         <% end %>

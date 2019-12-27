@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   def index
+    # byebug
     @first_day = Date.current
     set_reservation_schedule
     @reservations = Reservation.where(start_time: Time.zone.now..Float::INFINITY).order(start_time: :asc)
@@ -22,6 +23,14 @@ class ReservationsController < ApplicationController
     @selected_start_time = params[:start_time]
     @week_day = params[:week_day]
     
+  end
+  
+  def destroy
+    byebug
+    @reservation = Reservation.find(params[:id])
+    Reservation.find(params[:id]).destroy
+    flash[:success] = "削除しました。"
+    redirect_to action: 'index'
   end
 
   def date
@@ -68,7 +77,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    
+    # byebug
     # @reservations = Reservation.find(params[:id])
     @reservation = Reservation.all
     #既に予約されている日時を取得する
@@ -117,6 +126,10 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation = Reservation.find(params[:id])
+    Reservation.find(params[:id]).destroy
+    flash[:success] = "削除しました。"
+    redirect_to action: 'index'
   end
 
   private

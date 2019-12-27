@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :meetings
+  resources :reservations
   #review/#3
   devise_for :admins
 
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
   end
 
   resources :shops, only: [:new, :edit]
-  resources :reservations, only: [:index, :new, :show, :edit, :create, :destroy]
   resources :admins, only: [:index, :update, :destroy, :new]
 
   # POST /admins/generate deviseのcreateが上手く動かないため定義

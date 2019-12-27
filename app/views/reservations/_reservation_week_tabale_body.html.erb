@@ -31,10 +31,10 @@
               <% reservation_height = get_height(reservation.start_time,reservation.finish_time,week_day) %>
               <% top_position = get_position(reservation.start_time,reservation.finish_time,week_day) %>
               <% if admin_signed_in? %>
-                <%= link_to(edit_user_reservation_url(@user,reservation),remote:true,class: 'text-color') do %>
+                <%= link_to(edit_reservation_url(reservation),remote:true,class: 'text-color') do %>
                   <div class="reserved text-center text-truncate" style="height:<%= reservation_height %>px; top:<%= top_position %>px;">
-                    <%= reservation.telmail_name %>様</br>
-                    <%= l(reservation.start_time,format: :time) %> ~ <%= l(reservation.finish_time,format: :time) %>
+                    <%= reservation.user_name %>様</br>
+                    <%= l(reservation.start_time,format: :time) %> 〜 <%= l(reservation.finish_time,format: :time) %>
                   </div>
                 <% end %>
               <% else %>
