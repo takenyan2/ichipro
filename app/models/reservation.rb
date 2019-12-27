@@ -1,6 +1,8 @@
 class Reservation < ApplicationRecord
 
   belongs_to :course
+  belongs_to :menu
+  
 
 validate :make_a_reservation_is_valid_on_reserved_time
 	 def make_a_reservation_is_valid_on_reserved_time

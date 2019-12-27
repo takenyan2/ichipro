@@ -1,12 +1,11 @@
-<% provide(:class_text, 'edit-info') %>
-<% provide(:button_text, '予約') %>
+<% provide(:button_text, '更新') %>
 
 <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      予約画面
+      予約編集画面
     </div><!-- /.modal-header  -->
-    <%= form_with(model: @reservation, url: reservations_path, local: true, method: :post) do |f| %>
+    <%= form_with(model: @reservation, url: reservation_path(@reservation), local: true, method: :patch) do |f| %>
       <div class="modal-body">
         <div class="form-group row">
             <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -36,16 +35,14 @@
           <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
           <%= raw sprintf(f.datetime_select(
                                         :start_time, 
-                                        default: Time.zone.local(@week_day.to_date.year,@week_day.to_date.month,@week_day.to_date.day,
-                                                                @selected_start_time.to_time.hour,@selected_start_time.to_time.min),
                                         minute_step: 30,
                                         start_year: Time.now.year,
                                         end_year: Time.now.since(2.month).year,
-                                        use_month_numbers: true, 
+                                        use_month_numbers: true,
                                         date_separator: '%s', 
                                         time_separator: "%s",
-                                        datetime_separator: '%s'), '年', '月', '日',"時")
-           %>分
+                                        datetime_separator: '%s'), '年','月', '日',"時")
+          %>分
         </div>
         <div class="form-group row">
             <%= f.label "ご要望", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -68,59 +65,3 @@
     <% end %>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
-<script>
-  var now = new Date();
-  
-  function select_date(){
-    var year = $("#reservation_start_time_1i").val();
-    var month = $("#reservation_start_time_2i").val() - 1;
-    var day = $("#reservation_start_time_3i").val();
-    var hour = $("#reservation_start_time_4i").val();
-    var min = $("#reservation_start_time_5i").val();
-    var date = new Date(year, month, day, hour, min);
-    return date;
-  }
-  
-  var two_month_date = new Date(now.getFullYear(), now.getMonth()+2, now.getDate(), now.getHours(), now.getMinutes());
-  function alert(now,date,two_month_date){
-    if(now > date){
-      $(".error-message").text("過去の時間は予約できません");
-      $(".disabled").attr('disabled', true);
-    }else if(date > two_month_date){
-      $(".error-message").text("２ヶ月先は予約できません");
-      $(".disabled").attr('disabled', true);
-    }else{
-      $(".error-message").text("");
-      $(".disabled").attr('disabled', false);
-    }
-  }
-  $("#reservation_start_time_1i").change(function() {
-    select_date();
-    alert(now,select_date(),two_month_date);
-  });
-  
-  $("#reservation_start_time_2i").change(function() {
-    select_date();
-    alert(now,select_date(),two_month_date);
-  });
-  
-  $("#reservation_start_time").change(function() {
-    select_date();
-    alert(now,select_date(),two_month_date);
-  });
-  
-  $("#reservation_start_time_4i").change(function() {
-    select_date();
-    alert(now,select_date(),two_month_date);
-  });
-  
-  $("#reservation_start_5i").change(function() {
-    select_date();
-    alert(now,select_date(),two_month_date);
-  });
-  
-  $(document).on('hidden.bs.modal', '.modal', function(){
-    $(this).removeData('bs.modal').empty();
-  });
-  
-</script>

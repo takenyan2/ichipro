@@ -26,7 +26,6 @@ class ReservationsController < ApplicationController
   end
   
   def destroy
-    byebug
     @reservation = Reservation.find(params[:id])
     Reservation.find(params[:id]).destroy
     flash[:success] = "削除しました。"
@@ -107,6 +106,7 @@ class ReservationsController < ApplicationController
   end
 
   def edit
+    @reservation = Reservation.find(params[:id])
   end
 
 
@@ -121,6 +121,19 @@ class ReservationsController < ApplicationController
       flash[:success] = "予約が完了しました。"
     else
       flash[:danger] = "予約ができませんでした。"
+    end
+    redirect_to action: 'index'
+    logger.debug @reservation.errors.inspect 
+  end
+  
+  def update
+    @reservation = Reservation.find(params[:id])
+    @course_time = Course.find_by(id: params[:reservation][:course_id]).course_time.to_i
+    @reservation.finish_time = @reservation.start_time + @course_time.minutes
+    if @reservation.update_attributes(reservation_params)
+      flash[:success] = "#{@reservation.user_name}様の基本情報を更新しました。"
+    else
+      flash[:danger] = "予約の更新は失敗しました。<br>" + @reservation.errors.full_messages.join("<br>")
     end
     redirect_to action: 'index'
   end
@@ -149,7 +162,7 @@ class ReservationsController < ApplicationController
   end
     
   def reservation_params
-      params.require(:reservation).permit(:user_name, :user_kana_name, :user_email, :user_phone_number, :start_time, :demand, :course_id)
+      params.require(:reservation).permit(:user_name, :user_kana_name, :user_email, :user_phone_number, :start_time, :demand, :course_id, :menu_id)
     end
 
 end
