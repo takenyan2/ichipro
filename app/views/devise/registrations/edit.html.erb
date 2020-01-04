@@ -2,6 +2,11 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  
+   <div class="field">
+    <%= f.label :admin_name %><br />
+    <%= f.text_field :admin_name, autofocus: true, autocomplete: "admin_name" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -13,11 +18,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password %> <i>(パスワードを変更したく無い場合は空欄のままにしてください)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %>文字以上</em>
     <% end %>
   </div>
 
@@ -26,18 +31,17 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+  <!--<div class="field">-->
+    <%#= f.label "現在のパスワード" %><br />
+    <%#= f.password_field :current_password, autocomplete: "current-password" %>
+  <!--</div>-->
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "更新" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<%= button_to "退会", registration_path(resource_name), data: { confirm: "本当に退会しますか？" }, method: :delete %>
 
 <%= link_to "Back", :back %>
