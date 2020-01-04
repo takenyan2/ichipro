@@ -1,6 +1,5 @@
 class ReservationsController < ApplicationController
   def index
-    # byebug
     @first_day = Date.current
     set_reservation_schedule
     @reservations = Reservation.where(start_time: Time.zone.now..Float::INFINITY).order(start_time: :asc)
@@ -8,7 +7,7 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
-    @course = Course.all
+    gon.course_array = Course.all.order(:menu_id).pluck(:menu_id, :course_name)
     @today = Date.today
     
     @times24 = []
@@ -44,7 +43,6 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.where(reservation_date: params[:date])
     @reservation = Reservation.new
     session[:request_course] = @reservation.request_course
-    # session[:request_course_time] = @reservation.request_course_time
   end
 
   def confirme
@@ -76,8 +74,6 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    # byebug
-    # @reservations = Reservation.find(params[:id])
     @reservation = Reservation.all
     #既に予約されている日時を取得する
     @reservation.each do |res|
@@ -90,8 +86,6 @@ class ReservationsController < ApplicationController
     end
     @reservation_time.push(res.start_time.hour.to_s + ":" + res.start_time.min.to_s)
     puts @reservation_time
-    # この書き方だと、00の時間のstart_timeが重複してしまう。
-    # 0の時間のものを配列から外す処理が必要。
   end
 
     @times24 = []
@@ -111,19 +105,18 @@ class ReservationsController < ApplicationController
 
 
   def create
-    # byebug
     @reservation = Reservation.new(reservation_params)
-    # @reservation.course_id = Course.find_by(course_name: params[:reservation][:course_name]).id
-    @course_time = Course.find_by(id: params[:reservation][:course_id]).course_time.to_i
-    # @course_time = params[:course_time].to_i
+    course = Course.where(menu_id: params[:reservation][:menu_id]).find_by(course_name: params[:reservation][:course_name])
+    @course_time = course.course_time.to_i
     @reservation.finish_time = @reservation.start_time + @course_time.minutes
+    @reservation.course_id = course.id
     if @reservation.save
       flash[:success] = "予約が完了しました。"
     else
       flash[:danger] = "予約ができませんでした。"
     end
     redirect_to action: 'index'
-    logger.debug @reservation.errors.inspect 
+    logger.debug @reservation.errors.inspect
   end
   
   def update
@@ -162,7 +155,7 @@ class ReservationsController < ApplicationController
   end
     
   def reservation_params
-      params.require(:reservation).permit(:user_name, :user_kana_name, :user_email, :user_phone_number, :start_time, :demand, :course_id, :menu_id)
+      params.require(:reservation).permit(:user_name, :user_kana_name, :user_email, :user_phone_number, :start_time, :demand, :menu_id, :birthday)
     end
 
 end

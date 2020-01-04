@@ -24,6 +24,10 @@
             <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6' %>
         </div>
         <div class="form-group row">
+            <%= f.label "生年月日", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.date_field :birthday, class: 'form-control col-sm-6' %>
+        </div>
+        <div class="form-group row">
             <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
             <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""} %>
         </div>

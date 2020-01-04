@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'courses/index'
   resources :meetings
   resources :reservations
   #review/#3
@@ -20,6 +21,10 @@ Rails.application.routes.draw do
     collection do
       post :generate
     end
+  end
+  
+  resources :menus, only: [] do
+    resources :courses, only: :index
   end
 
   resources :menus, only: [:edit,:create, :update, :delete]
