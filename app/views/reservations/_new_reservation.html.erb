@@ -1,6 +1,10 @@
 <% provide(:class_text, 'edit-info') %>
 <% provide(:button_text, '予約') %>
 
+
+
+<%= include_gon %>
+
 <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
     <div class="modal-header">
@@ -30,11 +34,17 @@
         </div>
         <div class="form-group row">
             <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%# menu_options = Menu.order(:id).map { |c| [c.menu_title, c.id, data: { children_path: menu_courses_path(c) }] } %>
             <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""} %>
+            <%#= f.select :menu_id, menu_options, { include_blank: true }, class: 'select-parent', id: "resesrvation_menu_id"  %>
         </div>
         <div class="form-group row">
             <%= f.label "コース", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.collection_select :course_id, Course.group(:course_name).order(id: :desc), :id, :course_name, {prompt: ""} %>
+            <%# courses = @reservation.menu.try(:courses) || [] %>
+            <%# course_options = courses.map { |c| [c.course_name, c.id] } %>
+            <%#= f.select :course_id, course_options, { include_blank: true }, class: 'select-children' %>
+            <%#= f.collection_select :course_id, Course.group(:course_name).order(id: :desc), :id, :course_name, {prompt: ""} %>
+            <select name="reservation[course_name]" id="reservation_course_name"></select>
         </div>
         <div class="form-group row">
           <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -127,4 +137,33 @@
     $(this).removeData('bs.modal').empty();
   });
   
+  
+
+
+$(function() {
+  // select要素を予め取得しておく
+  var $reservation_menu_id = $('#reservation_menu_id');
+  var $reservation_course_name = $('#reservation_course_name');
+ 
+  // メニュー選択時にコースに選択肢を設定
+  $reservation_menu_id.change(function(e) {
+    var reservation_courses = [];
+    var reservation_menu_id = $reservation_menu_id.val();
+    
+    $('#reservation_course_name').children().remove();
+    
+    // 選択したメニューに紐づくコースの配列を取得
+    $.each(gon.course_array, function(index, value) {
+      if (value[0] == reservation_menu_id){
+        reservation_courses.push(value[1]);
+      }
+　　});
+    
+    // htmlにコースの選択肢を追加
+    reservation_courses.forEach(function(course_name) {
+      var $option_tag = $('<option>').val(course_name).text(course_name);
+      $reservation_course_name.append($option_tag);
+    });
+  });
+});
 </script>

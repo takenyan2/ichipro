@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.5.5'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
@@ -78,3 +78,4 @@ gem "refile-mini_magick"
 gem 'simple_calendar', '~> 2.0'
 gem 'ffi', '1.9.18'
 
+gem "gon"
