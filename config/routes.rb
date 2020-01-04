@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   resources :meetings
   resources :reservations
   #review/#3
-  devise_for :admins
+  # devise_for :admins
+  
+  devise_for :admins, controllers: { registrations: 'registrations' }
 
-  devise_scope :admins do
-    get "/sign_in" => "devise/sessions#new"
+  # devise_scope :admins do
+  #   get "/sign_in" => "devise/sessions#new"
     # get "/sign_up" => "devise/registrations#new"
-  end
+  # end
 
   resources :shops, only: [:new, :edit]
   resources :admins, only: [:index, :update, :destroy, :new]
