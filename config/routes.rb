@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #   get "/sign_in" => "devise/sessions#new"
     # get "/sign_up" => "devise/registrations#new"
   # end
+  
 
   resources :shops, only: [:new, :edit]
   resources :admins, only: [:index, :update, :destroy, :new]
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
 
   resources :menus, only: [:edit,:create, :update, :delete]
   root 'menus#top'
-  get 'reservations/done' => "reservation#done", as: "reservation_done"
+  # get 'reservations/done' => "reservation#done", as: "reservation_done"
   get 'change/schedule' => "reservations#change_schedule", as: "change_schedule"
   get 'menus/top' => "menus#top", as: "top"
   get 'menus/course' => "menus#course", as: "course"
@@ -44,9 +45,12 @@ Rails.application.routes.draw do
   get '/menus/:id/edit_menu' => "menus#edit_menu", as: "renew_menu"
   patch '/menus/:id/edit_menu' => "menus#update_menu"
   delete '/menus/:id/edit_menu' => "menus#destroy"
+  
+  get 'all_reservations/index' => "reservations#all_index", as: "all_reservations_index"
+  get 'all_reservations/:id/show' => "reservations#all_show", as: "all_reservations_show"
 
-  get '/calendar/:date' => "reservations#date", as: "reservation_date"
-  get '/reservation_time/:date' => "reservations#time", as: "reservation_time"
+  # get '/calendar/:date' => "reservations#date", as: "reservation_date"
+  # get '/reservation_time/:date' => "reservations#time", as: "reservation_time"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 

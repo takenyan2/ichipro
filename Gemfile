@@ -10,6 +10,8 @@ gem 'rails-i18n'
 gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'font-awesome-rails', '~> 4.7.0'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
