@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
   def index
     @first_day = Date.current
     set_reservation_schedule
-    @reservations = Reservation.where(start_time: Time.zone.now..Float::INFINITY).order(start_time: :asc)
+    @reservations = Reservation.where(start_time: Time.zone.now.all_day).order(start_time: :asc)
   end
 
   def new
