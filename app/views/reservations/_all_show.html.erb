@@ -1,2 +1,72 @@
-$("#all_show").html("<%= escape_javascript(render 'all_show') %>");
-$("#all_show").modal("show");
+
+
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      予約詳細画面
+    </div><!-- /.modal-header  -->
+    <%= form_with(model: @reservation, url: reservation_path(@reservation), local: true, method: :patch) do |f| %>
+      <div class="modal-body">
+        <div class="form-group row">
+            <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.text_field :user_name, class: 'form-control col-sm-6 ', disabled: "disabled" %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "予約者カナ名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.text_field :user_kana_name, class: 'form-control col-sm-6', disabled: "disabled" %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "メールアドレス", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.email_field :user_email, class: 'form-control col-sm-6', disabled: "disabled" %>
+        </div>
+         <div class="form-group row">
+            <%= f.label "電話番号", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6', disabled: "disabled" %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "生年月日", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.date_field :birthday, class: 'form-control col-sm-6', disabled: "disabled" %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, disabled: "disabled" %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "コース", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.collection_select :course_id, Course.group(:course_name).order(id: :desc), :id, :course_name, {prompt: ""}, disabled: "disabled" %>
+        </div>
+        <div class="form-group row">
+          <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+          <%= raw sprintf(f.datetime_select(
+                                        :start_time, 
+                                        minute_step: 30,
+                                        start_year: Time.now.year,
+                                        end_year: Time.now.since(2.month).year,
+                                        use_month_numbers: true,
+                                        date_separator: '%s', 
+                                        time_separator: "%s",
+                                        datetime_separator: '%s',
+                                        disabled: "disabled"), '年','月', '日',"時")
+          %>分
+        </div>
+        <div class="form-group row">
+            <%= f.label "ご要望", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.text_area :demand, class: 'form-control col-sm-6', disabled: "disabled" %>
+        </div>
+        <div class="error-message text-danger" style="text-align:center;"></div>
+        <!--<div class="form-group row">-->
+        <!--  <%#= f.label "Usage time", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>-->
+        <!--  <#= select_tag('usage_time',options_for_select([[30, 30], [60, 60], [90, 90], [120, 120]]))%>分-->
+        <!--</div>-->
+      </div><!-- /.modal-body -->
+      <div class="modal-footer">
+        <span class="mx-auto">
+          <!--<button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">-->
+          <!--  キャンセル-->
+          <!--</button>-->
+          <%#= f.submit yield(:button_text), class: "btn btn-primary px-4 mx-3" %>
+        </span>
+      </div><!-- /.modal-footer -->
+    <% end %>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
