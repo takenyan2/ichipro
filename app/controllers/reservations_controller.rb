@@ -8,6 +8,7 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     gon.course_array = Course.all.order(:menu_id).pluck(:menu_id, :course_name)
+    gon.course_time_array = Course.all.order(:menu_id).pluck(:menu_id, :course_name, :course_time)
     @today = Date.today
     
     @times24 = []
