@@ -102,6 +102,9 @@ class ReservationsController < ApplicationController
 
   def edit
     @reservation = Reservation.find(params[:id])
+    gon.course_name = Course.find(@reservation.course_id).course_name
+    gon.course_array = Course.all.order(:menu_id).pluck(:menu_id, :course_name)
+    gon.course_time_array = Course.all.order(:menu_id).pluck(:menu_id, :course_name, :course_time)
   end
 
 
@@ -142,7 +145,7 @@ class ReservationsController < ApplicationController
   private
   
   def kari_params
-    params.require(:reservation).permit(:user_name, :user_kana_name, :gender, :user_email, :user_phone_number, :start_time, :demand, :sales, :course_name, :request_course)
+    params.require(:reservation).permit(:user_name, :user_kana_name, :gender, :user_email, :user_phone_number, :start_time, :demand, :sales, :course_name, :request_course, :request_course_time)
   end
 
 
@@ -156,7 +159,7 @@ class ReservationsController < ApplicationController
   end
     
   def reservation_params
-      params.require(:reservation).permit(:user_name, :user_kana_name, :user_email, :user_phone_number, :start_time, :demand, :menu_id, :birthday)
+      params.require(:reservation).permit(:user_name, :user_kana_name, :user_email, :user_phone_number, :start_time, :demand, :menu_id, :birthday, :request_course_time)
     end
 
 end
