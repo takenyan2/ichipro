@@ -2,7 +2,8 @@ class ReservationsController < ApplicationController
   def index
     @first_day = Date.current
     set_reservation_schedule
-    @reservations = Reservation.where(start_time: Time.zone.now.all_day).order(start_time: :asc)
+    @reservations = Reservation.where(start_time: Time.zone.now..Float::INFINITY).order(start_time: :asc)
+    @reservations_today = Reservation.where(start_time: Time.zone.now.all_day).order(start_time: :asc)
   end
 
   def new
@@ -125,7 +126,8 @@ class ReservationsController < ApplicationController
   
   def update
     @reservation = Reservation.find(params[:id])
-    @course_time = Course.find_by(id: params[:reservation][:course_id]).course_time.to_i
+    course = Course.where(menu_id: params[:reservation][:menu_id]).find_by(course_name: params[:reservation][:course_name])
+    @course_time = course.course_time.to_i
     @reservation.finish_time = @reservation.start_time + @course_time.minutes
     if @reservation.update_attributes(reservation_params)
       flash[:success] = "#{@reservation.user_name}様の基本情報を更新しました。"
