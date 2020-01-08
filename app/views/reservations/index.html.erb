@@ -7,6 +7,7 @@
       <div class="card border-light card-width mx-auto">
         <strong class="card-header">
           今日の予約状況一覧
+          <%= link_to "（予約一覧）", all_reservations_index_path if current_admin %>
         </strong>
         <% @reservations.each do |reservation| %>
           <ul class="list-group list-group-flush">

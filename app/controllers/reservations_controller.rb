@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
   def index
     @first_day = Date.current
     set_reservation_schedule
-    @reservations = Reservation.where(start_time: Time.zone.now..Float::INFINITY).order(start_time: :asc)
+    @reservations = Reservation.where(start_time: Time.zone.now.all_day).order(start_time: :asc)
   end
 
   def new
@@ -32,35 +32,35 @@ class ReservationsController < ApplicationController
     redirect_to action: 'index'
   end
 
-  def date
-    params[:date]
-    @reservation = Reservation.new
-    @reservations = Reservation.where(reservation_date: params[:date])
-    @reservation.request_course = session[:request_course]
-    @reservation.request_course_time = session[:request_course_time]
-  end
+  # def date
+  #   params[:date]
+  #   @reservation = Reservation.new
+  #   @reservations = Reservation.where(reservation_date: params[:date])
+  #   @reservation.request_course = session[:request_course]
+  #   @reservation.request_course_time = session[:request_course_time]
+  # end
 
-  def time
-    @reservations = Reservation.where(reservation_date: params[:date])
-    @reservation = Reservation.new
-    session[:request_course] = @reservation.request_course
-  end
+  # def time
+  #   @reservations = Reservation.where(reservation_date: params[:date])
+  #   @reservation = Reservation.new
+  #   session[:request_course] = @reservation.request_course
+  # end
 
-  def confirme
-    @reservations = Reservation.where(reservation_date: params[:date])
-    @reservation = Reservation.new(kari_params)
-    @reservation.date = session[:dete]
-    @reservation.request_course = session[:request_course]
-    @reservation.request_course_time = session[:request_course_time]
-  end
+  # def confirme
+  #   @reservations = Reservation.where(reservation_date: params[:date])
+  #   @reservation = Reservation.new(kari_params)
+  #   @reservation.date = session[:dete]
+  #   @reservation.request_course = session[:request_course]
+  #   @reservation.request_course_time = session[:request_course_time]
+  # end
 
-  def done
-    @reservation = Reservation.new(reservation_params)
+  # def done
+    # @reservation = Reservation.new(reservation_params)
     # 予約済みの時間を潰すメソッド
     # 予約可能だったらsaveしてセッション破棄
     # セッションを保持している間に他のユーザーが予約していないかチェック(予約可能かどうか判断するメソッド)
-    @reservation.save
-  end
+  #   @reservation.save
+  # end
 
   def change_schedule
     if params[:prev]
@@ -141,12 +141,21 @@ class ReservationsController < ApplicationController
     flash[:success] = "削除しました。"
     redirect_to action: 'index'
   end
+  
+  def all_index
+    @reservations = Reservation.paginate(page: params[:page], per_page: 20).search(params[:search], params[:search_date], params[:search_history]).order(id: :asc)
+  end
+  
+  def all_show
+    @reservation = Reservation.find(params[:id])
+  end
+  
 
   private
   
-  def kari_params
-    params.require(:reservation).permit(:user_name, :user_kana_name, :gender, :user_email, :user_phone_number, :start_time, :demand, :sales, :course_name, :request_course, :request_course_time)
-  end
+  # def kari_params
+  #   params.require(:reservation).permit(:user_name, :user_kana_name, :gender, :user_email, :user_phone_number, :start_time, :demand, :sales, :course_name, :request_course)
+  # end
 
 
   private
