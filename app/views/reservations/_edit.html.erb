@@ -70,6 +70,8 @@
             キャンセル
           </button>
           <%= f.submit yield(:button_text), class: "btn btn-primary px-4 mx-3" %>
+           <%= link_to "削除", reservation_path(@reservation), method: :delete,
+                data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger px-4 mx-3" %>
         </span>
       </div><!-- /.modal-footer -->
     <% end %>
