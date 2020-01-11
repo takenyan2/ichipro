@@ -26,8 +26,8 @@ module ReservationsHelper
   
   def get_position(start_time,finish_time,week_day)
     if Date.parse(start_time.to_s) == Date.parse(finish_time.to_s) || Date.parse(start_time.to_s) == week_day
-       time = ((start_time - week_day.midnight)/60/60)
-       (time/24.to_f*945)
+       time = ((start_time - week_day.midnight)/60/60 - 10)
+       (time/11.to_f*814)
     elsif Date.parse(finish_time.to_s) == week_day || (Date.parse(finish_time.to_s) > week_day && Date.parse(start_time.to_s) < week_day)
       0
     end

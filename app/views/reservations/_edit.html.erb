@@ -11,19 +11,19 @@
       <div class="modal-body">
         <div class="form-group row">
             <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_field :user_name, class: 'form-control col-sm-6' %>
+            <%= f.text_field :user_name, class: 'form-control col-sm-6', required: "required", maxlength: 50 %>
         </div>
         <div class="form-group row">
             <%= f.label "予約者カナ名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_field :user_kana_name, class: 'form-control col-sm-6' %>
+            <%= f.text_field :user_kana_name, class: 'form-control col-sm-6', required: "required", maxlength: 50 %>
         </div>
         <div class="form-group row">
             <%= f.label "メールアドレス", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.email_field :user_email, class: 'form-control col-sm-6' %>
+            <%= f.email_field :user_email, class: 'form-control col-sm-6', required: "required", type: "email" %>
         </div>
          <div class="form-group row">
             <%= f.label "電話番号", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6' %>
+            <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6', required: "required", type: "tel" %>
         </div>
         <div class="form-group row">
             <%= f.label "生年月日", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -31,11 +31,11 @@
         </div>
         <div class="form-group row">
             <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""} %>
+            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required" %>
         </div>
         <div class="form-group row">
             <%= f.label "コース", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <select name="reservation[course_name]" id="reservation_course_name"></select>
+            <select name="reservation[course_name]" id="reservation_course_name" required="required"></select>
         </div>
         <div class="form-group row">
           <%= f.label "コース時間", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -56,7 +56,7 @@
         </div>
         <div class="form-group row">
             <%= f.label "ご要望", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_area :demand, class: 'form-control col-sm-6' %>
+            <%= f.text_area :demand, class: 'form-control col-sm-6', maxlength: 300 %>
         </div>
         <div class="error-message text-danger" style="text-align:center;"></div>
         <!--<div class="form-group row">-->

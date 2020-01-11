@@ -14,19 +14,19 @@
       <div class="modal-body">
         <div class="form-group row">
             <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_field :user_name, class: 'form-control col-sm-6' %>
+            <%= f.text_field :user_name, class: 'form-control col-sm-6', required: "required", maxlength: 50 %>
         </div>
         <div class="form-group row">
             <%= f.label "予約者カナ名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_field :user_kana_name, class: 'form-control col-sm-6' %>
+            <%= f.text_field :user_kana_name, class: 'form-control col-sm-6', required: "required", maxlength: 50 %>
         </div>
         <div class="form-group row">
             <%= f.label "メールアドレス", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.email_field :user_email, class: 'form-control col-sm-6' %>
+            <%= f.email_field :user_email, class: 'form-control col-sm-6', required: "required", type: "email" %>
         </div>
          <div class="form-group row">
             <%= f.label "電話番号", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6' %>
+            <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6', required: "required", type: "tel" %>
         </div>
         <div class="form-group row">
             <%= f.label "生年月日", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -35,7 +35,7 @@
         <div class="form-group row">
             <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
             <%# menu_options = Menu.order(:id).map { |c| [c.menu_title, c.id, data: { children_path: menu_courses_path(c) }] } %>
-            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""} %>
+            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required" %>
             <%#= f.select :menu_id, menu_options, { include_blank: true }, class: 'select-parent', id: "resesrvation_menu_id"  %>
         </div>
         <div class="form-group row">
@@ -44,7 +44,7 @@
             <%# course_options = courses.map { |c| [c.course_name, c.id] } %>
             <%#= f.select :course_id, course_options, { include_blank: true }, class: 'select-children' %>
             <%#= f.collection_select :course_id, Course.group(:course_name).order(id: :desc), :id, :course_name, {prompt: ""} %>
-            <select name="reservation[course_name]" id="reservation_course_name"></select>
+            <select name="reservation[course_name]" id="reservation_course_name" required="required"></select>
         </div>
         <div class="form-group row">
           <%= f.label "コース時間", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -67,11 +67,11 @@
         </div>
         <div class="form-group row">
             <%= f.label "ご要望", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_area :demand, class: 'form-control col-sm-6' %>
+            <%= f.text_area :demand, class: 'form-control col-sm-6', maxlength: 300 %>
         </div>
         <div class="form-group row">
             <%= f.label "　個人情報の取り扱いについて", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.check_box :remember_me %>
+            <%= f.check_box :remember_me, required: "required" %>
             <div style="width:300px;height:150px;overflow:auto;outline: solid 1px black;">
 <p>■個人情報保護について</p>
 <p>サロンichi（以下「当サロン」といいます）は、当プライバシーポリシーを掲示し、当プライバシーポリシーに準拠して提供されるサービス（以下「本サービス」といいます）の利用企業・提携企業・団体等（以下「利用企業等」といいます）および本サービスをご利用になる方（以下「ユーザー」といいます）のプライバシーを尊重し、ユーザーの個人情報（以下の定義に従います）の管理に細心の注意を払い、これを取扱うものとします。</p>
@@ -127,14 +127,14 @@
     return date;
   }
   
-  var two_month_date = new Date(now.getFullYear(), now.getMonth()+2, now.getDate(), now.getHours(), now.getMinutes());
-  function alert(now,date,two_month_date){
+  // var two_month_date = new Date(now.getFullYear(), now.getMonth()+2, now.getDate(), now.getHours(), now.getMinutes());
+  function alert(now,date){
     if(now > date){
       $(".error-message").text("過去の時間は予約できません");
       $(".disabled").attr('disabled', true);
-    }else if(date > two_month_date){
-      $(".error-message").text("２ヶ月先は予約できません");
-      $(".disabled").attr('disabled', true);
+    // }else if(date > two_month_date){
+    //   $(".error-message").text("２ヶ月先は予約できません");
+    //   $(".disabled").attr('disabled', true);
     }else{
       $(".error-message").text("");
       $(".disabled").attr('disabled', false);
@@ -142,27 +142,27 @@
   }
   $("#reservation_start_time_1i").change(function() {
     select_date();
-    alert(now,select_date(),two_month_date);
+    // alert(now,select_date(),two_month_date);
   });
   
   $("#reservation_start_time_2i").change(function() {
     select_date();
-    alert(now,select_date(),two_month_date);
+    // alert(now,select_date(),two_month_date);
   });
   
   $("#reservation_start_time").change(function() {
     select_date();
-    alert(now,select_date(),two_month_date);
+    // alert(now,select_date(),two_month_date);
   });
   
   $("#reservation_start_time_4i").change(function() {
     select_date();
-    alert(now,select_date(),two_month_date);
+    // alert(now,select_date(),two_month_date);
   });
   
   $("#reservation_start_5i").change(function() {
     select_date();
-    alert(now,select_date(),two_month_date);
+    // alert(now,select_date(),two_month_date);
   });
   
   $(document).on('hidden.bs.modal', '.modal', function(){
