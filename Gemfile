@@ -6,6 +6,7 @@ ruby '2.5.5'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'rails-i18n'
+gem 'devise-i18n-views'
  # 日付と時間のフォーム用
 gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails', '>= 2.9.0'
@@ -79,5 +80,6 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'simple_calendar', '~> 2.0'
 gem 'ffi', '1.9.18'
+gem 'file_validators'
 
 gem "gon"

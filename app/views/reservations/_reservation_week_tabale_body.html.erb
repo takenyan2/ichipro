@@ -15,7 +15,7 @@
           <ul>
             <% @times.each do |time| %>
               <% datetime = Time.zone.local(week_day.year,week_day.month,week_day.day,time.hour,time.min) %> 
-              <% if datetime >= Time.current && Date.current.since(2.months) >= datetime %>
+              <% if datetime >= Time.current %>
                 <li class="time-schedule-cell">
                   <%= link_to '', new_reservation_url(:start_time => l(time,format: :shorttime),:week_day => week_day),remote:true %>
                 </li>

@@ -11,7 +11,6 @@ class ReservationsController < ApplicationController
     gon.course_array = Course.all.order(:menu_id).pluck(:menu_id, :course_name)
     gon.course_time_array = Course.all.order(:menu_id).pluck(:menu_id, :course_name, :course_time)
     @today = Date.today
-    
     @times24 = []
     minutes = ["00","30"]
     i = 0
@@ -118,7 +117,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       flash[:success] = "予約が完了しました。"
     else
-      flash[:danger] = "予約ができませんでした。"
+      flash[:danger] = "予約日時を見直して再度ご予約ください。"
     end
     redirect_to action: 'index'
     logger.debug @reservation.errors.inspect
@@ -145,7 +144,7 @@ class ReservationsController < ApplicationController
   end
   
   def all_index
-    @reservations = Reservation.paginate(page: params[:page], per_page: 20).search(params[:search], params[:search_date], params[:search_history]).order(id: :asc)
+    @reservations = Reservation.paginate(page: params[:page], per_page: 20).search(params[:search], params[:search_date], params[:search_history]).order(start_time: :asc)
   end
   
   def all_show
@@ -164,9 +163,9 @@ class ReservationsController < ApplicationController
   
   def set_reservation_schedule
       @week_day = (@first_day..@first_day.since(7.days))
-      @reservations = Reservation.where("finish_time > ?",Time.zone.now)
-      @times = 23.times.map.each_with_index {|i| Time.parse("10:00")+30.minutes*i}
-      @time_number = 12.times.map.each_with_index {|i| l(Time.parse("10:00")+1.hours*i,format: :shorttime)}
+      @reservations = Reservation.where("finished_at > ?",Time.zone.now)
+      @times = 22.times.map.each_with_index {|i| Time.parse("10:00")+30.minutes*i}
+      @time_number = 10.times.map.each_with_index {|i| l(Time.parse("11:00")+1.hours*i,format: :shorttime)}
   end
     
   def reservation_params

@@ -3,10 +3,11 @@
       <h2 class="bg_sunflower">メニューの追加</h2>
     <div class="contents">
   <%= form_with(model: @menu,local: true) do |f| %>
+   <%= render "devise/shared/error_messages", resource: @menu %>
       <div class="form">
 			<dl>
 				<dt class="form-title">メニュー名</dt>
-				<dd class="form-item"><%= f.text_field :menu_title %></dd>
+				<dd class="form-item"><%= f.text_field :menu_title, required: true %></dd>
 			</dl>
 		</div>
 		<div class="form">
@@ -18,7 +19,7 @@
 		<div class="form">
 			<dl>
 				<dt class="form-title">紹介文</dt>
-				<dd class="form-item"><%= f.text_area :introduce %></dd>
+				<dd class="form-item"><%= f.text_area :introduce, required: true  %></dd>
 
 				<%= hidden_field_tag :permission, true %>
 			</dl>

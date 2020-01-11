@@ -18,21 +18,33 @@ puts 'Started Seed...'
 end
 puts 'Created Admin!'
 
-Menu.create(menu_title: "Bodycare もみほぐし", menu_image_id: "77a1b04a7f4c7d79e6c3f49c6a553c08fba526f5c30badb77e1c7c548e26", introduce: "お客様のお好みの力加減を確認しながら、全身をもみほぐしていきます。")
-Menu.create(menu_title: "Footcare 足つぼ", menu_image_id: "07762a386afba441ddea5529c3c7f8647834d0e93975d546dd1d3ed578a8", introduce: "オイルを使用し、足裏の反射区、ふくらはぎ、ひざ裏までしっかり刺激し、老廃物を流していきます。")
-Menu.create(menu_title: "Gut cae 腸ケア", menu_image_id: "a400ffb291a3f6aef91a3327141441e5dd142927e761aac5756861d7f7d8", introduce: "『腸』こそ免疫力のすべて！腸内環境が整うと『お通じ改善』『頭痛』『肩こり』『冷え』『むくみ』等の身体の不調は『イライラ』『くよくよ』ストレス等の心の安定してきます。")
-Menu.create(menu_title: "Hyper Knife ハイパーナイフ", menu_image_id: "1865782ac6293c89049c41820c56fbe46b76816866049f2a4456e9c75eb0", introduce: "ハイパーナイフは高周波を身体に流し、体内の水分を振動させることで熱を発生させて脂肪を溶解、燃焼させるマシンです。「ナイフで削ぎ落としたように脂肪が取れる！！」と、好評の施術です。")
+Menu.create(menu_title: "改善基本コース", menu_image_id: "", introduce: "身体の土台である軸と重心バランスを整えて体の歪みをリセット。じっくり全身をもみほぐして筋肉バランスを整える疲労回復改善コース。<br>
+				慢性的な首、肩、背中、腰の辛さがある方、冷え、頭痛持ちがある方に
+				オススメのコースとなっております。</p>")
+Menu.create(menu_title: "極上リラクゼーションコース", menu_image_id: "", introduce: "身体の土台である軸と重心バランスを整えて体の歪みをリセットした後、
+				全身を優しくゆったりとアロマトリートメント。<br>
+				心身の緊張をほぐす癒しメニューが組み合わせになった改善コース。<br>
+				慢性的な首、肩、背中、腰の辛さがある方、冷え、頭痛持ちがある方に
+				オススメのコースとなっております。")
+Menu.create(menu_title: "Bodycare もみほぐし", menu_image_id: "", introduce: "お客様のお好みの力加減を確認しながら、全身をもみほぐしていきます。")
+Menu.create(menu_title: "Footcare 足つぼ", menu_image_id: "", introduce: "オイルを使用し、足裏の反射区、ふくらはぎ、ひざ裏までしっかり刺激し、老廃物を流していきます。")
+Menu.create(menu_title: "Gut cae 腸ケア", menu_image_id: "", introduce: "『腸』こそ免疫力のすべて！腸内環境が整うと『お通じ改善』『頭痛』『肩こり』『冷え』『むくみ』等の身体の不調は『イライラ』『くよくよ』ストレス等の心の安定してきます。")
+Menu.create(menu_title: "Hyper Knife ハイパーナイフ", menu_image_id: "", introduce: "ハイパーナイフは高周波を身体に流し、体内の水分を振動させることで熱を発生させて脂肪を溶解、燃焼させるマシンです。「ナイフで削ぎ落としたように脂肪が取れる！！」と、好評の施術です。")
 puts 'Created Menu!'
 
-Course.create(menu_id: 1, course_name: "クイックコース", course_time: 60, price: 5000)
-Course.create(menu_id: 1, course_name: "基本コース", course_time: 90, price: 7500)
-Course.create(menu_id: 1, course_name: "全身しっかりコース", course_time: 120, price: 10000)
-Course.create(menu_id: 2, course_name: "足つぼクイックコース", course_time: 30, price: 3000)
-Course.create(menu_id: 2, course_name: "足つぼ基本コース", course_time: 60, price: 6000)
-Course.create(menu_id: 2, course_name: "足つぼしっかりコース", course_time: 90, price: 9000)
-Course.create(menu_id: 3, course_name: "腸ケアコース(ヘッドマッサージ付き)", course_time: 60, price: 6000)
-Course.create(menu_id: 4, course_name: "基本コース", course_time: 60, price: 16000)
-Course.create(menu_id: 4, course_name: "しっかり燃焼コース", course_time: 120, price: 32000)
+Course.create(menu_id: 1, course_name: "全身整体ベーシック", course_time:60 , price:5000 )
+Course.create(menu_id: 1, course_name: "全身整体ベーシック（じっくり）", course_time:120 , price:12000 )
+Course.create(menu_id: 2, course_name: "極上整体プレミアム", course_time:90 , price:13000 )
+Course.create(menu_id: 2, course_name: "極上整体プレミアム（じっくり）", course_time:120 , price:15000 )
+Course.create(menu_id: 3, course_name: "クイックコース", course_time: 60, price: 5000)
+Course.create(menu_id: 3, course_name: "基本コース", course_time: 90, price: 7500)
+Course.create(menu_id: 3, course_name: "全身しっかりコース", course_time: 120, price: 10000)
+Course.create(menu_id: 4, course_name: "足つぼクイックコース", course_time: 30, price: 3000)
+Course.create(menu_id: 4, course_name: "足つぼ基本コース", course_time: 60, price: 6000)
+Course.create(menu_id: 4, course_name: "足つぼしっかりコース", course_time: 90, price: 9000)
+Course.create(menu_id: 5, course_name: "腸ケアコース(ヘッドマッサージ付き)", course_time: 60, price: 6000)
+Course.create(menu_id: 6, course_name: "基本コース", course_time: 60, price: 16000)
+Course.create(menu_id: 6, course_name: "しっかり燃焼コース", course_time: 120, price: 32000)
 puts 'Created Course!'
 
 Question.create(
