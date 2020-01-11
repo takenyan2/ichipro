@@ -83,9 +83,9 @@
               <dl>
                 <%= form_with(model: @question, url: menus_note_path ,local: true) do |f| %>
                   <dt class="form-title">質問文</dt>
-                  <dd class="form-item"><%= f.text_field :user_question %></dd>
+                  <dd class="form-item"><%= f.text_field :user_question, required: "required", maxlength: 100 %></dd>
                   <dt class="form-title">答え</dt>
-                  <dd class="form-item"><%= f.text_area :answer %></dd>
+                  <dd class="form-item"><%= f.text_area :answer, required: "required", maxlength: 200 %></dd>
                   <%#= f.hidden_field :id, value: @question.id %>
                   <%= f.submit "追加する" %>
                 <% end %>

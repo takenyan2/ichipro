@@ -33,6 +33,9 @@ ja:
         menu_image: "画像"
         menu_title: "メニュー名"
         introduce: "紹介文"
+      question:
+        user_question: "質問"
+        answer: "回答"
     models:
       user: "ユーザ"
   devise:

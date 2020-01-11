@@ -20,11 +20,11 @@ class MenusController < ApplicationController
     question = Question.new(question_params)
     if question.save
       flash[:success] = "登録しました。"
+      redirect_to note_path
     else
       flash[:danger] = "登録に失敗しました。"
-      render :edit_note
+      redirect_to note_path
     end
-    redirect_to note_path
   end
 
   def edit_note
@@ -32,14 +32,14 @@ class MenusController < ApplicationController
   end
 
   def update_note
-    question = Question.find(params[:id])
-    if  question.update(question_params)
+    @question = Question.find(params[:id])
+    if  @question.update(question_params)
         flash[:success] = "更新しました。"
+        redirect_to note_path
     else
       flash[:danger] = "更新に失敗しました。"
         render :edit_note
     end
-    redirect_to note_path
   end
 
   def destroy_note
