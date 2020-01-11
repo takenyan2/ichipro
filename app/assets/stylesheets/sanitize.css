@@ -341,9 +341,9 @@ input,
 select,
 textarea {
 	background-color: transparent; /* 1 */
-	border-style: none; /* 1 */
-	color: inherit; /* 1 */
-	font-size: 1em; /* 1 */
+	border: 1px solid #ced4da; /* 1 */
+	color: #495057; /* 1 */
+	font-size: 1rem; /* 1 */
 	margin: 0; /* 3 */
 }
 

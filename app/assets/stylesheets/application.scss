@@ -349,25 +349,25 @@ form class
 
 
 
-input[type=submit] {
-margin:0 auto;
-  font-weight: bold;
-  border: none;
-  outline: none;
-  display: block;
-  line-height: 30px;
-  width: 160px;
-  text-align: center;
-  font-size: 13px;
-  color: #404040;
-  background-color: yellow;
-  border-bottom: 4px solid yellow;
-  cursor:pointer;
-  box-sizing: content-box;
-  transition:0.1s ease all;
-}
+// input[type=submit] {
+// margin:0 auto;
+//   font-weight: bold;
+//   border: none;
+//   outline: none;
+//   display: block;
+//   line-height: 30px;
+//   // width: 160px;
+//   text-align: center;
+//   font-size: 13px;
+//   color: black;
+//   background-color: #A0c0c0;
+//   border-bottom: 4px solid #A0c0c0;
+//   cursor:pointer;
+//   box-sizing: content-box;
+//   transition: 0.1s ease all;
+// }
 input[type=submit]:hover{
-  opacity:0.6;
+  opacity: 0.6;
 }
 
 input[type=submit]:after {

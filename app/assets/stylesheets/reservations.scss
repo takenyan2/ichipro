@@ -165,3 +165,18 @@ ul.time-field {
 @media screen and (min-width:767px) {
   .card-width { width: 400px; }
 }
+
+.personally {
+  // width: 400px;
+  height: 100px;
+  overflow: auto;
+  outline: 1px solid #ced4da;
+}
+
+.close .cross {
+  font-size: 2.5rem;
+}
+
+.info-blue {
+  border-bottom: 0.5px dotted #17a2b8;
+}

@@ -1,57 +1,52 @@
 <% provide(:class_text, 'edit-info') %>
 <% provide(:button_text, '予約') %>
-
-
-
 <%= include_gon %>
 
 <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
-    <div class="modal-header">
-      予約画面
+    <div class="modal-header info-blue">
+      <h4 class="modal-title ml-5">予約画面</h4>
+        <button type="button" class="close px-5 lead d-flex align-items-center" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true" class="cross">&times;</span>
+        </button>
     </div><!-- /.modal-header  -->
-    <%= form_with(model: @reservation, url: reservations_path, local: true, method: :post) do |f| %>
-      <div class="modal-body">
+    <div class="modal-body">
+      <%= form_with(model: @reservation, url: reservations_path, local: true, method: :post) do |f| %>
         <div class="form-group row">
             <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_field :user_name, class: 'form-control col-sm-6', required: "required", maxlength: 50 %>
+            <%= f.text_field :user_name, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", maxlength: 50 %>
         </div>
         <div class="form-group row">
             <%= f.label "予約者カナ名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_field :user_kana_name, class: 'form-control col-sm-6', required: "required", maxlength: 50 %>
+            <%= f.text_field :user_kana_name, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", maxlength: 50 %>
         </div>
         <div class="form-group row">
             <%= f.label "メールアドレス", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.email_field :user_email, class: 'form-control col-sm-6', required: "required", type: "email" %>
+            <%= f.email_field :user_email, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", type: "email" %>
         </div>
          <div class="form-group row">
             <%= f.label "電話番号", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6', required: "required", type: "tel" %>
+            <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", type: "tel" %>
         </div>
         <div class="form-group row">
             <%= f.label "生年月日", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.date_field :birthday, class: 'form-control col-sm-6' %>
+            <%= f.date_field :birthday, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10' %>
         </div>
         <div class="form-group row">
             <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%# menu_options = Menu.order(:id).map { |c| [c.menu_title, c.id, data: { children_path: menu_courses_path(c) }] } %>
-            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required" %>
-            <%#= f.select :menu_id, menu_options, { include_blank: true }, class: 'select-parent', id: "resesrvation_menu_id"  %>
+            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required", class: "form-control col-sm-6 offset-1 offset-sm-0 col-10" %>
         </div>
         <div class="form-group row">
             <%= f.label "コース", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%# courses = @reservation.menu.try(:courses) || [] %>
-            <%# course_options = courses.map { |c| [c.course_name, c.id] } %>
-            <%#= f.select :course_id, course_options, { include_blank: true }, class: 'select-children' %>
-            <%#= f.collection_select :course_id, Course.group(:course_name).order(id: :desc), :id, :course_name, {prompt: ""} %>
-            <select name="reservation[course_name]" id="reservation_course_name" required="required"></select>
+            <select name="reservation[course_name]" id="reservation_course_name" required="required" class="form-control col-sm-6 offset-1 offset-sm-0 col-10"></select>
         </div>
         <div class="form-group row">
           <%= f.label "コース時間", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-          <%= f.text_field :request_course_time, class: 'form-control col-sm-6', readonly: "readonly" %>
+          <%= f.text_field :request_course_time, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', readonly: "readonly" %>
         </div>  
         <div class="form-group row">
           <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+          <span class="offset-1 offset-sm-0">
           <%= raw sprintf(f.datetime_select(
                                         :start_time, 
                                         default: Time.zone.local(@week_day.to_date.year,@week_day.to_date.month,@week_day.to_date.day,
@@ -64,54 +59,48 @@
                                         time_separator: "%s",
                                         datetime_separator: '%s'), '年', '月', '日',"時")
            %>分
+           </span>
         </div>
         <div class="form-group row">
             <%= f.label "ご要望", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_area :demand, class: 'form-control col-sm-6', maxlength: 300 %>
+            <%= f.text_area :demand, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', maxlength: 300 %>
         </div>
         <div class="form-group row">
-            <%= f.label "　個人情報の取り扱いについて", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.check_box :remember_me, required: "required" %>
-            <div style="width:300px;height:150px;overflow:auto;outline: solid 1px black;">
-<p>■個人情報保護について</p>
-<p>サロンichi（以下「当サロン」といいます）は、当プライバシーポリシーを掲示し、当プライバシーポリシーに準拠して提供されるサービス（以下「本サービス」といいます）の利用企業・提携企業・団体等（以下「利用企業等」といいます）および本サービスをご利用になる方（以下「ユーザー」といいます）のプライバシーを尊重し、ユーザーの個人情報（以下の定義に従います）の管理に細心の注意を払い、これを取扱うものとします。</p>
-<p>■個人情報</p>
-<p>個人情報とは、ユーザー個人に関する情報であって、当該情報を構成する氏名、住所、電話番号、メールアドレス、学校名その他の記述等により当該ユーザーを識別できるものをいいます。また、その情報のみでは識別できない場合でも、他の情報と容易に照合することができ、結果的にユーザー個人を識別できるものも個人情報に含まれます。</p>
-<p>■個人情報の取得について</p>
-<p>当サロンは、お客さまからの書面、ウェブサイトからのお申し込みや電子メールによる提供など、お客さまが容易に認識できる方法で、個人情報を適正に取得いたします。 お客様から個人情報を取得する際は、その利用目的をホームページ上において明示いたします。お客様にご提供いただいた個人情報は、明示した利用目的の範囲内で利用いたします。また、お客様の個人情報をお客様の同意なく利用目的以外に利用することはありません。 また、直接お客様に個人情報をご記入いただく際には、その場において改めて、利用目的を明確にいたします。</p>
-<p>■個人情報の利用目的</p>
-<p>個人情報の利用目的は以下の通りです。利用目的を超えて利用することはありません。</p>
-<p>1. ユーザーの予約の際の本人確認のため</p>
-<p>2. 本サービスの利用に伴う連絡・メールマガジン・DM・各種お知らせ等の配信・送付</p>
-<p>3. ユーザーの承諾・申込みに基づく、本サービス利用企業等への個人情報の提供</p>
-<p>4. キャンペーン・アンケート・モニター・取材等の実施</p>
-<p>5. 本サービスの運用を円滑に行うためのご意見、お問い合わせの確認・回答</p>
-
-<p>■個人情報の第三者への提供</p>
-<p>当社は、原則として、ユーザー本人の同意がある場合や、生命や財産保護のためやむを得ない場合など、法や条例に定めている場合を除き行いません。</p>
-
-<p>制定日：2020年1月15日</p>
-<p>最終改定：2020年1月15日</p>
-                    
-</div>
-
+          <%= f.label "個人情報の取り扱いについて", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+          <div class="personally col-sm-6 col-10 offset-1 offset-sm-0">
+            <p>■個人情報保護について</p>
+            <p>サロンichi（以下「当サロン」といいます）は、当プライバシーポリシーを掲示し、当プライバシーポリシーに準拠して提供されるサービス（以下「本サービス」といいます）の利用企業・提携企業・団体等（以下「利用企業等」といいます）および本サービスをご利用になる方（以下「ユーザー」といいます）のプライバシーを尊重し、ユーザーの個人情報（以下の定義に従います）の管理に細心の注意を払い、これを取扱うものとします。</p>
+            <p>■個人情報</p>
+            <p>個人情報とは、ユーザー個人に関する情報であって、当該情報を構成する氏名、住所、電話番号、メールアドレス、学校名その他の記述等により当該ユーザーを識別できるものをいいます。また、その情報のみでは識別できない場合でも、他の情報と容易に照合することができ、結果的にユーザー個人を識別できるものも個人情報に含まれます。</p>
+            <p>■個人情報の取得について</p>
+            <p>当サロンは、お客さまからの書面、ウェブサイトからのお申し込みや電子メールによる提供など、お客さまが容易に認識できる方法で、個人情報を適正に取得いたします。 お客様から個人情報を取得する際は、その利用目的をホームページ上において明示いたします。お客様にご提供いただいた個人情報は、明示した利用目的の範囲内で利用いたします。また、お客様の個人情報をお客様の同意なく利用目的以外に利用することはありません。 また、直接お客様に個人情報をご記入いただく際には、その場において改めて、利用目的を明確にいたします。</p>
+            <p>■個人情報の利用目的</p>
+            <p>個人情報の利用目的は以下の通りです。利用目的を超えて利用することはありません。</p>
+            <p>1. ユーザーの予約の際の本人確認のため</p>
+            <p>2. 本サービスの利用に伴う連絡・メールマガジン・DM・各種お知らせ等の配信・送付</p>
+            <p>3. ユーザーの承諾・申込みに基づく、本サービス利用企業等への個人情報の提供</p>
+            <p>4. キャンペーン・アンケート・モニター・取材等の実施</p>
+            <p>5. 本サービスの運用を円滑に行うためのご意見、お問い合わせの確認・回答</p>
+            <p>■個人情報の第三者への提供</p>
+            <p>当社は、原則として、ユーザー本人の同意がある場合や、生命や財産保護のためやむを得ない場合など、法や条例に定めている場合を除き行いません。</p>
+            <p>制定日：2020年1月15日</p>
+            <p>最終改定：2020年1月15日</p>
+          </div>
         </div>
-        
-        <div class="error-message text-danger" style="text-align:center;"></div>
-        <!--<div class="form-group row">-->
-        <!--  <%#= f.label "Usage time", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>-->
-        <!--  <#= select_tag('usage_time',options_for_select([[30, 30], [60, 60], [90, 90], [120, 120]]))%>分-->
-        <!--</div>-->
-      </div><!-- /.modal-body -->
-      <div class="modal-footer">
-        <span class="mx-auto">
-          <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">
+        <%= f.label " ", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+        <%= f.check_box :remember_me, required: "required", class: "offset-1 offset-sm-0" %><span class="ml-3">同意する</span>
+        <div class="error-message text-danger" style="text-align:center;">
+        </div>
+        <span class="row mt-5">
+          <span class="mx-auto">
+          <button type="button" class="btn btn-lg btn-secondary px-5 mx-4" data-dismiss="modal">
             キャンセル
           </button>
-          <%= f.submit yield(:button_text), class: "btn btn-primary px-4 mx-3" %>
+          <%= f.submit yield(:button_text), class: "btn btn-lg btn-info px-5 mx-4" %>
+          </span>
         </span>
-      </div><!-- /.modal-footer -->
-    <% end %>
+      <% end %>
+    </div><!-- /.modal-body -->
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 <script>
