@@ -87,8 +87,11 @@ class MenusController < ApplicationController
         flash[:success] = "保存しました"
       elsif params[:permission] == "false"
         @course = Course.new(menu_course_params)
-        @course.save
-        flash[:success] = "保存しました"
+        if @course.save
+          flash[:success] = "保存しました"
+        else
+          flash[:danger] = "同じメニュー内でコース名が重複しているため、保存できませんでした。"
+        end
       end
     else
       flash[:danger] = "登録に失敗しました"
@@ -97,25 +100,23 @@ class MenusController < ApplicationController
   end
 
   def update
-    if params[:permission]
-      if params[:permission] == "true"
-        menu = Menu.find(params[:id])
-        if menu.update(menu_params)
-            flash[:success] = "更新しました"
-        else
-          flash[:danger] = "更新に失敗しました"
-            render :edit_menu
-        end
-      elsif params[:permission] == "false"
-        course = Course.find(params[:id])
-        if course.update(course_params)
-            flash[:success] = "更新しました"
-        else
-          flash[:danger] = "更新に失敗しました"
-            render :edit
-        end
+    if params[:permission] == "true"
+      menu = Menu.find(params[:id])
+      if menu.update(menu_params)
+          flash[:success] = "更新しました"
+      else
+        flash[:danger] = "更新に失敗しました"
+        render :edit_menu
       end
-      redirect_to course_path
+    elsif params[:permission] == "false"
+      @course = Course.find(params[:id])
+      if @course.update(course_params)
+          flash[:success] = "更新しました"
+          redirect_to course_path
+      else
+        flash[:danger] = "コース名が同じメニュー内に重複しているため、保存できませんでした。"
+          render :edit
+      end
     end
   end
 
