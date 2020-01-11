@@ -1,16 +1,17 @@
 <h2>メニューを編集する</h2>
 <div class="contents">
 	<%= form_with(model: @menu,local: true) do |f| %>
+	<%= render "devise/shared/error_messages", resource: @menu %>
       <div class="form">
         <dt class="form-title">メニュー名</dt>
-        <dd class="form-item"><%= f.text_field :menu_title %></dd>
+        <dd class="form-item"><%= f.text_field :menu_title, required: true %></dd>
        <dt class="form-title">画像</dt>
         <%#= f.attachment_image_tag @menu, :menu_image, :fill, 60, 60, fallback: "no_image.jpg"%>
         <dd class="form-item"><%= f.attachment_field :menu_image %></dd>
       </div>
       <div class="form">
         <dt class="form-title">紹介文</dt>
-       <dd class="form-item"><%= f.text_area :introduce %></dd>
+       <dd class="form-item"><%= f.text_area :introduce, required: true %></dd>
         <dd class="form-item"><%= hidden_field_tag :permission, true %></dd>
       </div>
         <%#= f.hidden_field :menu_id, value: false%>

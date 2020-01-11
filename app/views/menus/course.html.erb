@@ -8,13 +8,12 @@
 	  		   <p class="course_photo">
 	  		    <%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
 	  		   </p>
-	  		  <p class="course_text"><%= menu.introduce %></p>
-	  		  <% if admin_signed_in? %>
-	  		  <p style="background-color: yellow; padding:5px 10px; display: inline-block; margin-left: 5px; letter-spacing: 1px; float: right;"><%= link_to "削除", renew_menu_path(menu.id, permission: true), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></p>
-	  		  <p style="background-color: yellow; padding:5px 10px; display: inline-block; margin-left: 5px; letter-spacing: 0.25px; float: right;"><%= link_to "編集", renew_menu_path(menu.id) %></p>
-	  		  <% end %>
+	  		   <p class="course_text"><%= menu.introduce %></p>
+	  		   <% if admin_signed_in? %>
+	  		    <p style="background-color: yellow; padding:5px 10px; display: inline-block; margin-left: 5px; letter-spacing: 1px; float: right;"><%= link_to "削除", renew_menu_path(menu.id, permission: true), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %></p>
+	  		    <p style="background-color: yellow; padding:5px 10px; display: inline-block; margin-left: 5px; letter-spacing: 0.25px; float: right;"><%= link_to "編集", renew_menu_path(menu.id) %></p>
+	  		   <% end %>
 	  		</div>
-	  		<%#= link_to "削除", renew_menu_path(menu.id), delete: "menu", method: :delete,"data-confirm" => "本当に削除しますか？" %>
         <div class="course_box" style="clear: both;">
 	        <% menu.courses.each do |course| %>
 	      		<dl style="float: left;">
@@ -23,35 +22,35 @@
 	      			<dd><%= course.price %>円</dd>
 	      		</dl>
 	      		<% if admin_signed_in? %>
-	      		<p style="background-color: yellow; padding:5px 10px; display: inline-block; float: right;"><%= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %></p>
-	      		<p style="background-color: yellow; padding:5px 10px; display: inline-block; float: right; margin-right: 5px;"><%= link_to "編集", edit_menu_path(course.id) %></p>
+	      		  <p style="background-color: yellow; padding:5px 10px; display: inline-block; float: right;"><%= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %></p>
+	      			<p style="background-color: yellow; padding:5px 10px; display: inline-block; float: right; margin-right: 5px;"><%= link_to "編集", edit_menu_path(course.id) %></p>
 	      		<% end %>
 						<br>
 						<br>
 	    		<% end %>
 	    	</div>
 	    	<% if admin_signed_in? %>
-			<div class="hidden_box contents" style="display: inline-block; padding-left: 200px;">
-      	<label for="label1">コースを追加</label>
-      	<input type="checkbox" id="label1" style="display: none;"/>
-      	<div class="hidden_show" style="clear: both;">
-  				<dt class="form-title">【コースの追加】</dt>
-  				<%= form_with(model: @menu, url: menus_path, method: :post ,local: true) do |f| %>
-  	    		<div class="form">
-							<dl>
-  	    				<%#= f.hidden_field :menu_id, :value => menu.id %>
-  	    				<%= f.hidden_field :menu_id, value: menu.id, id: "menu_id#{i}" %>
-  	    				<dd class="form-item">コース名：<%= f.text_field :course_name, id: "course_name#{i}", required: true, maxlength:50 %></dd>
-  	     				<dd class="form-item"><%= f.select :course_time, [["30", 30], ["60", 60], ["90", 90], ["120", 120], ["150", 150], ["180", 180]], id: "menu_course_time#{i}" %>分</dd>
-  	      			<dd class="form-item"><%= f.number_field :price, id: "menu_price#{i}", required: true, min:0 %>円
-  	      			<%= hidden_field_tag :permission, false, id: "permission#{i}" %></dd>
-  						</dl>
-  	    		</div>
-  	      <%= f.submit "追加する" %>
-  	    <% end %>
-			</div>
+					<div class="hidden_box contents" style="display: inline-block; padding-left: 200px;">
+      			<label for=label<%= i %>>コースを追加</label>
+      			<input type="checkbox" id="label<%= i %>" style="display: none;"/>
+      			<div class="hidden_show" style="clear: both;">
+  						<dt class="form-title">【コースの追加】</dt>
+  						<%= form_with(model: @menu, url: menus_path, method: :post ,local: true) do |f| %>
+  	    				<div class="form">
+									<dl>
+  	    						<%= f.hidden_field :menu_id, value: menu.id, id: "menu_id{i}" %>
+  	    						<dd class="form-item">コース名：<%= f.text_field :course_name, id: "course_name#{i}", required: true, maxlength:50 %></dd>
+  	     						<dd class="form-item"><%= f.select :course_time, [["30", 30], ["60", 60], ["90", 90], ["120", 120], ["150", 150], ["180", 180]], id: "menu_course_time#{i}" %>分</dd>
+  	      					<dd class="form-item"><%= f.number_field :price, id: "menu_price#{i}", required: true, min:0 %>円
+  	      						<%= hidden_field_tag :permission, false, id: "permission#{i}" %></dd>
+  								</dl>
+  	    				</div>
+  	      			<%= f.submit "追加する" %>
+  	    			<% end %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
 		</div>
-		<% end %>
-		<% end %>
 	</div>
 </div>

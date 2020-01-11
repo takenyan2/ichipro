@@ -1,6 +1,7 @@
 <h1>コースを編集する</h1>
 
 	<%= form_with(model: @course, url: menu_path,local: true) do |f| %>
+	<%= render "devise/shared/error_messages", resource: @course %>
       <div class="form">
       	<%#= f.hidden_field :menu_id, :value => @course.menu.id %>
       	<%#= f.hidden_field :menu_id, value: @course.id %>
