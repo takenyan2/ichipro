@@ -1,5 +1,69 @@
 @charset "UTF-8";
 
+.woman-icon {
+  width: 100px;
+  height: 100%;
+}
+
+/* 吹き出し本体 */
+.balloon1{
+  position: relative;
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  background-color: #D7EEFF;
+  margin-left: 110px;          /* 左に余白を設ける */
+}
+/* 画像 - 絶対配置で左上に配置 */
+.balloon1 .icon{
+  position: absolute;
+  left: -110px;
+  top: 0;
+}
+/* 三角アイコン */
+.balloon1::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  left: -10px;
+  top: 20px;
+  border-right: 15px solid #D7EEFF;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+/* 吹き出し本体 */
+.balloon2{
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
+  color: black;
+  background-color: #EEFFFF;
+  margin-right: 110px;          /* 右に余白を設ける */
+}
+/* 画像 - 絶対配置で右上に配置 */
+.balloon2 .icon{
+  position: absolute;
+  right: -110px;
+  top: 0;
+op: 0;
+}
+/* 三角アイコン */
+.balloon2::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  right: -10px;
+  top: 20px;
+  border-left: 15px solid #EEFFFF;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
 
 #pro_info{
   clear:both;
