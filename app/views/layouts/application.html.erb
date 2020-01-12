@@ -34,7 +34,8 @@
               <li><%= link_to "注意事項", note_path %></li>
               <li><%= link_to "アクセス", access_path %></li>
               <li><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
-              <li><%= link_to "メニュー追加ページ", add_menu_path if current_admin %></li>
+              <li><%= link_to '管理者登録', new_admin_path, class: "footer-text" %></li>
+              <li><%= link_to '管理者編集', edit_admin_registration_path, class: "footer-text" %></li>
               <li><%= link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
             </ul>
           </div>
@@ -46,7 +47,8 @@
               <li><%= link_to "注意事項", note_path %></li>
               <li><%= link_to "アクセス", access_path %></li>
               <li><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
-              <li><%= link_to "メニュー追加ページ", add_menu_path if current_admin %></li>
+              <li><%= link_to '管理者登録', new_admin_path, class: "footer-text" %></li>
+              <li><%= link_to '管理者編集', edit_admin_registration_path, class: "footer-text" %></li>
               <li><%= link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
             </ul>
           </div>
@@ -111,12 +113,6 @@
 
         <% unless current_admin %>
           <%= link_to 'ログイン', new_admin_session_path, class: "footer-text" %>
-        <% end %>
-
-        <% if current_admin %>
-          <%= link_to '管理者登録', new_admin_path, class: "footer-text" %>
-           <%= link_to '管理者編集', edit_admin_registration_path, class: "footer-text" %>
-          <%#= link_to 'ログアウト', destroy_admin_session_path, class: "footer-text", method: :delete, data: { confirm: "ログアウトしますか？" } %>
         <% end %>
       </div>
 

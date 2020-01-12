@@ -36,6 +36,8 @@ ja:
       question:
         user_question: "質問"
         answer: "回答"
+      course:
+        course_name: "コース名"
     models:
       user: "ユーザ"
   devise:

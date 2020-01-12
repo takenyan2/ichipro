@@ -1,14 +1,29 @@
-<h1>コースを編集する</h1>
-
-	<%= form_with(model: @course, url: menu_path,local: true) do |f| %>
-	<%= render "devise/shared/error_messages", resource: @course %>
-      <div class="form">
-      	<%#= f.hidden_field :menu_id, :value => @course.menu.id %>
-      	<%#= f.hidden_field :menu_id, value: @course.id %>
-      	<dt class="form-title">コース名：<%= f.text_field :course_name, required: true, maxlength: 50 %></dt>
-        <dd class="form-item"><%= f.select :course_time, [["30", 30], ["60", 60], ["90", 90], ["120", 120], ["150", 150], ["180", 180]]  %>分</dd>
-        <dd class="form-item"><%= f.number_field :price, required: true, min: 0 %>円</br></dd> 
-        <%= hidden_field_tag :permission, false %>
+<h2 class="bg_sunflower">コースを編集する</h2>
+<div class="registration-block">
+  <%= form_with(model: @course, url: menu_path,local: true) do |f| %>
+  	<%= render "devise/shared/error_messages", resource: @course %>
+    <div class="field">
+      <div class="form-group row my-5">
+          <%= f.label :コース名 ,class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-2" %>
+          <%= f.text_field :course_name, required: true, maxlength: 50, class: "" %>
       </div>
-        <%= f.submit "更新する" %>
-    <% end %>
+    </div>
+    <div class="field">
+      <div class="form form-group my-5">
+          <%= f.label :コース時間, class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-2" %>
+          <%= f.select :course_time, [["30", 30], ["60", 60], ["90", 90], ["120", 120], ["150", 150], ["180", 180]], class: "" %>分
+      </div>
+    </div>
+   <div class="field">
+      <div class="form-group my-5">
+          <%= f.label :価格, class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-2" %>
+          <%= f.number_field :price, required: true, min: 0, class: "" %>円
+      </div>
+    </div>
+    <%= hidden_field_tag :permission, false %>
+    <div class="actions">
+      <%= f.submit "更新する", class: "btn btn-lg btn-info px-5 d-block mx-auto" %>
+    </div>
+  <% end %>
+<%#= render "devise/shared/links" %>
+</div>
