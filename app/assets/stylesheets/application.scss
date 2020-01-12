@@ -366,6 +366,19 @@ form class
 //   box-sizing: content-box;
 //   transition: 0.1s ease all;
 // }
+
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+ 
+footer {
+  margin-top: auto;
+}
+
+
 input[type=submit]:hover{
   opacity: 0.6;
 }
