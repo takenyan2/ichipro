@@ -86,7 +86,7 @@
     </header>
 
     <% if flash.present? %>
-      <div class="container flash-message-area my-1">
+      <div class="container flash-message-area my-3">
         <% flash.each do |message_type, message| %>
         <%  if message_type == 'notice' %>
           <% message_type = "success" %>
