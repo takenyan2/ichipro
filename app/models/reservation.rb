@@ -38,7 +38,7 @@ validate :make_a_reservation_is_valid_on_reserved_time
   # 予約を絞り込み検索します。
   def self.search(search, search_date, search_history)
     
-    
+  
     if search.present? && search_date.present?
       where(['user_name LIKE ? OR user_phone_number LIKE ? OR user_kana_name LIKE ? OR demand LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
       .where(start_time: Time.parse("#{search_date}").all_day)

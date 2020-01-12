@@ -180,3 +180,18 @@ ul.time-field {
 .info-blue {
   border-bottom: 0.5px dotted #17a2b8;
 }
+
+.scroll {
+  overflow-y: auto;
+}
+
+.height-fixed {
+  height: 50vh;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  display: block;
+  margin: 2px 0;
+  padding: 4px;
+  width: 20rem;
+}
