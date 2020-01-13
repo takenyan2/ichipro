@@ -128,7 +128,7 @@ class MenusController < ApplicationController
       if params[:permission] == "true"
         menu = Menu.find(params[:id])
         menu.destroy
-        flash[:danger] = "削除しました。"
+        flash[:sccess] = "削除しました。"
       elsif params[:permission] == "false"
         course = Course.find(params[:id])
         course.destroy

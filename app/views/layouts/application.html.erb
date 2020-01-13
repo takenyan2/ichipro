@@ -13,9 +13,17 @@
     <link href="https://use.fontawesome.com/releases/v5.11.0/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
     <script>$(function(){$('.navbar_toggle').on('click',function(){$(this).toggleClass('open');$('.menu').toggleClass('open');});});</script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+   
+    
   </head>
 
   <body>
+    <div id="wrapper">
     <header>
       <!-- 管理者ログイン時のヘッダー -->
       <div id="nav-drawer">
@@ -32,8 +40,9 @@
               <li><%= link_to "コース・料金", course_path %></li>
               <li><%= link_to "注意事項", note_path %></li>
               <li><%= link_to "アクセス", access_path %></li>
+              <li><%= link_to "問い合わせ", "https://docs.google.com/forms/d/e/1FAIpQLSf_2Iu-Ct6soqCbMXCiAI3qrBQsVDkfGmYJr5yXy0wONxkerQ/viewform" %></li>
               <li><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
-              <li><%= link_to "メニュー追加ページ", add_menu_path if current_admin %></li>
+              <li><%= link_to '管理者について', edit_admin_registration_path, class: "footer-text" %></li>
               <li><%= link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
             </ul>
           </div>
@@ -44,8 +53,9 @@
               <li><%= link_to "コース・料金", course_path %></li>
               <li><%= link_to "注意事項", note_path %></li>
               <li><%= link_to "アクセス", access_path %></li>
+              <li><%= link_to "問い合わせ", "https://docs.google.com/forms/d/e/1FAIpQLSf_2Iu-Ct6soqCbMXCiAI3qrBQsVDkfGmYJr5yXy0wONxkerQ/viewform" %></li>
               <li><%= link_to "予約状況・予約フォーム",  reservations_path %></li>
-              <li><%= link_to "メニュー追加ページ", add_menu_path if current_admin %></li>
+              <li><%= link_to '管理者について', edit_admin_registration_path, class: "footer-text" %></li>
               <li><%= link_to "ログアウト", destroy_admin_session_path, "data-confirm" => "ログアウトしますか？", method: :delete %></li>
             </ul>
           </div>
@@ -64,18 +74,20 @@
               <ul>
                 <li><%= link_to "TOP", top_path %></li>
                 <li><%= link_to "コース・料金", course_path %></li>
+                <li><%= link_to "予約状況・予約フォーム", reservations_path %></li>
                 <li><%= link_to "注意事項", note_path %></li>
                 <li><%= link_to "アクセス", access_path %></li>
-                <li><%= link_to "予約状況・予約フォーム", reservations_path %></li>
+                <li><%= link_to "問い合わせ", "https://docs.google.com/forms/d/e/1FAIpQLSf_2Iu-Ct6soqCbMXCiAI3qrBQsVDkfGmYJr5yXy0wONxkerQ/viewform" %></li>
               </ul>
             </div>
             <div id="nav-content-pc">
               <ul>
                 <li><%= link_to "TOP", top_path %></li>
                 <li><%= link_to "コース・料金", course_path %></li>
+                <li><%= link_to "予約状況・予約フォーム", reservations_path %></li>
                 <li><%= link_to "注意事項", note_path %></li>
                 <li><%= link_to "アクセス", access_path %></li>
-                <li><%= link_to "予約状況・予約フォーム", reservations_path %></li>
+                <li><%= link_to "問い合わせ", "https://docs.google.com/forms/d/e/1FAIpQLSf_2Iu-Ct6soqCbMXCiAI3qrBQsVDkfGmYJr5yXy0wONxkerQ/viewform" %></li>
               </ul>
             </div>
         </div>
@@ -83,9 +95,14 @@
     </header>
 
     <% if flash.present? %>
-      <div class="container flash-message-area">
+      <div class="container flash-message-area my-3">
         <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>">
+        <%  if message_type == 'notice' %>
+          <% message_type = "success" %>
+        <% elsif message_type == 'alert' %>
+          <% message_type = "danger" %>
+        <% end %>
+          <div class="alert alert-<%= message_type %> mb-0">
             <%= message %>
           </div>
         <% end %>
@@ -96,7 +113,6 @@
 
     <footer class="footer-color">
       <div class="footer-box footer-text">
-        <i class="fas fa-question-circle"></i> <%=link_to "運営に質問する", "https://docs.google.com/forms/d/e/1FAIpQLSelvK_znRgNptqpfQkwrD-ev7FtCemK3y6qfIqXvynVoiOT9g/viewform", style:"color:#ffffff;" %>
         <p class="footer-text">電話受付開始時間：9:30〜20:00</p>
         <br>
         <p class="footer-text"><i class="fas fa-phone fa-flip-horizontal"></i> お電話：03-6904-1073</p>
@@ -106,19 +122,14 @@
         <% unless current_admin %>
           <%= link_to 'ログイン', new_admin_session_path, class: "footer-text" %>
         <% end %>
-
-        <% if current_admin %>
-          <%= link_to '管理者登録', new_admin_path, class: "footer-text" %>
-           <%= link_to '管理者編集', edit_admin_registration_path, class: "footer-text" %>
-          <%#= link_to 'ログアウト', destroy_admin_session_path, class: "footer-text", method: :delete, data: { confirm: "ログアウトしますか？" } %>
-        <% end %>
       </div>
 
-      <% if Rails.env.development? %>
-        <%= debug params %>
-        <%= debug session[:session_id] %>
-        <%= debug flash %>
-      <% end %>
+      <%# if Rails.env.development? %>
+        <%#= debug params %>
+        <%#= debug session[:session_id] %>
+        <%#= debug flash %>
+      <%# end %>
     </footer>
+    </div>
   </body>
 </html>

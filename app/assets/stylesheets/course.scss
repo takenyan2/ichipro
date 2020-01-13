@@ -9,7 +9,7 @@ margin-bottom:30px;
 .course_box dl{
 	display: table;
 	width: 100%;
-	max-width: 80%;
+	max-width: 100%;
 	margin: 0 auto 10px;
 	text-align:center;
 	border:1px solid #A0c0c0;
@@ -68,18 +68,13 @@ margin-bottom:30px;
 {
   border-right:none;
   border-bottom:1px solid #A0c0c0;
-  width:100%;
+  width: 100%;
   display:block;
 	letter-spacing: normal;
 	box-sizing:border-box;
 	max-width: 100%;
 }
 
-.course_box dl dt
-{
-  
-	
-}
 .course_box dl dd:last-child{
   border-bottom:none;
   border-radius: 0 0 5px 5px;
@@ -125,25 +120,30 @@ color:#ffffff;
 .course_text,
 .course_photo
 {
-  width:100%;
+  width: 100%;
   display:block;
 }
 
   }
-
-
-  button{
-   background-color:yellow;
+  
+.hidden_box .cursor-button {
+  cursor: pointer; 
 }
 
-/*ボタン装飾*/
-.hidden_box label {
-    padding: 15px;
-    font-weight: bold;
-    border: solid 2px #ffffff;
-    background-color: yellow;
-    float: right;
-}
+
+
+//   button{
+//   background-color:yellow;
+// }
+
+// /*ボタン装飾*/
+// .hidden_box label {
+//     padding: 15px;
+//     font-weight: bold;
+//     border: solid 2px #ffffff;
+//     background-color: yellow;
+//     float: right;
+// }
 
 
 /*チェックは見えなくする
@@ -169,7 +169,7 @@ color:#ffffff;
     opacity: 1;
 }
 textarea{
-  width:100%;
+  width: 100%;
   height:100px;
   resize:vertical;
 }

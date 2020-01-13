@@ -1,4 +1,11 @@
 ja:
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
   activerecord:
     errors:
       models:
@@ -36,6 +43,8 @@ ja:
       question:
         user_question: "質問"
         answer: "回答"
+      course:
+        course_name: "コース名"
     models:
       user: "ユーザ"
   devise:

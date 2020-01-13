@@ -63,7 +63,7 @@ img{
 }
 
 li{
-  list-style: none;
+  // list-style: none;
 }
 .my-blue{
   color:#A0c0c0;
@@ -159,13 +159,22 @@ dt{
 font-weight: normal;
 }
 
-h4{
-  padding:10px;
-  background:#A0c0c0;
-  border-radius: 4px;
-  color:#ffffff;
+// h4{
+//   padding:10px;
+//   background:#A0c0c0;
+//   border-radius: 4px;
+//   color:#ffffff;
+// }
+
+
+
+.position-relative {
+  position: relative;
 }
 
+.no-text-indent{
+  text-indent: 0em;
+}
 
 
 header {
@@ -349,25 +358,38 @@ form class
 
 
 
-input[type=submit] {
-margin:0 auto;
-  font-weight: bold;
-  border: none;
-  outline: none;
-  display: block;
-  line-height: 30px;
-  width: 160px;
-  text-align: center;
-  font-size: 13px;
-  color: #404040;
-  background-color: yellow;
-  border-bottom: 4px solid yellow;
-  cursor:pointer;
-  box-sizing: content-box;
-  transition:0.1s ease all;
+// input[type=submit] {
+// margin:0 auto;
+//   font-weight: bold;
+//   border: none;
+//   outline: none;
+//   display: block;
+//   line-height: 30px;
+//   // width: 160px;
+//   text-align: center;
+//   font-size: 13px;
+//   color: black;
+//   background-color: #A0c0c0;
+//   border-bottom: 4px solid #A0c0c0;
+//   cursor:pointer;
+//   box-sizing: content-box;
+//   transition: 0.1s ease all;
+// }
+
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+ 
+footer {
+  margin-top: auto;
+}
+
+
 input[type=submit]:hover{
-  opacity:0.6;
+  opacity: 0.6;
 }
 
 input[type=submit]:after {
@@ -406,4 +428,26 @@ label {
 
 .footer-text {
   color: #ffffff;
+}
+
+
+
+#slideshow {
+   position: relative;
+   width:  640px; /* 画像の横幅に合わせて記述 */
+   height: px; /* 画像の高さに合わせて記述 */
+}
+#slideshow img {
+   position: absolute;
+   top: 0;
+   left:0;
+   z-index: 8;
+   opacity: 0.0;
+}
+#slideshow img.active {
+   z-index: 10;
+   opacity: 1.0;
+}
+#slideshow img.last-active {
+   z-index: 9;
 }

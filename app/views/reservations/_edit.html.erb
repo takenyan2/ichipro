@@ -4,8 +4,11 @@
 
 <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
-    <div class="modal-header">
-      予約編集画面
+    <div class="modal-header info-blue">
+      <h4 class="modal-title ml-5">予約編集画面</h4>
+      <button type="button" class="close px-5 lead d-flex align-items-center" data-dismiss="modal" aria-label="閉じる">
+        <span aria-hidden="true" class="cross">&times;</span>
+       </button>
     </div><!-- /.modal-header  -->
     <%= form_with(model: @reservation, url: reservation_path(@reservation), local: true, method: :patch) do |f| %>
       <div class="modal-body">
@@ -66,12 +69,12 @@
       </div><!-- /.modal-body -->
       <div class="modal-footer">
         <span class="mx-auto">
-          <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">
+          <button type="button" class="btn btn-secondary btn-lg mx-3" data-dismiss="modal">
             キャンセル
           </button>
-          <%= f.submit yield(:button_text), class: "btn btn-primary px-4 mx-3" %>
+          <%= f.submit yield(:button_text), class: "btn btn-info btn-lg px-5 mx-3" %>
            <%= link_to "削除", reservation_path(@reservation), method: :delete,
-                data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger px-4 mx-3" %>
+                data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger btn-lg px-5 mx-3" %>
         </span>
       </div><!-- /.modal-footer -->
     <% end %>

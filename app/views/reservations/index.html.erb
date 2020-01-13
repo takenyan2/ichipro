@@ -4,26 +4,46 @@
     <p class="mb-0">予約状況を確認することができます。</p>
     <p class="mb-5">また、カレンダーで日時を選択することで予約することができます。</p>
     <% if admin_signed_in? %>
-      <div class="card border-light card-width mx-auto">
+      <div class="card border-light mx-auto">
         <strong class="card-header">
           今日の予約状況一覧
-          <%= link_to "（予約一覧）", all_reservations_index_path if current_admin %>
+          <%= link_to "予約一覧を確認", all_reservations_index_path, class: "btn btn-info px-4 mx-3" if current_admin %>
         </strong>
-        <% @reservations_today.each do |reservation| %>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex">
-              <span class="mr-auto my-auto">
-                <%= @reserv_info_from = l(reservation.start_time, format: :index) %>〜<%= @reserv_info_to = l(reservation.finish_time, format: :time) %>
-              </span>
-              <%= link_to(edit_reservation_path(reservation), remote: true, class: "btn btn-outline-primary d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
-                <i class="fas fa-pen"></i>
-              <% end %>
-               <%= link_to(reservation_path(reservation), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-outline-danger d-block d-md-inline-block px-2 py-1 ml-auto") do %>
-              <i class="fas fa-trash-alt"></i>
+        <div class="table-responsive">
+        <table class="table mb-0">
+          <thead>
+            <tr>
+              <th scope="col">施術開始時間</th>
+              <th scope="col">名前（カナ）</th>
+              <th scope="col">電話番号</th>
+              <th scope="col">メニュー名</th>
+              <th scope="col">コース名</th>
+              <th scope="col">所要時間（分）</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reservations_today.each do |reservation| %>
+            <tr>
+              <td><%= reservation.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= reservation.user_kana_name %></td>
+              <td><%= reservation.user_phone_number %></td>
+              <td><%= reservation.course.menu.menu_title %></td>
+              <td><%= reservation.course.course_name %></td>
+              <td><%= reservation.course.course_time %></td>
+              <td>
+                <%= link_to(edit_reservation_path(reservation), remote: true, class: "btn btn-lg btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
+                  <i class="fas fa-pen"></i>
+                <% end %>
+                <%= link_to(reservation_path(reservation), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-lg btn-outline-dark d-block d-md-inline-block px-2 py-1 ml-auto") do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </td>
+            </tr>
             <% end %>
-            </li>
-          </ul>
-        <% end %>
+          </tbody>
+        </table>
+        </div>
       </div>
     <% end %>
     <div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
@@ -36,7 +56,7 @@
      <div class="input-group date d-inline col-1 my-auto text-center" id="datetimepicker" data-target-input="nearest">
       <input type="hidden" class="datetimepicker-input" data-target="#datetimepicker"/>
       <div class="input-group-append d-inline" data-target="#datetimepicker" data-toggle="datetimepicker">
-        <button type="submit" class="ml-3" id="callender"><i class="far fa-calendar-alt btn btn-secondary"></i></button>
+        <button type="submit" class="ml-3 p-0 btn" id="callender"><i class="far fa-calendar-alt btn btn-secondary btn-lg"></i></button>
       </div>
     </div>
   </div>
