@@ -31,8 +31,8 @@ Course.create(menu_id: 2, course_name: "クイックコース", course_time: 30,
 Course.create(menu_id: 2, course_name: "基本コース", course_time: 60, price: 6000)
 Course.create(menu_id: 2, course_name: "しっかりコース", course_time: 90, price: 9000)
 Course.create(menu_id: 3, course_name: "腸ケアコース(ヘッドマッサージ付き)", course_time: 60, price: 6000)
-Course.create(menu_id: 3, course_name: "基本コース", course_time: 60, price: 16000)
-Course.create(menu_id: 3, course_name: "しっかり燃焼コース", course_time: 120, price: 32000)
+Course.create(menu_id: 4, course_name: "基本コース", course_time: 60, price: 16000)
+Course.create(menu_id: 4, course_name: "しっかり燃焼コース", course_time: 120, price: 32000)
 puts 'Created Course!'
 
 Question.create(
