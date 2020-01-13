@@ -1,4 +1,19 @@
 <div id="new_user_reservation" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+  <%#= image_tag 'top.jpg', class: "active" %>
+
+<!--<div class="slide">-->
+<%#= image_tag 'massage.jpg' %>
+  <%#= image_tag 'room.jpg' %>
+<%#= image_tag 'ichi-flower.jpg' %>
+
+<div class="group">
+  <span class="filter">
+<%= image_tag 'massage.jpg', :alt => '背景写真', class: "img-fluid  filter-img" %>
+</span>
+<p class="sample-text1">疲れを癒す　プライベートサロン</p>
+</div>
+
+<!--</div>-->
 
 <div class="main">
   <div class="block top_block">
@@ -145,10 +160,150 @@
   </div>
 </div>
 
+<script type="text/javascript">
+function slideSwitch() {
+   var $active = $('#slideshow img.active');
+
+   if ( $active.length == 0 ) $active = $('#slideshow img:last');
+
+   var $next =  $active.next().length ? $active.next()
+      : $('#slideshow img:first');
+
+   $active.addClass('last-active');
+
+   $next.css({opacity: 0.0})
+      .addClass('active')
+      .animate({opacity: 1.0}, 1000, function() {
+           $active.removeClass('active last-active');
+      });
+}
+
+$(function() {
+   setInterval( "slideSwitch()", 3000 );
+});
+</script>
+
+
+<style>
+.slide {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  overflow: hidden;
+}
+
+@keyframes slideshow{
+  0%{
+    opacity: 0;
+  }
+  10%{
+    opacity: 1;
+  }
+  28%{
+    opacity: 1
+  }
+  38%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 0;
+  }
+
+}
+
+.slide img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  animation :slideshow 24s linear infinite;
+}
+
+.slide img:nth-child(2){
+  animation-delay: 8s;
+}
+
+.slide img:last-child{
+  animation-delay: 16s;
+}
+
+.opacity {
+  background-repeat:  no-repeat;
+  background-size: cover;
+  opacity: 0.6;
+  display: block;
+}
+
+.filter-img{
+  display: block;
+ opacity: .6;
+}
+
+.filter {
+ background: #000;
+}
+
+.group p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding:0;
+  color: white;
+  font-size: 3rem
+}
+  
+.group {/*親div*/
+  position: relative;/*相対配置*/
+  background: rgba(0,0,0,.6);
+}
+  
+.group img {
+  width: 100%;
+}
+  
+@media screen and (max-width: 480px) {
+  .group p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    margin:0;
+    padding:0;
+    color: white;
+    font-size: 3rem;
+  }
+}
+
+.sample-text1 {
+    /*font-size: 30px;*/
+    /*font-weight: bold;*/
+    animation-name: fadein;
+    animation-duration: 3s;
+
+}
+@keyframes fadein {
+from {
+    opacity: 0;
+    /*transform: translateY(20px);*/
+}
+to {
+    opacity: 1;
+    /*transform: translateY(0);*/
+}
 
 
 
 
+</style>
 
 
 
