@@ -83,6 +83,27 @@
 
 <script>
 $(function() {
+  
+  var defaults = $("#reservation_start_time_4i option:selected").val();
+
+  $("#reservation_start_time_4i option").remove();
+  
+  var array = [...Array(11).keys()].map(i => ++i + 9);
+ 
+  $.each(array, function(index, value) {
+    
+    if(defaults == value){
+    
+       $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
+     
+    }else{
+      
+       $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
+       
+    }
+ 
+  });
+  
   // select要素を予め取得しておく
   var $reservation_menu_id = $('#reservation_menu_id');
   var $reservation_course_name = $('#reservation_course_name');
