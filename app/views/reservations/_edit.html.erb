@@ -34,7 +34,7 @@
         </div>
         <div class="form-group row">
             <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required" %>
+            <%= f.collection_select :menu_id, Menu.group(:id).group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required" %>
         </div>
         <div class="form-group row">
             <%= f.label "コース", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
