@@ -12,7 +12,7 @@ class AddReservationMailer < ApplicationMailer
     @course_name = course_name
     @reservation = reservation
     @course_time = course_time
-    attachments['駐車場のご案内.pdf'] = File.read("assets/images/駐車場のご案内.pdf")
+    attachments['parking.pdf'] = File.read("assets/images/parking")
     mail(to: @reservation.user_email, subject: "ichiのご予約ありがとうございます")
   end
 end
