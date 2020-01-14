@@ -3,6 +3,6 @@ class AddReservationMailer < ApplicationMailer
 
   def add_reservation_mail(course_name)
     @course_name = course_name
-    mail(to: "wagamama2sre@gmail.com", subject: "予約が追加されました")
+    mail(to: "wagamama2sre@gmail.com", subject: "ichiの予約が追加されました")
   end
 end

@@ -1,3 +1,13 @@
-こちらはメール本文です
+以下の予約が追加されました。
 
+<%= @reservation.start_time %>
+<%= @reservation.menu.menu_title %>
 <%= @course_name %>
+<%= @course_time %>分
+<br>
+<%= @reservation.user_name %>
+(<%= @reservation.user_kana_name %>)
+Email：<%= @reservation.user_email %>
+Tel：<%= @reservation.user_phone_number %>
+要望：</p>
+<%= @reservation.demand %>
