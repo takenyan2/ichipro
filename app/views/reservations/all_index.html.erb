@@ -1,0 +1,69 @@
+<% provide(:title, '予約一覧') %>
+
+<h2 class="bg_sunflower">予約一覧</h2>
+<div class="container text-center">
+  <p class="my-5">登録されている予約の確認ができます。</p>
+
+<!-- 検索機能 -->
+  <div>
+    <%= form_tag(all_reservations_index_path, method: :get, class: "") do %>
+      <div class="form-group row">
+        <%= label_tag :search_date, "施術日", class: "offset-4" %>
+        <%= date_field_tag :search_date, params[:search_date], class: 'form-control col-sm-3 ml-3' %>
+      </div>
+      <div class="form-group form-check">
+        <%= check_box_tag :search_history, {}, false, class: 'form-check-input position-relative'%>
+        <%= label_tag :search_history, "過去の履歴を検索" %>
+      </div>
+      <div class="input-group mx-auto mb-5 w-50">
+        <%= text_field_tag :search, params[:search], placeholder: "名前・電話番号・カナ・要望から検索", class: "form-control", 'aria-describedby': "button-addon" %>
+        <span class="input-group-append">
+          <%= submit_tag '検索', name: :nil, class: "btn btn-info mb-5", id: "button-addon" %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+  <div class="table-responsive height-fixed scroll">
+    <table class="table table-striped text-nowrap" id="table-users">
+      <thead class="thead-color lead">
+        <tr>
+          <th class="center">施術予定日</th>
+          <th class="center">名前（カナ）</th>
+          <th class="center">電話番号</th>
+          <th class="center">メニュー</th>
+          <th class="center">コース</th>
+          <th class="center">所要時間（分）</th>
+          <th class="center">詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reservations.each do |reservation| %>
+          <tr>
+            <td class="center"><%= reservation.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+            <td class="center"><%= reservation.user_kana_name %></td>
+            <td class="center"><%= reservation.user_phone_number %></td>
+            <td class="center"><%= reservation.course.menu.menu_title %></td>
+            <td class="center"><%= reservation.course.course_name %></td>
+            <td class="center"><%= reservation.course.course_time %></td>
+          <!-- 予約情報モーダル -->
+          <td class="center">
+            
+              <%= link_to(all_reservations_show_path(reservation), remote: true, class: "btn btn-lg btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
+                <i class="fas fa-arrow-up"></i>
+              <% end %>
+             
+            
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <span class="mx-auto">
+  <%= will_paginate(@reservations, class: "pagination justify-content-center my-5", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  </span>
+</div>
+
+<!-- 予約情報モーダル表示 -->
+<div id="all_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+

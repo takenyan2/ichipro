@@ -1,0 +1,50 @@
+<div class="main">
+  <div class="block">
+    <h2 class="bg_sunflower">新規管理者登録</h2>
+    <div class="contents registration-block">
+      <%= form_for(@admin, url: generate_admins_path) do |f| %>
+        <%= render "devise/shared/error_messages", resource: @admin %>
+        <div class="field">
+          <div class="form">
+            <dl>
+              <dt class="form-title"><%= f.label :管理者名 %></dt>
+              <dd class="form-item"><%= f.text_field :admin_name, autofocus: true, autocomplete: "admin-name", required: "required", class: "col-10" %></dd>
+            </dl>
+          </div>
+        </div>
+        <div class="field">
+          <div class="form">
+            <dl>
+              <dt class="form-title"><%= f.label :メールアドレス %></dt>
+              <dd class="form-item"><%= f.email_field :email, autofocus: true, autocomplete: "email", required: "required", type: "email", class: "col-10" %></dd>
+            </dl>
+          </div>
+        </div>
+        <div class="field">
+          <div class="form">
+            <dl>
+              <dt class="form-title"> <%= f.label :パスワード %></dt>
+              <% if @minimum_password_length %>
+                <dd class="form-item">
+                  <em>(<%= @minimum_password_length %> 文字以上の半角英数字で登録して下さい)</em>
+                </dd>
+              <% end %>
+              <dd class="form-item"><%= f.password_field :password, autocomplete: "new-password", required: "required", class: "col-10" %></dd>
+            </dl>
+          </div>
+        </div>
+        <div class="field">
+          <div class="form">
+            <dl>
+              <dt class="form-title"><%= f.label :パスワードの確認 %></dt>
+              <dd class="form-item"> <%= f.password_field :password_confirmation, autocomplete: "new-password", required: "required", class: "col-10" %></dd>
+            </dl>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit "登録する", class: "btn btn-lg btn-info px-5 offset-5" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

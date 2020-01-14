@@ -1,169 +1,101 @@
-<div class="main">
-<div class="block reservation_block">
 <h2 class="bg_sunflower">予約状況・予約フォーム</h2>
-<p>もし、管理者ログインだったらsalesカラムのフォームを表示させて、開店日のままと閉店日にするを選ぶことができる。</p>
-
-<!-- 一般ユーザーのフォーム -->
-    <% @reservations.each do |reservation| %>
-        名前：<%= reservation.user_name %> </br>
-        カナ：<%= reservation.user_kana_name %></br>
-        性別：<%= reservation.gender %></br>
-        メール：<%= reservation.user_email %></br>
-        電話番号：<%= reservation.user_phone_number %></br>
-        ご希望のコース：<%= reservation.request_course %></br>
-        何分コースか：<%= reservation.request_course_time %></br>
-        ご希望日：<%= reservation.reservation_date %></br>
-        開始時間：<%= reservation.start_time %></br>
-        次の施術開始時間：<%= reservation.restart_reservation_time %></br>
-        要望：<%= reservation.demand %></br>
-        開店日or閉店日 識別：<%= reservation.sales %></br>
-        ーーーーーーーーーーーーーーーーーーーーーーーーー</br>
-        <%#= link_to "編集", edit_menu_path(course.id) %>
-        <%#= link_to "削除", renew_menu_path(course.id, permission: false), delete: "course", method: :delete,"data-confirm" => "本当に削除しますか？" %>
-    <% end %>
-
-
-    <%= month_calendar events: @meetings do |date, meetings| %>
-        <%#= link_to date_path(date) do %>
-        <%= link_to reservation_date_path(date) do %>
-            <%= date %>
-        <% end %>
-    <% end %>
-
-<div class="contents">
-
-    <h3>予約フォーム</h3>
-
-            <div class="form-outer">
-                <dt class="form-title">性別</dt>
-           <dd class="form-item"><label><input type="radio" name="entryPlan" value="hoge1" onclick="entryChange1();" checked="checked" />男性</label>
-            <label><input type="radio" name="entryPlan" value="hoge2" onclick="entryChange1();" />女性</label></dd>
-
-            <!-- <label><%#= f.radio_button :gender, "男性" %>男性</label> -->
-            <!-- <label><%#= f.radio_button :gender, "女性" %>女性</label> -->
-
-
-            <div id="firstBox">
-                <%= form_with(model: @reservation,local: true) do |f| %>
-                <div class="form">
-                   <dl>
-                    <dt class="form-title">予約者名</dt>
-                    <dd class="form-item"><%= f.text_field :user_name %></dd>
-
-                    <dt class="form-title">予約者カナ名</dt>
-                    <dd class="form-item"><%= f.text_field :user_kana_name %></dd>
-
-                    <dd class="form-item"><%= f.hidden_field :gender, value: "男性" %></dd>
-
-                    <dt class="form-title">予約者メールアドレス</dt>
-                    <dd class="form-item"><%= f.email_field :user_email %></dd>
-
-                    <dt class="form-title">電話番号</dt>
-                    <dd class="form-item"><%= f.number_field :user_phone_number %></dd>
-
-                    <dt class="form-title">ご希望のコース</dt>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
-                    <%#= f.text_field :request_course %>
-                    <dd class="form-item"><%= f.select :request_course, [["揉みほぐし", "揉みほぐし"]] %></dd>
-                    <%#= f.collection_select :request_course, Course.all, :course_name, :course_name %>
-                    <!-- ↑のセレクトは、courseから引っ張ってくる -->
-
-                    <dt class="form-title">コースの長さ</dt>
-                    <dd class="form-item"><%= f.select :request_course_time, [[30, 30],[60, 60]] %></dd>
-
-                    <dt class="form-title">予約日付</dt>
-                    <dd class="form-item"><%= f.date_field :reservation_date %></dd>
-
-                    <dt class="form-title">施術開始時間</dt>
-                    <dd class="form-item"><%= f.time_select :start_time,{ start_hour:10, end_hour:20 ,minute_step: 15} %></dd>
-                    <dt class="form-title">要望</dt>
-                    <dd class="form-item"><%= f.text_area :demand %></dd>
-                    <
-                   
-                    </dl>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。
-                    <!-- 次の予約開始時間 -->
-                    <%= f.hidden_field :restart_reservation_time, value: true %>
-                    <!-- 管理者ログイン時は、trueにする。 -->
-                    <%= f.hidden_field :sales, value: false %><%= f.submit "男性として追加する" %>
-                </div>
+<div class="container mb-5">  
+  <div class="text-center my-5">
+    <p class="mb-0">予約状況を確認することができます。</p>
+    <p class="mb-5">また、カレンダーで日時を選択することで予約することができます。</p>
+    <% if admin_signed_in? %>
+      <div class="card border-light mx-auto">
+        <strong class="card-header">
+          今日の予約状況一覧
+          <%= link_to "予約一覧を確認", all_reservations_index_path, class: "btn btn-info px-4 mx-3" if current_admin %>
+        </strong>
+        <div class="table-responsive">
+        <table class="table mb-0">
+          <thead>
+            <tr>
+              <th scope="col">施術開始時間</th>
+              <th scope="col">名前（カナ）</th>
+              <th scope="col">電話番号</th>
+              <th scope="col">メニュー名</th>
+              <th scope="col">コース名</th>
+              <th scope="col">所要時間（分）</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reservations_today.each do |reservation| %>
+            <tr>
+              <td><%= reservation.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+              <td><%= reservation.user_kana_name %></td>
+              <td><%= reservation.user_phone_number %></td>
+              <td><%= reservation.course.menu.menu_title %></td>
+              <td><%= reservation.course.course_name %></td>
+              <td><%= reservation.course.course_time %></td>
+              <td>
+                <%= link_to(edit_reservation_path(reservation), remote: true, class: "btn btn-lg btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
+                  <i class="fas fa-pen"></i>
                 <% end %>
-            </div>
-
-
-            <div id="secondBox">
-                <%= form_with(model: @reservation,local: true) do |f| %>
-                <div class="form">
-                    <dl>
-                    <dt class="form-title">予約者名</dt>
-                    <dd class="form-item"><%= f.text_field :user_name %></dd>
-
-                    <dt class="form-title">予約者カナ名</dt>
-                    <dd class="form-item"><%= f.text_field :user_kana_name %></dd>
-
-                    <dd class="form-item"><%= f.hidden_field :gender, value: "女性" %></dd>
-
-                    <dt class="form-title">予約者メールアドレス</dt>
-                    <dd class="form-item"><%= f.email_field :user_email %></dd>
-
-                    <dt class="form-title">電話番号</dt>
-                    <dd class="form-item"><%= f.number_field :user_phone_number %></dd>
-
-                    <dt class="form-title">ご希望のコース</dt>男性だったら、揉みほぐしのみのコースのみを選べるようにする。女性だったら、全てのコースを選べるようにする。
-                    <%#= f.text_field :request_course %>
-                    <dd class="form-item"><%= f.collection_select :request_course, Menu.all, :menu_title, :menu_title %></dd>
-
-                    <dt class="form-title">コースの長さ</dt>
-                    <dd class="form-item"><%= f.select :request_course_time, [[30, 30],[60, 60]] %></dd>
-
-                    <dt class="form-title">予約日付</dt>
-                    <dd class="form-item"><%= f.date_field :reservation_date %></dd>
-
-                    <dt class="form-title">施術開始時間</dt>
-                    <dd class="form-item"><%= f.time_field :start_time %></dd>
-                    <dt class="form-title">要望</dt>
-                    <dd class="form-item"><%= f.text_area :demand %></dd>
-                    
-                    </dl>次の予約開始時間と開店日or閉店日 識別をhidden_fieldで送る。管理者ログイン時は、salesも選択できるようにする。
-                    <%# restart_reservation_time = start_time + Rational(request_course_time,24*60) + Rational(30,24*60)%>
-                    <%#= f.hidden_field :restart_reservation_time, value: true %><!-- 次の予約開始時間はコントローラーでぶちこむ -->
-                    <%= f.hidden_field :sales, value: false %><!-- 管理者ログイン時は、trueにする。 -->
-                    <%#= f.hidden_field :menu_id, value: false%>
-                    <%= f.submit "女性として追加する" %>
-                </div>
+                <%= link_to(reservation_path(reservation), method: :delete, data: { confirm: "削除してよろしいですか？" }, class: "btn btn-lg btn-outline-dark d-block d-md-inline-block px-2 py-1 ml-auto") do %>
+                  <i class="fas fa-trash-alt"></i>
                 <% end %>
-            </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
         </div>
+      </div>
+    <% end %>
+    <div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+  </div>
+  <div class="d-flex mb-3">
+    <div class="reservation_week_form">
+      <%= render 'reservation_week' %>
     </div>
+    
+     <div class="input-group date d-inline col-1 my-auto text-center" id="datetimepicker" data-target-input="nearest">
+      <input type="hidden" class="datetimepicker-input" data-target="#datetimepicker"/>
+      <div class="input-group-append d-inline" data-target="#datetimepicker" data-toggle="datetimepicker">
+        <button type="submit" class="ml-3 p-0 btn" id="callender"><i class="far fa-calendar-alt btn btn-secondary btn-lg"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="reservation_schedule_form table-responsive rounded rounded-lg">
+    <div class="reservation_week_form_table">
+      <%= render 'reservation_week_tabale_th' %>
+    </div>
+    <div class="reservation_week_form_table_body border-right-0 mb-5">
+      <%= render 'reservation_week_tabale_body' %>
+    </div>
+  </div>
+  <div id="new_reservation" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+  <!-- ユーザー情報モーダル表示 -->
+  <div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 </div>
-</div>
-
-
-
-<script type="text/javascript">
-  window.onload = function(){
-document.getElementById('firstBox').style.display = "";
-document.getElementById('secondBox').style.display = "none";
-}
- 
-function entryChange1(){
-radio = document.getElementsByName('entryPlan') 
-if(radio[0].checked) {
-
-document.getElementById('firstBox').style.display = "";
-document.getElementById('secondBox').style.display = "none";
-}else if(radio[1].checked) {
-
-document.getElementById('firstBox').style.display = "none";
-document.getElementById('secondBox').style.display = "";
-}
-}
-//オンロードさせ、リロード時に選択を保持
-window.onload = entryChange1;
-
+<script>
+$(function(){
+  $('#datetimepicker').datetimepicker({
+    format: 'L'
+  });
+  
+   $('#datetimepicker').on('change.datetimepicker', function (e) {
+       var date = String(e.date).split(" ")[3]+"-"+(new Date(e.date).getMonth() + 1)+"-"+String(e.date).split(" ")[2];
+         $.ajax({
+                url:'/change/schedule',
+                type:'GET',
+                data:{
+                    'prev':date
+                }
+            });
+    });
+　$(window).on('load resize', function() {
+    var outer_width = $(".reservation_week_form_table_body")[0].getBoundingClientRect().width;
+  　var inner_width = $(".reservation_week_form_table_body table")[0].getBoundingClientRect().width;
+    var scroll_width = outer_width - inner_width + "px";
+    $(".reservation_week_form_table").css("padding-right",scroll_width);
+  });
+  
+});    
+    
 </script>
-
-
-
-
-
-
-

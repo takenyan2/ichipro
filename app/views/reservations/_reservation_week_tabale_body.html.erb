@@ -1,0 +1,50 @@
+<table>
+  <tbody class="d-block">
+    <tr>
+      <td class="week-day-th">
+        <div>
+          <ul class="time-field text-center">
+            <% @time_number.each do |time_number| %>
+              <li><%= time_number %></li>
+            <% end %>
+          </ul>
+        </div>
+      </td>
+      <% @week_day.each do |week_day| %>
+        <td class="time-schedule">
+          <ul>
+            <% @times.each do |time| %>
+              <% datetime = Time.zone.local(week_day.year,week_day.month,week_day.day,time.hour,time.min) %> 
+              <% if datetime >= Time.current %>
+                <li class="time-schedule-cell">
+                  <%= link_to '', new_reservation_url(:start_time => l(time,format: :shorttime),:week_day => week_day),remote:true %>
+                </li>
+              <% else %>
+                <li class="time-schedule-cell post_time"></li>
+              <% end %>
+            <% end %>
+          </ul>
+          <% @day_reservations = @reservations.where(start_time: week_day.in_time_zone.all_day)
+          .or(@reservations.where("start_time <= ? and finish_time > ?", week_day.midnight, week_day.midnight)) %>
+          <% if @day_reservations.present? %>
+            <% @day_reservations.each do |reservation| %>
+              <% reservation_height = get_height(reservation.start_time,reservation.finish_time,week_day) %>
+              <% top_position = get_position(reservation.start_time,reservation.finish_time,week_day) %>
+              <% if admin_signed_in? %>
+                <%= link_to(edit_reservation_url(reservation),remote:true,class: 'text-color') do %>
+                  <div class="reserved text-center text-truncate" style="height:<%= reservation_height %>px; top:<%= top_position %>px;">
+                    <%= reservation.user_name %>様</br>
+                    <%= l(reservation.start_time,format: :time) %> 〜 <%= l(reservation.finish_time,format: :time) %>
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="reserved text-center" style="height:<%= reservation_height %>px; top:<%= top_position %>px;">
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+ </tbody>
+</table>

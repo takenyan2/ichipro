@@ -1,12 +1,24 @@
-<h2>Q&Aを編集する</h2>
-<div class="contents">
-	<%= form_with(model: @question, url:edit_note_path, local: true) do |f| %>
+ <div class="main">
+  <div class="block">
+      <h2 class="bg_sunflower">Q&Aを編集する</h2>
+    <div class="contents">
+  <%= form_with(model: @question, url:edit_note_path, local: true) do |f| %>
+     <%= render "devise/shared/error_messages", resource: @question %>
       <div class="form">
-        <h4>質問文</h4>
-        <dd class="form-item"><%= f.text_field :user_question %></dd>
-        <h4>答え</h4>
-        <dd class="form-item"><%= f.text_area :answer %></dd>
+			<dl>
+				<dt class="form-title">質問</dt>
+				<dd class="form-item"><%= f.text_field :user_question, required: "required", class: "col-10" %></dd>
+			</dl>
+		</div>
+		<div class="form">
+			<dl>
+				<dt class="form-title">回答</dt>
+				<dd class="form-item"><%= f.text_area :answer, required: "required", class: "col-10" %></dd>
+			</dl>
+		</div>
       </div>
-        <%= f.submit "追加する" %>
+        <%= f.submit "更新する", class: "btn btn-info btn-lg px-5" %>
     <% end %>
+     </div> 
  </div>
+</div>

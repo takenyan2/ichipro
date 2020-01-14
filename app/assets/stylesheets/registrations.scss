@@ -1,39 +1,208 @@
-.registration-block input[type=submit] {
-    display: block;
-    padding: 5px;
-    border-radius: 3px;
-    text-align: center;
-    width: 200px;
-    margin: 10px auto;
-    color: #ffffff;
+// .registration-block input[type=submit] {
+//     display: block;
+//     padding: 5px;
+//     border-radius: 3px;
+//     text-align: center;
+//     width: 200px;
+//     margin: 10px auto;
+//     color: #ffffff;
 
 
 
-    margin:10px auto　0;
-    font-weight: normal;
-    border: none;
-    outline: none;
-    display: block;
-    line-height: 30px;
-    text-align: center;
-    font-size: 13px;
-    background-color: #CC5289;
-    cursor: pointer;
-    box-sizing: content-box;
-    transition: 0.1s ease all;
-}
-.registration-block label{
-    font-weight: normal;
-}
-.registration-block a{
-    padding: 5px;
-    width:100%;
-    border: 2px solid #A0c0c0;
-    border-radius: 3px;
-    text-aline:center;
-  }
-.registration-block a:hover{
-	background: #A0c0c0;
-   	color:#ffffff;
-    border: 2px solid #A0c0c0;
-	}
+//     margin:10px auto　0;
+//     font-weight: normal;
+//     border: none;
+//     outline: none;
+//     display: block;
+//     line-height: 30px;
+//     text-align: center;
+//     font-size: 13px;
+//     background-color: #CC5289;
+//     cursor: pointer;
+//     box-sizing: content-box;
+//     transition: 0.1s ease all;
+// }
+// .registration-block label{
+//     font-weight: normal;
+// }
+// .registration-block a{
+//     padding: 5px;
+//     width:100%;
+//     border: 2px solid #A0c0c0;
+//     border-radius: 3px;
+//     text-aline:center;
+//   }
+// .registration-block a:hover{
+// 	background: #A0c0c0;
+//   	color:#ffffff;
+//     border: 2px solid #A0c0c0;
+// 	}
+
+
+// // Place all the styles related to the reservations controller here.
+// // They will automatically be included in application.css.
+// // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// /* reservation page */
+
+// .reservation_schedule_form{
+//   border: 0.5px solid #AAAAAA;
+// }
+
+// .reservation_week_form_table_body{
+// 	overflow-y: scroll;
+//   height:700px;
+// }
+
+// .reservation_week_form_table{
+//   width:100%;
+//   padding-right:15px;
+//   border-bottom:0.5px solid #AAAAAA;
+// }
+
+// ul.time-field {
+//   list-style: none;
+//   padding: 0;
+//   margin-top: 50px;
+//   margin-bottom: 0;
+//   li {
+//     height: 74px;
+//     min-width: 40px;
+//   }
+// }
+
+// .week-day-th {
+//   height: 35px;
+//   min-width: 80px;
+// }
+
+// .week-day-td {
+//   height: 35px;
+//   width:145px;
+//   text-align:center;
+//   border-left:0.5px solid #AAAAAA;
+//   &:last-child {
+//     border-right:0.5px solid #AAAAAA;
+//   }
+// }
+
+// .time-schedule {
+//   width:145px;
+//   padding: 0;
+//   position:relative;
+//   border-left:0.5px solid #AAAAAA;
+//   &:last-child {
+//     border-right:0.5px solid #AAAAAA;
+//   }
+//   ul {
+//     list-style: none;
+//     padding: 0;
+//     margin-bottom:0;
+//   }
+// }
+
+// .time-schedule-cell {
+//   height: 37px;
+//   &:last-child {
+//     a {
+//       border-bottom:none;
+//     }
+//   }
+//   a {
+//     display: block;
+//     width: 100%;
+//     height: 100%;
+//     border-bottom: solid 1px #AAAAAA;
+//   }
+//   a:hover {
+//     background-color: #ADFF2F;
+//   }
+// }
+
+// .post_time{
+//   background-color:#DDDDDD;
+// }
+// .week_today_color{
+//   background-color:#00BB00;
+//   color:white;
+// }
+
+// .reserved{
+//   position:absolute;
+//   width:100%;
+//   background-color:#DDDDDD;
+//   border-bottom: solid 1px #AAAAAA;
+//   font-size: 80%;
+// }
+
+// .top_vacant{
+//   height:22px;
+//   background-color:#DDDDDD;
+// }
+
+// .reservation_status_list{
+//   margin-top:10px;
+//   display:flex;
+//   margin-bottom:10px;
+// }
+
+// .can_reservation,.can_not_reservation{
+//   width:150px;
+//   div{
+//     border:1px solid #AAAAAA;
+//     padding:15px 15px;
+//     float:left;
+//     margin-right:5px;
+//   }
+// }
+
+// .can_not_reservation{
+//   div{
+//     background-color:#EEEEEE;
+//   }
+// }
+
+// .text-color{
+//   color:black;
+// }
+
+// @media screen and (max-width: 991px) {
+// .reserved{
+//     font-size: 75%;
+//   }
+// .week-day-th {
+//     min-width: 50px;
+// }
+// }
+
+// @media screen and (max-device-width: 1024px) {
+// .reservation_week_form_table{
+//     padding-right:initial;
+// }
+// .week-day-td {
+//   &:last-child {
+//     border-right:none;
+//   }
+// }
+// .time-schedule {
+//     &:last-child {
+//       border-right:none;
+//     }
+// }
+// }
+
+// @media screen and (-webkit-min-device-pixel-ratio: 0) {
+//   _::-webkit-full-page-media, _:future, :root .reservation_week_form_table {
+//         padding-right:15px;
+//     }
+// }
+
+// @-moz-document url-prefix(){
+//   .reserved{
+//     border-left:0.5px solid #AAAAAA;
+//   }
+// }
+
+// @media screen and (min-width:767px) {
+//   .card-width { width: 400px; }
+// }

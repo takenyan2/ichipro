@@ -4,7 +4,7 @@
 <%end%>
 
 
-    
+
 <div class="contents reservation_date_block">
     <h3>予約フォーム</h3>
             <div class="form-outer">
@@ -32,7 +32,7 @@
                     	<%= link_to reservation_time_path do %>
                     	<%="#{params[:date]}で予約する"%>
                     	<% end %>
-                    
+
                 </div>
                 <% end %>
             </div>
@@ -52,13 +52,13 @@
 
                     <dd class="form-item"><%= f.hidden_field :date ,value: params[:date] %></dd>
                     </dl>
-                    
+
                     	<%= link_to reservation_time_path do %>
                     	<%="#{params[:date]}で予約する"%>
                     	<% end %>
-                    
 
-                    
+
+
                 </div>
                 <% end %>
             </div>

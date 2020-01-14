@@ -1,0 +1,267 @@
+<% provide(:class_text, 'edit-info') %>
+<% provide(:button_text, '予約') %>
+<%= include_gon %>
+
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header info-blue">
+      <h4 class="modal-title ml-5">予約画面</h4>
+        <button type="button" class="close px-5 lead d-flex align-items-center" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true" class="cross">&times;</span>
+        </button>
+    </div><!-- /.modal-header  -->
+    <div class="modal-body">
+      <p class="text-center"  style="color: red; font-size: 14px; font-weight: bold;">※女性専用の美容サロンです</p>
+      <%= form_with(model: @reservation, url: reservations_path, local: true, method: :post) do |f| %>
+        <div class="form-group row">
+            <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.text_field :user_name, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", maxlength: 50 %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "予約者カナ名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.text_field :user_kana_name, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", maxlength: 50 %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "メールアドレス", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.email_field :user_email, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", type: "email" %>
+        </div>
+         <div class="form-group row">
+            <%= f.label "電話番号", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.telephone_field :user_phone_number, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", type: "tel" %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "生年月日", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.date_field :birthday, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10' %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required", class: "form-control col-sm-6 offset-1 offset-sm-0 col-10" %>
+        </div>
+        <div class="form-group row">
+            <%= f.label "コース", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <select name="reservation[course_name]" id="reservation_course_name" required="required" class="form-control col-sm-6 offset-1 offset-sm-0 col-10"></select>
+        </div>
+        <div class="form-group row">
+          <%= f.label "コース時間", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+          <%= f.text_field :request_course_time, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', readonly: "readonly" %>
+        </div>  
+        <div class="form-group row">
+          <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+          <span class="offset-1 offset-sm-0">
+          <%= raw sprintf(f.datetime_select(
+                                        :start_time, 
+                                        default: Time.zone.local(@week_day.to_date.year,@week_day.to_date.month,@week_day.to_date.day,
+                                                                @selected_start_time.to_time.hour,@selected_start_time.to_time.min),
+                                        minute_step: 30,
+                                        start_year: Time.now.year,
+                                        end_year: Time.now.since(2.month).year,
+                                        use_month_numbers: true, 
+                                        date_separator: '%s', 
+                                        time_separator: "%s",
+                                        datetime_separator: '%s'), '年', '月', '日',"時")
+           %>分
+           </span>
+        </div>
+        <div class="form-group row">
+            <%= f.label "ご要望", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+            <%= f.text_area :demand, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', maxlength: 300 %>
+        </div>
+        <div class="form-group row">
+          <%= f.label "個人情報の取り扱いについて", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+          <div class="personally col-sm-6 col-10 offset-1 offset-sm-0">
+            <p>■個人情報保護について</p>
+            <p>サロンichi（以下「当サロン」といいます）は、当プライバシーポリシーを掲示し、当プライバシーポリシーに準拠して提供されるサービス（以下「本サービス」といいます）の利用企業・提携企業・団体等（以下「利用企業等」といいます）および本サービスをご利用になる方（以下「ユーザー」といいます）のプライバシーを尊重し、ユーザーの個人情報（以下の定義に従います）の管理に細心の注意を払い、これを取扱うものとします。</p>
+            <p>■個人情報</p>
+            <p>個人情報とは、ユーザー個人に関する情報であって、当該情報を構成する氏名、住所、電話番号、メールアドレス、学校名その他の記述等により当該ユーザーを識別できるものをいいます。また、その情報のみでは識別できない場合でも、他の情報と容易に照合することができ、結果的にユーザー個人を識別できるものも個人情報に含まれます。</p>
+            <p>■個人情報の取得について</p>
+            <p>当サロンは、お客さまからの書面、ウェブサイトからのお申し込みや電子メールによる提供など、お客さまが容易に認識できる方法で、個人情報を適正に取得いたします。 お客様から個人情報を取得する際は、その利用目的をホームページ上において明示いたします。お客様にご提供いただいた個人情報は、明示した利用目的の範囲内で利用いたします。また、お客様の個人情報をお客様の同意なく利用目的以外に利用することはありません。 また、直接お客様に個人情報をご記入いただく際には、その場において改めて、利用目的を明確にいたします。</p>
+            <p>■個人情報の利用目的</p>
+            <p>個人情報の利用目的は以下の通りです。利用目的を超えて利用することはありません。</p>
+            <p>1. ユーザーの予約の際の本人確認のため</p>
+            <p>2. 本サービスの利用に伴う連絡・メールマガジン・DM・各種お知らせ等の配信・送付</p>
+            <p>3. ユーザーの承諾・申込みに基づく、本サービス利用企業等への個人情報の提供</p>
+            <p>4. キャンペーン・アンケート・モニター・取材等の実施</p>
+            <p>5. 本サービスの運用を円滑に行うためのご意見、お問い合わせの確認・回答</p>
+            <p>■個人情報の第三者への提供</p>
+            <p>当社は、原則として、ユーザー本人の同意がある場合や、生命や財産保護のためやむを得ない場合など、法や条例に定めている場合を除き行いません。</p>
+            <p>制定日：2020年1月15日</p>
+            <p>最終改定：2020年1月15日</p>
+          </div>
+        </div>
+        <%= f.label " ", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+        <%= f.check_box :remember_me, required: "required", class: "offset-1 offset-sm-0" %><label class="ml-3" for="reservation_remember_me">同意する</label>
+        <div class="error-message text-danger" style="text-align:center;">
+        </div>
+        <span class="row mt-5">
+          <span class="mx-auto">
+          <button type="button" class="btn btn-lg btn-secondary px-5 mx-4" data-dismiss="modal">
+            キャンセル
+          </button>
+          <%= f.submit yield(:button_text), class: "btn btn-lg btn-info px-5 mx-4" %>
+          </span>
+        </span>
+      <% end %>
+    </div><!-- /.modal-body -->
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+<script>
+
+// var defaults = $("#reservation_started_at_4i option:selected").val();
+
+//   $("#reservation_start_time_4i option").remove();
+  
+//   var array = [...Array(11).keys()].map(i => ++i + 9);
+ 
+//   $.each(array, function(index, value) {
+    
+//     if(defaults == value){
+    
+//       $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
+     
+//     }else{
+      
+//       $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
+       
+//     }
+ 
+//   });
+
+
+
+  var now = new Date();
+  
+  function select_date(){
+    var year = $("#reservation_start_time_1i").val();
+    var month = $("#reservation_start_time_2i").val() - 1;
+    var day = $("#reservation_start_time_3i").val();
+    var hour = $("#reservation_start_time_4i").val();
+    var min = $("#reservation_start_time_5i").val();
+    var date = new Date(year, month, day, hour, min);
+    return date;
+  }
+  
+  // var two_month_date = new Date(now.getFullYear(), now.getMonth()+2, now.getDate(), now.getHours(), now.getMinutes());
+  function alert(now,date){
+    if(now > date){
+      $(".error-message").text("過去の時間は予約できません");
+      $(".disabled").attr('disabled', true);
+    // }else if(date > two_month_date){
+    //   $(".error-message").text("２ヶ月先は予約できません");
+    //   $(".disabled").attr('disabled', true);
+    }else{
+      $(".error-message").text("");
+      $(".disabled").attr('disabled', false);
+    }
+  }
+  $("#reservation_start_time_1i").change(function() {
+    select_date();
+    // alert(now,select_date(),two_month_date);
+  });
+  
+  $("#reservation_start_time_2i").change(function() {
+    select_date();
+    // alert(now,select_date(),two_month_date);
+  });
+  
+  $("#reservation_start_time").change(function() {
+    select_date();
+    // alert(now,select_date(),two_month_date);
+  });
+  
+  $("#reservation_start_time_4i").change(function() {
+    select_date();
+    // alert(now,select_date(),two_month_date);
+  });
+  
+  $("#reservation_start_5i").change(function() {
+    select_date();
+    // alert(now,select_date(),two_month_date);
+  });
+  
+  $(document).on('hidden.bs.modal', '.modal', function(){
+    $(this).removeData('bs.modal').empty();
+  });
+  
+  
+  
+  
+  
+
+
+$(function() {
+  
+  
+  var defaults = $("#reservation_start_time_4i option:selected").val();
+
+  $("#reservation_start_time_4i option").remove();
+  
+  var array = [...Array(11).keys()].map(i => ++i + 9);
+ 
+  $.each(array, function(index, value) {
+    
+    if(defaults == value){
+    
+       $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
+     
+    }else{
+      
+       $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
+       
+    }
+ 
+  });
+
+  
+  
+  // select要素を予め取得しておく
+  var $reservation_menu_id = $('#reservation_menu_id');
+  var $reservation_course_name = $('#reservation_course_name');
+  var $reservation_request_course_time = $('#reservation_request_course_time');
+ 
+  // メニュー選択時にコースに選択肢を設定
+  $reservation_menu_id.change(function(e) {
+    var reservation_courses = [];
+    var reservation_menu_id = $reservation_menu_id.val();
+    
+    $('#reservation_course_name').children().remove();
+    
+    // 選択したメニューに紐づくコースの配列を取得
+    $.each(gon.course_array, function(index, value) {
+      if (value[0] == reservation_menu_id){
+        reservation_courses.push(value[1]);
+      }
+　　});
+
+    // htmlにコースの選択肢のブランクオプションをセット
+    var $option_tag = $('<option>').val('').text('選択してください');
+      $reservation_course_name.append($option_tag);
+    
+    // htmlにコースの選択肢を追加
+    reservation_courses.forEach(function(course_name) {
+      var $option_tag = $('<option>').val(course_name).text(course_name);
+      $reservation_course_name.append($option_tag);
+    });
+  });
+  
+  
+  $reservation_course_name.change(function(e) {
+    var reservation_menu_id = $reservation_menu_id.val();
+    var reservation_course_name = $reservation_course_name.val();
+    
+    // 選択したコースに紐づくコース時間を取得
+    $.each(gon.course_time_array, function(index, value) {
+      if (value[0] == reservation_menu_id && value[1] == reservation_course_name){
+        reservation_course = value[2]
+      }
+　　});
+    // htmlにコース時間を表示
+    console.log(reservation_course);
+      $reservation_request_course_time.val(reservation_course);
+  });
+  
+  
+  
+});
+
+
+</script>
