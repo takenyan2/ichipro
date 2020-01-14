@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_104006) do
+ActiveRecord::Schema.define(version: 2019_12_31_142613) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -67,7 +67,8 @@ ActiveRecord::Schema.define(version: 2019_07_11_104006) do
     t.string "gender"
     t.string "user_email"
     t.string "user_phone_number"
-    t.string "request_course"
+    t.integer "menu_id"
+    t.integer "course_id"
     t.string "request_course_time"
     t.date "reservation_date"
     t.datetime "start_time"
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_07_11_104006) do
     t.boolean "sales", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "birthday"
   end
 
 end

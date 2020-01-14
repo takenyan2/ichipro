@@ -89,14 +89,12 @@ $(function(){
                 }
             });
     });
-　var ua = navigator.userAgent.toLowerCase();
- 
-　isMac =　ua.indexOf('windows') > -1;
-  if(isMac && window.matchMedia( "(min-device-width: 1025px)" ).matches) {
-    $('.reservation_week_form_table').css('padding-right',"16.9px");
-  }
-  
-  $('.reservation_week_form_table_body').scrollTop(570);
+　$(window).on('load resize', function() {
+    var outer_width = $(".reservation_week_form_table_body")[0].getBoundingClientRect().width;
+  　var inner_width = $(".reservation_week_form_table_body table")[0].getBoundingClientRect().width;
+    var scroll_width = outer_width - inner_width + "px";
+    $(".reservation_week_form_table").css("padding-right",scroll_width);
+  });
   
 });    
     

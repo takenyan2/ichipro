@@ -155,5 +155,11 @@ $(function() {
       $reservation_request_course_time.val(reservation_course);
   });
   
+  
+  
 });
+
+$(document).on('hidden.bs.modal', '.modal', function(){
+      $(this).removeData('bs.modal').empty();
+  });
 </script>

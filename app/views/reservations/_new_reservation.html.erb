@@ -11,6 +11,7 @@
         </button>
     </div><!-- /.modal-header  -->
     <div class="modal-body">
+      <p class="text-center"  style="color: red; font-size: 14px; font-weight: bold;">※女性専用の美容サロンです</p>
       <%= form_with(model: @reservation, url: reservations_path, local: true, method: :post) do |f| %>
         <div class="form-group row">
             <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -88,7 +89,7 @@
           </div>
         </div>
         <%= f.label " ", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-        <%= f.check_box :remember_me, required: "required", class: "offset-1 offset-sm-0" %><span class="ml-3">同意する</span>
+        <%= f.check_box :remember_me, required: "required", class: "offset-1 offset-sm-0" %><label class="ml-3" for="reservation_remember_me">同意する</label>
         <div class="error-message text-danger" style="text-align:center;">
         </div>
         <span class="row mt-5">
@@ -105,25 +106,27 @@
 </div><!-- /.modal-dialog -->
 <script>
 
-var defaults = $("#reservation_started_at_4i option:selected").val();
+// var defaults = $("#reservation_started_at_4i option:selected").val();
 
-  $("#reservation_start_time_4i option").remove();
+//   $("#reservation_start_time_4i option").remove();
   
-  var array = [...Array(11).keys()].map(i => ++i + 9);
+//   var array = [...Array(11).keys()].map(i => ++i + 9);
  
-  $.each(array, function(index, value) {
+//   $.each(array, function(index, value) {
     
-    if(defaults == value){
+//     if(defaults == value){
     
-       $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
+//       $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
      
-    }else{
+//     }else{
       
-       $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
+//       $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
        
-    }
+//     }
  
-  });
+//   });
+
+
 
   var now = new Date();
   
@@ -180,9 +183,36 @@ var defaults = $("#reservation_started_at_4i option:selected").val();
   });
   
   
+  
+  
+  
 
 
 $(function() {
+  
+  
+  var defaults = $("#reservation_start_time_4i option:selected").val();
+
+  $("#reservation_start_time_4i option").remove();
+  
+  var array = [...Array(11).keys()].map(i => ++i + 9);
+ 
+  $.each(array, function(index, value) {
+    
+    if(defaults == value){
+    
+       $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
+     
+    }else{
+      
+       $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
+       
+    }
+ 
+  });
+
+  
+  
   // select要素を予め取得しておく
   var $reservation_menu_id = $('#reservation_menu_id');
   var $reservation_course_name = $('#reservation_course_name');
