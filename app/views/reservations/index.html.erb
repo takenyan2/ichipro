@@ -46,14 +46,13 @@
         </div>
       </div>
     <% end %>
-    <div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
   </div>
   <div class="d-flex mb-3">
     <div class="reservation_week_form">
       <%= render 'reservation_week' %>
     </div>
     
-     <div class="input-group date d-inline col-1 my-auto text-center" id="datetimepicker" data-target-input="nearest">
+     <div class="date d-inline col-1 my-auto" id="datetimepicker" data-target-input="nearest">
       <input type="hidden" class="datetimepicker-input" data-target="#datetimepicker"/>
       <div class="input-group-append d-inline" data-target="#datetimepicker" data-toggle="datetimepicker">
         <button type="submit" class="ml-3 p-0 btn" id="callender"><i class="far fa-calendar-alt btn btn-secondary btn-lg"></i></button>
@@ -99,3 +98,7 @@ $(function(){
 });    
     
 </script>
+
+<style>
+  
+</style>
