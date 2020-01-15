@@ -11,7 +11,7 @@
 		<div class="contents">
 		  <% @menus.each.with_index do |menu, i| %>
 		    <div class="my-5">
-					<h3 class="d-inline-block">
+					<h3 class="d-inline-block keep">
 						<%= menu.menu_title %>
 					</h3>
 						<% if admin_signed_in? %>
@@ -83,3 +83,9 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.keep {
+		word-break: keep-all;
+	}
+</style>

@@ -4,9 +4,18 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>こちらはメール本文です</h1>
-    <p>
-      <%= @course_name %>
-    </p>
+    <p>以下の予約が追加されました。</p>
+    <hr>
+    <p>施術開始日時：<%= @reservation.start_time.strftime("%Y-%m-%d %H:%M") %></p>
+    <p>メニュー名：<%= @reservation.menu.menu_title %></p>
+    <p>コース名：<%= @course_name %></p>
+    <p><%= @course_time %>分</p>
+    <br>
+    <p>予約者名：<%= @reservation.user_name %></p>
+    <p>予約者名（カナ）：(<%= @reservation.user_kana_name %>)</p>
+    <p>Email：<%= @reservation.user_email %></p>
+    <p>Tel：<%= @reservation.user_phone_number %></p>
+    <p>要望：</p>
+    <%= @reservation.demand %>
   </body>
 </html>

@@ -34,7 +34,7 @@
         </div>
         <div class="form-group row">
             <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.collection_select :menu_id, Menu.group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required" %>
+            <%= f.collection_select :menu_id, Menu.group(:id).group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required" %>
         </div>
         <div class="form-group row">
             <%= f.label "コース", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -69,8 +69,8 @@
       </div><!-- /.modal-body -->
       <div class="modal-footer">
         <span class="mx-auto">
-          <button type="button" class="btn btn-secondary btn-lg mx-3" data-dismiss="modal">
-            キャンセル
+          <button type="button" class="btn btn-secondary btn-lg mx-3 px-5" data-dismiss="modal">
+            閉じる
           </button>
           <%= f.submit yield(:button_text), class: "btn btn-info btn-lg px-5 mx-3" %>
            <%= link_to "削除", reservation_path(@reservation), method: :delete,
