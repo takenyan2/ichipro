@@ -11,7 +11,7 @@
 		<div class="contents">
 		  <% @menus.each.with_index do |menu, i| %>
 		    <div class="my-5">
-					<h3 class="d-inline-block keep">
+					<h3 class="d-inline-block">
 						<%= menu.menu_title %>
 					</h3>
 						<% if admin_signed_in? %>
@@ -64,7 +64,7 @@
 	  		  			<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
 	  		  		<% end %>
 	  		   	</p>
-	  		   	<p class="course_text"><%= menu.introduce %></p>
+	  		   	<p class="course_text pl-md-5"><%= menu.introduce %></p>
 	  			</div>
         	<div class="course_box my-5" style="clear: both;">
 	        	<% menu.courses.each do |course| %>
@@ -94,8 +94,3 @@
 	</div>
 </div>
 
-<style>
-	.keep {
-		word-break: keep-all;
-	}
-</style>

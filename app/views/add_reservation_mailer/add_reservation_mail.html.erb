@@ -4,6 +4,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
+    <div class="container">
     <p>以下の予約が追加されました。</p>
     <hr>
     <p>施術開始日時：<%= @reservation.start_time.strftime("%Y-%m-%d %H:%M") %></p>
@@ -17,5 +18,7 @@
     <p>Tel：<%= @reservation.user_phone_number %></p>
     <p>要望：</p>
     <%= @reservation.demand %>
+    <br>
+    </div>
   </body>
 </html>
