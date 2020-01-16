@@ -52,7 +52,17 @@
 	  		   	<% end %>
 	  			<div class="course_description">
 	  		  	<p class="course_photo">
-	  		   		<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
+	  		  		<% if i == 0 %>
+	  		  			<%= image_tag 'massage2.jpg' %>
+	  		  		<% elsif i == 1 %>
+	  		  			<%= image_tag 'foot.jpg' %>
+	  		  		<% elsif i == 2 %>
+	  		  			<%= image_tag 'tyou.jpg' %>
+	  		  		<% elsif i == 3 %>
+	  		  			<%= image_tag 'HyperKnife.jpg' %>
+	  		  		<% else %>
+	  		  			<%= attachment_image_tag menu, :menu_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
+	  		  		<% end %>
 	  		   	</p>
 	  		   	<p class="course_text"><%= menu.introduce %></p>
 	  			</div>
