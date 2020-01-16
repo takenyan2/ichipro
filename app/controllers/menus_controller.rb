@@ -82,6 +82,7 @@ class MenusController < ApplicationController
   def create
       if params[:permission] == "true"
         @menu = Menu.new(menu_params)
+        # byebug
         if @menu.save
           flash[:success] = "登録しました。"
           redirect_to course_path
