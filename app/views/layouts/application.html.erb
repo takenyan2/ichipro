@@ -17,14 +17,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
+    <%= favicon_link_tag('favicon.png') %>
    
     
   </head>
 
   <body>
     <div id="wrapper">
-    <header>
+    <header class="sticky-top">
       <!-- 管理者ログイン時のヘッダー -->
       <div id="nav-drawer">
         <% if admin_signed_in? %>
