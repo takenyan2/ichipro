@@ -73,7 +73,7 @@
 	  		   	<p class="course_text pl-md-5"><%= menu.introduce %></p>
 	  			</div>
         	<div class="course_box my-5" style="clear: both;">
-	        	<% menu.courses.each do |course| %>
+	        	<% menu.courses.order(:course_time).each do |course| %>
 	        	<% if admin_signed_in? %>
 
 	        			<span class="float-right">

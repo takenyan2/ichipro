@@ -3,7 +3,7 @@ class MenusController < ApplicationController
   end
 
   def course
-    @menus = Menu.all
+    @menus = Menu.all.order(:created_at)
     @menu = Menu.new
     @menu.courses.build
   end
