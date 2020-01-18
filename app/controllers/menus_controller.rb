@@ -103,7 +103,6 @@ class MenusController < ApplicationController
   end
 
   def update
-    # byebug
     if params[:permission] == "true"
       @menu = Menu.find(params[:id])
       if @menu.update(menu_params)
