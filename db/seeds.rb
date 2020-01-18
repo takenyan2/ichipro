@@ -18,10 +18,10 @@ puts 'Started Seed...'
 end
 puts 'Created Admin!'
 
-Menu.create(menu_title: "Bodycare もみほぐし", menu_image_id: "", introduce: "お客様のお好みの力加減を確認しながら、全身をもみほぐしていきます。")
-Menu.create(menu_title: "Footcare 足つぼ", menu_image_id: "", introduce: "オイルを使用し、足裏の反射区、ふくらはぎ、ひざ裏までしっかり刺激し、老廃物を流していきます。")
-Menu.create(menu_title: "Gut cae 腸ケア", menu_image_id: "", introduce: "『腸』こそ免疫力のすべて！腸内環境が整うと『お通じ改善』『頭痛』『肩こり』『冷え』『むくみ』等の身体の不調は『イライラ』『くよくよ』ストレス等の心の安定してきます。")
-Menu.create(menu_title: "Hyper Knife ハイパーナイフ", menu_image_id: "", introduce: "ハイパーナイフは高周波を身体に流し、体内の水分を振動させることで熱を発生させて脂肪を溶解、燃焼させるマシンです。「ナイフで削ぎ落としたように脂肪が取れる！！」と、好評の施術です。")
+Menu.create(menu_title: "Bodycare もみほぐし", image: "", introduce: "お客様のお好みの力加減を確認しながら、全身をもみほぐしていきます。")
+Menu.create(menu_title: "Footcare 足つぼ", image: "", introduce: "オイルを使用し、足裏の反射区、ふくらはぎ、ひざ裏までしっかり刺激し、老廃物を流していきます。")
+Menu.create(menu_title: "Gut cae 腸ケア", image: "", introduce: "『腸』こそ免疫力のすべて！腸内環境が整うと『お通じ改善』『頭痛』『肩こり』『冷え』『むくみ』等の身体の不調は『イライラ』『くよくよ』ストレス等の心の安定してきます。")
+Menu.create(menu_title: "Hyper Knife ハイパーナイフ", image: "", introduce: "ハイパーナイフは高周波を身体に流し、体内の水分を振動させることで熱を発生させて脂肪を溶解、燃焼させるマシンです。「ナイフで削ぎ落としたように脂肪が取れる！！」と、好評の施術です。")
 puts 'Created Menu!'
 
 Course.create(menu_id: 1, course_name: "クイックコース", course_time: 60, price: 5000)
