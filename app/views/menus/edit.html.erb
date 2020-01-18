@@ -20,7 +20,7 @@
 				<dt class="form-title">価格</dt>
 				<dd class="form-item"><%= f.number_field :price, required: true, min: 0, class: "" %>円</dd>
 
-				<%= hidden_field_tag :permission, true %>
+				<%= hidden_field_tag :permission, value: false %>
 			</dl>
       </div>
         <%#= f.hidden_field :menu_id, value: false%>
