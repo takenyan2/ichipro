@@ -11,6 +11,7 @@
     <p>お気を付けてお越し下さいませ。</p>
     <hr>
     <p>施術開始日時：<%= @reservation.start_time.strftime("%Y-%m-%d %H:%M") %></p>
+    <p>※開始5分前のご来店をお願いいたします。</p>
     <p>メニュー名：<%= @reservation.menu.menu_title %></p>
     <p>コース名：<%= @course_name %></p>
     <p><%= @course_time %>分</p>

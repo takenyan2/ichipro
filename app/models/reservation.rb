@@ -6,10 +6,10 @@ class Reservation < ApplicationRecord
   require "time"
   
   # 過去の予約は無効
-  validate :past_time_is_not_able_to_reservation
-  validate :not_sales_time_is_not_able_to_reservation
+  validate :past_time_is_not_able_to_reservation, on: :create
+  validate :not_sales_time_is_not_able_to_reservation, on: :create
 
-validate :make_a_reservation_is_valid_on_reserved_time
+  validate :make_a_reservation_is_valid_on_reserved_time, on: :create
 
 	 def make_a_reservation_is_valid_on_reserved_time
 	   #byebug
