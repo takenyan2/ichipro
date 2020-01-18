@@ -11,7 +11,7 @@
         </button>
     </div><!-- /.modal-header  -->
     <div class="modal-body">
-      <p class="text-center"  style="color: red; font-size: 14px; font-weight: bold;">※当店は女性専用Beautyサロンのため<br>女性のお客様のみ予約ができます</p>
+      <p class="text-center"  style="color: red; font-size: 14px; font-weight: bold;">※当店は女性専用Relaxation salonのため<br>女性のお客様のみ予約ができます</p>
       <%= form_with(model: @reservation, url: reservations_path, local: true, method: :post) do |f| %>
         <div class="form-group row">
             <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -36,6 +36,7 @@
         <div class="form-group row">
             <%= f.label "メニュー", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
             <%= f.collection_select :menu_id, Menu.group(:id).group(:menu_title).order(id: :desc), :id, :menu_title, {prompt: ""}, required: "required", class: "form-control col-sm-6 offset-1 offset-sm-0 col-10", id: "new_menu_id" %>
+
         </div>
         <div class="form-group row">
             <%= f.label "コース", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -90,15 +91,14 @@
         </div>
         <%= f.label " ", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
         <%= f.check_box :remember_me, required: "required", class: "offset-1 offset-sm-0" %><label class="ml-3" for="reservation_remember_me">同意する</label>
-        <div class="error-message text-danger" style="text-align:center;">
-        </div>
-        <span class="row mt-5">
-          <span class="mx-auto">
-          <button type="button" class="btn btn-lg btn-secondary px-5 mx-4" data-dismiss="modal">
+        
+        <span class="mt-5">
+          <div class="mx-auto mt-5">
+          <%= f.submit yield(:button_text), class: "btn btn-lg btn-info col-10 col-sm-3 offset-sm-3 offset-1 mb-5 mb-sm-0" %>
+          <button type="button" class="btn btn-lg btn-secondary col-10 col-sm-3 offset-1" data-dismiss="modal">
             閉じる
           </button>
-          <%= f.submit yield(:button_text), class: "btn btn-lg btn-info px-5 mx-4" %>
-          </span>
+          </div>
         </span>
       <% end %>
     </div><!-- /.modal-body -->

@@ -29,11 +29,11 @@ margin-bottom:30px;
 	display: table-cell;
     text-align: center;
     vertical-align: middle;
-	min-width: 100px;
-	max-width: 200px;
 }
 
-
+.course_box dl dd{
+	width: 150px;
+}
 
 .course_box dl dt{
 	background: #A0c0c0;
@@ -102,7 +102,6 @@ margin-bottom:30px;
 	*display:inline;
 	*zoom: 1;
 	letter-spacing: normal;
-	padding-left:10%;
 }
 .btn_reservation{
 margin-top: 10px; 
