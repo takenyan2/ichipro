@@ -142,7 +142,7 @@ class MenusController < ApplicationController
 
   private
   def menu_params
-    params.require(:menu).permit(:menu_title, :introduce, :menu_image)
+    params.require(:menu).permit(:menu_title, :introduce, :image)
   end
 
   def menu_course_params

@@ -60,13 +60,12 @@
 	  		  			<%= image_tag 'tyou.jpg' %>
 	  		  		<% elsif i == 3 %>
 	  		  			<%= image_tag 'HyperKnife.jpg' %>
+	  		  		<% elsif menu.image.present? %>
+	  		  			<%= image_tag(menu.image_url, :alt => menu.menu_title) %>
+	  		  			<%= image_tag(menu.image.to_s) %>
 	  		  		<% else %>
-	  		  		
-	  		  			<%# if menu.image.present? %>
-	  		  				<%#= image_tag(menu.image_url, :alt => menu.menu_title) %>
-	  		  			<%# else %>
-	  		  				<%= image_tag("/images/no_image.jpg", :alt => menu.menu_title) %>
-	  		  			<% end %>
+	  		  			<%= image_tag("/images/no_image.jpg", :alt => menu.menu_title) %>
+	  		  		<% end %>
 	  
 	  		   	</p>
 	  		   	<p class="course_text pl-md-5"><%= menu.introduce %></p>
