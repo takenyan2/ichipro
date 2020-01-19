@@ -62,7 +62,7 @@
 	  		  			<%= image_tag 'HyperKnife.jpg' %>
 	  		  		<% elsif menu.image.present? %>
 	  		  			<%#= image_tag(menu.image_url, :alt => menu.menu_title) %>
-	  		  			<%= cl_image_tag(menu.image_url, width: 100, height: 100) %>
+	  		  			<%= cl_image_tag(menu.image_url(:standard), width: 100, height: 100) %>
 	  		  		<% else %>
 	  		  			<%= image_tag("/images/no_image.jpg", :alt => menu.menu_title) %>
 	  		  		<% end %>
