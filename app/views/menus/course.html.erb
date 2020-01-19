@@ -62,7 +62,6 @@
 	  		  			<%= image_tag 'HyperKnife.jpg' %>
 	  		  		<% elsif menu.image.present? %>
 	  		  			<%= image_tag(menu.image_url, :alt => menu.menu_title) %>
-	  		  			<%= image_tag(menu.image.to_s) %>
 	  		  		<% else %>
 	  		  			<%= image_tag("/images/no_image.jpg", :alt => menu.menu_title) %>
 	  		  		<% end %>
