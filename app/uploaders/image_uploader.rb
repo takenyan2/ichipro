@@ -10,7 +10,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 保存する画像の種類をサイズ別に設定
   version :standard do
-    process :resize_to_fill => [100, 150, :north]
+    process :resize_to_fill => [640, 480, :north]
   end
 
   version :thumb do
