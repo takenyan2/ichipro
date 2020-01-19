@@ -52,23 +52,22 @@
 	  		   	<% end %>
 	  			<div class="course_description">
 	  		  	<p class="course_photo">
-	  		  		<!--<%# if i == 0 %>-->
-	  		  		<!--	<%#= image_tag 'massage2.jpg' %>-->
-	  		  		<!--<%# elsif i == 1 %>-->
-	  		  		<!--	<%#= image_tag 'foot.jpg' %>-->
-	  		  		<!--<%# elsif i == 2 %>-->
-	  		  		<!--	<%#= image_tag 'tyou.jpg' %>-->
-	  		  		<!--<%# elsif i == 3 %>-->
-	  		  		<!--	<%#= image_tag 'HyperKnife.jpg' %>-->
-	  		  		<!--<%# else %>-->
+	  		  		<% if i == 0 %>
+	  		  			<%= image_tag 'massage2.jpg' %>
+	  		  		<% elsif i == 1 %>
+	  		  			<%= image_tag 'foot.jpg' %>
+	  		  		<% elsif i == 2 %>
+	  		  			<%= image_tag 'tyou.jpg' %>
+	  		  		<% elsif i == 3 %>
+	  		  			<%= image_tag 'HyperKnife.jpg' %>
+	  		  		<% else %>
 	  		  		
-	  		  			<%#= cl_image_tag(@user.cl_image.retina.filename), fallback: "/images/no_image.jpg" %>
-	  		  			<% if menu.image.present? %>
-	  		  				<%= image_tag(menu.image_url, :alt => menu.menu_title) %>
-	  		  			<% else %>
+	  		  			<%# if menu.image.present? %>
+	  		  				<%#= image_tag(menu.image_url, :alt => menu.menu_title) %>
+	  		  			<%# else %>
 	  		  				<%= image_tag("/images/no_image.jpg", :alt => menu.menu_title) %>
 	  		  			<% end %>
-	  		  		<!--<%# end %>-->
+	  
 	  		   	</p>
 	  		   	<p class="course_text pl-md-5"><%= menu.introduce %></p>
 	  			</div>
