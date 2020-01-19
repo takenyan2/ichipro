@@ -12,7 +12,11 @@
     </div><!-- /.modal-header  -->
     <div class="modal-body">
       <p class="text-center"  style="color: red; font-size: 14px; font-weight: bold;">※当店は女性専用Relaxation salonのため<br>女性のお客様のみ予約ができます</p>
-      <%= form_with(model: @reservation, url: reservations_path, local: true, method: :post) do |f| %>
+        <%= form_with(model: @reservation, url: reservations_path, local: true, method: :post) do |f| %>
+        <% if admin_signed_in? %>
+          <%= f.label " ", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1 text-primary" %>
+          <%= f.check_box :終日休業, class: "offset-1 offset-sm-0" %><label class="ml-3 text-muted" for="all_day_holiday">終日休業</label>
+        <% end %>
         <div class="form-group row">
             <%= f.label "予約者名", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
             <%= f.text_field :user_name, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required", maxlength: 50 %>
