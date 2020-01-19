@@ -52,15 +52,15 @@
 	  		   	<% end %>
 	  			<div class="course_description">
 	  		  	<p class="course_photo">
-	  		  		<% if i == 0 %>
-	  		  			<%= image_tag 'massage2.jpg' %>
-	  		  		<% elsif i == 1 %>
-	  		  			<%= image_tag 'foot.jpg' %>
-	  		  		<% elsif i == 2 %>
-	  		  			<%= image_tag 'tyou.jpg' %>
-	  		  		<% elsif i == 3 %>
-	  		  			<%= image_tag 'HyperKnife.jpg' %>
-	  		  		<% elsif menu.image.present? %>
+	  		  		<!--<%# if i == 0 %>-->
+	  		  			<%#= image_tag 'massage2.jpg' %>
+	  		  		<!--<%# elsif i == 1 %>-->
+	  		  		<!--	<%#= image_tag 'foot.jpg' %>-->
+	  		  		<!--<%# elsif i == 2 %>-->
+	  		  		<!--	<%#= image_tag 'tyou.jpg' %>-->
+	  		  		<!--<%# elsif i == 3 %>-->
+	  		  		<!--	<%#= image_tag 'HyperKnife.jpg' %>-->
+	  		  		<% if menu.image.present? %>
 	  		  			<%#= image_tag(menu.image_url, :alt => menu.menu_title) %>
 	  		  			<%= cl_image_tag(menu.image_url(:standard), width: 100, height: 100) %>
 	  		  		<% else %>
