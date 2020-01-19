@@ -3,7 +3,7 @@ class MenusController < ApplicationController
   end
 
   def course
-    @menus = Menu.all
+    @menus = Menu.all.order(:created_at)
     @menu = Menu.new
     @menu.courses.build
   end
@@ -103,7 +103,6 @@ class MenusController < ApplicationController
   end
 
   def update
-    # byebug
     if params[:permission] == "true"
       @menu = Menu.find(params[:id])
       if @menu.update(menu_params)
