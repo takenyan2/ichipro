@@ -126,6 +126,7 @@ class ReservationsController < ApplicationController
   end
   
   def update
+    # byebug
     @reservation = Reservation.find(params[:id])
     course = Course.where(menu_id: params[:reservation][:menu_id]).find_by(course_name: params[:reservation][:course_name])
     @course_time = course.course_time.to_i
