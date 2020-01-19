@@ -126,11 +126,11 @@ class ReservationsController < ApplicationController
   end
   
   def update
-    # byebug
     @reservation = Reservation.find(params[:id])
     course = Course.where(menu_id: params[:reservation][:menu_id]).find_by(course_name: params[:reservation][:course_name])
     @course_time = course.course_time.to_i
-    @reservation.finish_time = @reservation.start_time + @course_time.minutes
+    @update_reservation = Reservation.new(reservation_params)
+    @reservation.finish_time = @update_reservation.start_time + @course_time.minutes
     if @reservation.update_attributes(reservation_params)
       flash[:success] = "#{@reservation.user_name}様の基本情報を更新しました。"
     else
