@@ -57,12 +57,12 @@ Question.create(
 
 Question.create(
   user_question: '予約時間の何分前に行けばいいですか？',
-  answer: '10分前にはご来店お願いいたします。'
+  answer: '5分前にはご来店お願いいたします。'
 )
 
 Question.create(
   user_question: '駐車場はありますか？',
-  answer: '申し訳ございませんが専用駐車場はありません。お近くのコインパーキングをご利用ください。'
+  answer: '店舗近くにお客様専用駐車場をご用意しております。ご予約確定後に駐車場の詳細をお送りいたします。'
 )
 
 puts 'Created Question!'
