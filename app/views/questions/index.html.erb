@@ -5,9 +5,9 @@
         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
           <% @questions.each_with_index do |question, i|%>
             <div class="card my-5">
-              <div class="card-header bg-blue py-4" role="tab" id="heading<%= i %>">
+              <div class="card-header bg-blue" role="tab" id="heading<%= i %>">
                 <h5 class="mb-0">
-                  <a class="p-3 m-n3" data-toggle="collapse" href="#collapse<%= i %>" role="button" aria-expanded="true" aria-controls="collapse<%= i %>">
+                  <a class="text-body d-block p-3 m-n3" data-toggle="collapse" href="#collapse<%= i %>" role="button" aria-expanded="true" aria-controls="collapse<%= i %>">
                     Q.<%= question.user_question %>
                   </a>
                   <% if admin_signed_in? %>
