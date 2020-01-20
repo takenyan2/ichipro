@@ -2,7 +2,8 @@ class ReservationsController < ApplicationController
   def index
     @first_day = Date.current
     set_reservation_schedule
-    @reservations = Reservation.where(start_time: Time.zone.now..Float::INFINITY).order(start_time: :asc)
+    # @reservations = Reservation.where(start_time: Time.zone.now..Float::INFINITY).order(start_time: :asc)
+    @reservations = Reservation.all.order(start_time: :asc)
     @reservations_today = Reservation.where(start_time: Time.zone.now.all_day).order(start_time: :asc)
   end
 
@@ -32,35 +33,6 @@ class ReservationsController < ApplicationController
     redirect_to action: 'index'
   end
 
-  # def date
-  #   params[:date]
-  #   @reservation = Reservation.new
-  #   @reservations = Reservation.where(reservation_date: params[:date])
-  #   @reservation.request_course = session[:request_course]
-  #   @reservation.request_course_time = session[:request_course_time]
-  # end
-
-  # def time
-  #   @reservations = Reservation.where(reservation_date: params[:date])
-  #   @reservation = Reservation.new
-  #   session[:request_course] = @reservation.request_course
-  # end
-
-  # def confirme
-  #   @reservations = Reservation.where(reservation_date: params[:date])
-  #   @reservation = Reservation.new(kari_params)
-  #   @reservation.date = session[:dete]
-  #   @reservation.request_course = session[:request_course]
-  #   @reservation.request_course_time = session[:request_course_time]
-  # end
-
-  # def done
-    # @reservation = Reservation.new(reservation_params)
-    # 予約済みの時間を潰すメソッド
-    # 予約可能だったらsaveしてセッション破棄
-    # セッションを保持している間に他のユーザーが予約していないかチェック(予約可能かどうか判断するメソッド)
-  #   @reservation.save
-  # end
 
   def change_schedule
     if params[:prev]
@@ -166,7 +138,8 @@ class ReservationsController < ApplicationController
   
   def set_reservation_schedule
       @week_day = (@first_day..@first_day.since(7.days))
-      @reservations = Reservation.where("finish_time > ?",Time.zone.now)
+      # @reservations = Reservation.where("finish_time > ?",Time.zone.now)
+      @reservations = Reservation.all
       @times = 22.times.map.each_with_index {|i| Time.parse("10:00")+30.minutes*i}
       @time_number = 10.times.map.each_with_index {|i| l(Time.parse("11:00")+1.hours*i,format: :shorttime)}
   end
