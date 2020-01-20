@@ -12,45 +12,8 @@ class MenusController < ApplicationController
   end
 
   def note
-    @question = Question.new
-    @questions = Question.all
   end
 
-  def create_note
-    question = Question.new(question_params)
-    if question.save
-      flash[:success] = "登録しました。"
-      redirect_to note_path
-    else
-      flash[:danger] = "登録に失敗しました。"
-      redirect_to note_path
-    end
-  end
-
-  def edit_note
-    @question = Question.find(params[:id])
-  end
-
-  def update_note
-    @question = Question.find(params[:id])
-    if  @question.update(question_params)
-        flash[:success] = "更新しました。"
-        redirect_to note_path
-    else
-      flash[:danger] = "更新に失敗しました。"
-        render :edit_note
-    end
-  end
-
-  def destroy_note
-    question = Question.find(params[:id])
-    if question.destroy
-      flash[:success] = "削除しました。"
-    else
-      flash[:danger] = "削除に失敗しました。"
-    end
-    redirect_to note_path
-  end
 
   def add
     @menu = Menu.new
@@ -152,8 +115,5 @@ class MenusController < ApplicationController
     params.require(:course).permit(:course_name, :course_time, :price)
   end
 
-  def question_params
-    params.require(:question).permit(:user_question, :answer)
-  end
 
 end
