@@ -2,7 +2,7 @@
   <div class="block">
       <h2 class="bg_sunflower">Q&Aを編集する</h2>
     <div class="contents">
-  <%= form_with(model: @question, url:edit_note_path, local: true) do |f| %>
+  <%= form_with(model: @question, url:question_path, local: true) do |f| %>
      <%= render "devise/shared/error_messages", resource: @question %>
       <div class="form">
 			<dl>
