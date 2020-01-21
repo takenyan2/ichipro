@@ -11,6 +11,7 @@ ja:
       models:
         menu:
           attributes:
+            image:
             menu_image:
               file_size_is_less_than_or_equal_to: "容量は1MB以下にしてください。"
         user:
@@ -37,7 +38,7 @@ ja:
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
       menu:
-        menu_image: "画像"
+        image: "画像"
         menu_title: "メニュー名"
         introduce: "紹介文"
       question:

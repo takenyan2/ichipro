@@ -15,7 +15,8 @@
 				<dt class="form-title">画像1</dt>
 				<dd class="form-item"><%#= image_tag(@menu.menu_image_url(:thumbnail), :width => 80, :height => 80) %></dd>
 				<dd class="form-item">
-					<%= f.file_field :image %>
+					<%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+					<p>画像サイズは640×480が最適なサイズです。</p>
 				</dd>
 			</dl>
 		</div>

@@ -13,7 +13,8 @@
 		<div class="form">
 			<dl>
 				<dt class="form-title">画像1</dt>
-				<dd class="form-item"><%= f.file_field :image %></dd>
+				<dd class="form-item"><%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %></dd>
+				<p>画像サイズは640×480が最適なサイズです。</p>
 			</dl>
 		</div>
 		<div class="form">

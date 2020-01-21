@@ -10,7 +10,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 保存する画像の種類をサイズ別に設定
   version :standard do
-    process :resize_to_fill => [100, 150, :north]
+    process :resize_to_fill => [640, 480, :north]
   end
 
   version :thumb do
@@ -31,6 +31,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+  
+  # アップロード可能な拡張子のリスト
+  def extension_white_list
+    %w(jpg jpeg gif png)
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

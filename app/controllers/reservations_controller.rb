@@ -106,7 +106,7 @@ class ReservationsController < ApplicationController
     if @reservation.update_attributes(reservation_params)
       flash[:success] = "#{@reservation.user_name}様の基本情報を更新しました。"
     else
-      flash[:danger] = "予約の更新は失敗しました。<br>" + @reservation.errors.full_messages.join("<br>")
+      flash[:danger] = "予約の更新は失敗しました。" + @reservation.errors.full_messages.join("/")
     end
     redirect_to action: 'index'
   end
