@@ -89,6 +89,11 @@ gem 'file_validators'
 
 gem "gon"
 
+# for SEO
+gem 'meta-tags'
+gem 'sitemap_generator'
+gem 'whenever', require: false
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
