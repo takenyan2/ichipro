@@ -1,6 +1,11 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
 en:
+  site:
+    sitename: "Ichi Relaxation Salon"
+    meta_tag:
+      title: "%{sitename}: private salon"
+      description: "【Narimasu Station 1 min./parking lot ◎】 ichi is a relaxation salon for women only ♪A place where you can do your best and feel safe ♪"
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."

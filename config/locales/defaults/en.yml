@@ -1,0 +1,8 @@
+# config/locales/defaults/en.yml
+en:
+  site:
+    # 以下を追加
+    sitename: "Ichi Relaxation Salon"
+    meta_tag:
+      title: "%{sitename}: Website"
+      description: "【Narimasu Station 1 min./parking lot ◎】 ichi is a relaxation salon for women only ♪A place where you can do your best and feel safe ♪"
