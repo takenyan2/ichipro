@@ -86,6 +86,7 @@ gem "refile-mini_magick"
 gem 'simple_calendar', '~> 2.0'
 gem 'ffi', '1.9.18'
 gem 'file_validators'
+gem "holiday_jp"
 
 gem "gon"
 
