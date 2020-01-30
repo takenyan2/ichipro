@@ -1,7 +1,7 @@
 # config/locales/defaults/ja.yml
 ja:
   site:
-    sitename: "Ichi-リラクゼーションサロン"
+    sitename: "ichi-リラクゼーションサロン"
     meta_tag:
       title: "%{sitename}: リラクゼーションサロンichiの公式ホームページです。"
       description: "【成増駅1分／駐車場◎】ichiは、女性専用のリラクゼーションサロン♪≪もみほぐし・足つぼ・腸もみ・ハイパーナイフ≫で日々の生活で溜まった疲れを解消！！頑張るあなたの安心できる場所に♪"
