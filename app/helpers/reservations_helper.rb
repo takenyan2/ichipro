@@ -1,10 +1,13 @@
 module ReservationsHelper
+  
+  require 'holiday_jp'
+  
   def get_color(week_day)
     if week_day == Date.current
       "week_today_color"
     elsif week_day.saturday? 
       "text-primary"
-    elsif week_day.sunday?
+    elsif week_day.sunday? || HolidayJp.holiday?(week_day)
       "text-danger"
     end
   end 

@@ -1,11 +1,11 @@
 class AddReservationMailer < ApplicationMailer
-  default from: 'snufkinn1473@gmail.com'
+  default from: 'ichi_1073@yahoo.co.jp'
 
   def add_reservation_mail(course_name, reservation, course_time)
     @course_name = course_name
     @reservation = reservation
     @course_time = course_time
-    mail(to: "suima4743@gmail.com", subject: "ichiの予約が追加されました")
+    mail(to: "ichi_1073@yahoo.co.jp", subject: "ichiの予約が追加されました")
   end
   
   def to_user_mail(course_name, reservation, course_time)
