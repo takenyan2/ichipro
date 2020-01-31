@@ -83,7 +83,13 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     course = Course.where(menu_id: params[:reservation][:menu_id]).find_by(course_name: params[:reservation][:course_name])
-    @course_time = course.course_time.to_i
+    if params[:is_holiday].present?
+      @course_time = 630
+      temp_start_time = @reservation.start_time.strftime("%Y-%m-%d")
+      @reservation.start_time = Time.parse(temp_start_time + '-01:00')
+    else
+      @course_time = course.course_time.to_i
+    end  
     @reservation.finish_time = @reservation.start_time + @course_time.minutes
     @reservation.course_id = course.id
     if @reservation.save
