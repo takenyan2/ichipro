@@ -8,14 +8,22 @@
 
 puts 'Started Seed...'
 
-2.times do |n|
+1.times do |n|
   Admin.create(
-    admin_name: "test_admin#{n}",
-    email: "test_admin#{n}@example.com",
-    password: 'password',
-    password_confirmation: 'password',
+    admin_name: "HP管理者",
+    email: "ichi_1073@yahoo.co.jp",
+    password: 'kiyoai20110703',
+    password_confirmation: 'kiyoai20110703',
   )
 end
+
+Admin.create(
+  admin_name: "test_admin#{n}",
+  email: "test_admin#{n}@example.com",
+  password: 'password',
+  password_confirmation: 'password',
+  )
+
 puts 'Created Admin!'
 
 Menu.create(menu_title: "Bodycare もみほぐし", image: "", introduce: "お客様のお好みの力加減を確認しながら、全身をもみほぐしていきます。")
