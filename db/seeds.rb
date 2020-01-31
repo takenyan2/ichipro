@@ -17,9 +17,9 @@ Admin.create(
 
 Admin.create(
   admin_name: "test_admin",
-  email: "test_admin@example.com",
-  password: 'password',
-  password_confirmation: 'password',
+  email: "wagamama2sre@gmail.com",
+  password: 'wagamama02_km',
+  password_confirmation: 'wagamama02_km',
   )
 
 puts 'Created Admin!'
