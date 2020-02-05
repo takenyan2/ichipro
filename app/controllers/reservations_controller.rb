@@ -93,8 +93,8 @@ class ReservationsController < ApplicationController
     @reservation.finish_time = @reservation.start_time + @course_time.minutes
     @reservation.course_id = course.id
     if @reservation.save
-      AddReservationMailer.add_reservation_mail(params[:reservation][:course_name], @reservation, @course_time).deliver_later
-      AddReservationMailer.to_user_mail(params[:reservation][:course_name], @reservation, @course_time).deliver_later
+      # AddReservationMailer.add_reservation_mail(params[:reservation][:course_name], @reservation, @course_time).deliver_later
+      # AddReservationMailer.to_user_mail(params[:reservation][:course_name], @reservation, @course_time).deliver_later
       flash[:success] = "予約が完了しました。"
     else
       flash[:danger] = "予約日時を見直して再度ご予約ください。"
@@ -109,6 +109,7 @@ class ReservationsController < ApplicationController
     @course_time = course.course_time.to_i
     @update_reservation = Reservation.new(reservation_params)
     @reservation.finish_time = @update_reservation.start_time + @course_time.minutes
+    @reservation.course_id = course.id
     if @reservation.update_attributes(reservation_params)
       flash[:success] = "#{@reservation.user_name}様の基本情報を更新しました。"
     else
