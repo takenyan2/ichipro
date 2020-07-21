@@ -53,7 +53,7 @@
         </div>  
         <p class="lead offset-sm-3 col-sm-9">※ 施術のお時間に加え、片付け、お客様をお迎えする準備に<br>別途30分お時間をいただいております。</p>
         <div class="form-group row">
-          <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
+          <%= f.label "開始日時", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
           <span class="offset-1 offset-sm-0">
           <%= raw sprintf(f.datetime_select(
                                         :start_time, 
@@ -73,6 +73,7 @@
            %>分
            </span>
         </div>
+        <p class="lead offset-sm-3 col-sm-9" style="color: red;">※ ご来店は5分前にお願いいたします。</p>
         <div class="form-group row">
             <%= f.label "ご要望", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
             <%= f.text_area :demand, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', maxlength: 300 %>
