@@ -112,7 +112,7 @@ GEM
     erubi (1.9.0)
     excon (0.71.1)
     execjs (2.7.0)
-    ffi (1.9.18)
+    ffi (1.9.24)
     file_validators (2.3.0)
       activemodel (>= 3.2)
       mime-types (>= 1.0)
@@ -354,7 +354,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-i18n-views
-  ffi (= 1.9.18)
+  ffi (= 1.9.24)
   file_validators
   fog-aws
   font-awesome-rails (~> 4.7.0)
