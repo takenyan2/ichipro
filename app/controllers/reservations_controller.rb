@@ -23,9 +23,9 @@ class ReservationsController < ApplicationController
     end
     @selected_start_time = params[:start_time]
     @week_day = params[:week_day]
-    
+
   end
-  
+
   def destroy
     @reservation = Reservation.find(params[:id])
     Reservation.find(params[:id]).destroy
@@ -39,7 +39,7 @@ class ReservationsController < ApplicationController
       day = params[:prev]
     elsif params[:next]
       day = params[:next]
-    end  
+    end
     if day
       @first_day = day.to_date
       set_reservation_schedule
@@ -89,7 +89,7 @@ class ReservationsController < ApplicationController
       @reservation.start_time = Time.parse(temp_start_time + '-01:00')
     else
       @course_time = course.course_time.to_i
-    end  
+    end
     @reservation.finish_time = @reservation.start_time + @course_time.minutes
     @reservation.course_id = course.id
     if @reservation.save
@@ -102,7 +102,7 @@ class ReservationsController < ApplicationController
     redirect_to action: 'index'
     logger.debug @reservation.errors.inspect
   end
-  
+
   def update
     @reservation = Reservation.find(params[:id])
     course = Course.where(menu_id: params[:reservation][:menu_id]).find_by(course_name: params[:reservation][:course_name])
@@ -124,25 +124,25 @@ class ReservationsController < ApplicationController
     flash[:success] = "削除しました。"
     redirect_to action: 'index'
   end
-  
+
   def all_index
     @reservations = Reservation.paginate(page: params[:page], per_page: 20).search(params[:search], params[:search_date], params[:search_history]).order(start_time: :asc)
   end
-  
+
   def all_show
     @reservation = Reservation.find(params[:id])
   end
-  
+
 
   private
-  
+
   # def kari_params
   #   params.require(:reservation).permit(:user_name, :user_kana_name, :gender, :user_email, :user_phone_number, :start_time, :demand, :sales, :course_name, :request_course)
   # end
 
 
   private
-  
+
   def set_reservation_schedule
       @week_day = (@first_day..@first_day.since(7.days))
       # @reservations = Reservation.where("finish_time > ?",Time.zone.now)
@@ -150,7 +150,7 @@ class ReservationsController < ApplicationController
       @times = 22.times.map.each_with_index {|i| Time.parse("10:00")+30.minutes*i}
       @time_number = 10.times.map.each_with_index {|i| l(Time.parse("11:00")+1.hours*i,format: :shorttime)}
   end
-    
+
   def reservation_params
       params.require(:reservation).permit(:user_name, :user_kana_name, :user_email, :user_phone_number, :start_time, :demand, :menu_id, :birthday, :request_course_time)
     end
