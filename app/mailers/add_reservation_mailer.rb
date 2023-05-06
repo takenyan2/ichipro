@@ -1,5 +1,5 @@
 class AddReservationMailer < ApplicationMailer
-  default from: 'relaxationsalon.ichi@gmail.com'
+  default from: 'suima4743@gmail.com'
 
   def add_reservation_mail(course_name, reservation, course_time)
     @course_name = course_name
