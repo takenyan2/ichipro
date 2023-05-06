@@ -3,8 +3,8 @@ module ApplicationHelper
   # app/helpers/application_helper.rb
   def default_meta_tags
     sitename = I18n.t('site.sitename')
-    title = I18n.t('site.meta_tag.title', { sitename: sitename })
-    description = I18n.t('site.meta_tag.description', { sitename: sitename })
+    title = I18n.t('site.meta_tag.title', sitename: sitename)
+    description = I18n.t('site.meta_tag.description', sitename: sitename)
     {
         site: title,
         title: '',

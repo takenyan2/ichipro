@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'rails-i18n'
 gem 'devise-i18n-views'
@@ -84,7 +84,7 @@ gem 'devise'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'simple_calendar', '~> 2.0'
-gem 'ffi', '1.9.18'
+gem 'ffi'
 gem 'file_validators'
 gem "holiday_jp"
 
