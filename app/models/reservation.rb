@@ -29,7 +29,7 @@ class Reservation < ApplicationRecord
   def not_sales_time_is_not_able_to_reservation
     if start_time.present?
       date = start_time.strftime("%Y-%m-%d")
-      if start_time < Time.parse("#{date} 10:00:00") || finish_time > Time.parse("#{date} 21:00:00")
+      if start_time < Time.parse("#{date} 1:00:00") || finish_time > Time.parse("#{date} 12:00:00")
         errors.add(:started_at, "営業時間外です。")
       end
     end
