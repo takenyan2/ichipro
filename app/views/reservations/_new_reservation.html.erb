@@ -27,7 +27,7 @@
         </div>
         <div class="form-group row mb-0">
             <%= f.label "メールアドレス", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_field :user_email, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required" %>
+            <%= f.email_field :user_email, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', required: "required" %>
         </div>
         <p class="lead offset-sm-3 col-sm-9 col-md-7" style="color: red;">
           ※ ご予約完了後に、住所、駐車場の詳細がメールで送信されます。メールアドレスの入力間違いにご注意ください。<br>
@@ -54,21 +54,21 @@
         <div class="form-group row">
           <%= f.label "コース時間", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
           <%= f.text_field :request_course_time, class: 'form-control col-sm-6 offset-1 offset-sm-0 col-10', readonly: "readonly", id: "new_course_time" %>
-        </div>  
+        </div>
         <p class="lead offset-sm-3 col-sm-9">※ 施術のお時間に加え、片付け、お客様をお迎えする準備に<br>別途30分お時間をいただいております。</p>
         <div class="form-group row">
           <%= f.label "開始日時", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
           <span class="offset-1 offset-sm-0">
           <%= raw sprintf(f.datetime_select(
-                                        :start_time, 
+                                        :start_time,
                                         {
                                         default: Time.zone.local(@week_day.to_date.year,@week_day.to_date.month,@week_day.to_date.day,
                                                                 @selected_start_time.to_time.hour,@selected_start_time.to_time.min),
                                         minute_step: 30,
                                         start_year: Time.now.year,
                                         end_year: Time.now.since(12.month).year,
-                                        use_month_numbers: true, 
-                                        date_separator: '%s', 
+                                        use_month_numbers: true,
+                                        date_separator: '%s',
                                         time_separator: "%s",
                                         datetime_separator: '%s'
                                         },
@@ -112,7 +112,7 @@
         </p>
         <%= f.label " ", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
         <%= f.check_box :remember_me, required: "required", class: "offset-1 offset-sm-0" %><label class="ml-3" for="reservation_remember_me">同意する</label>
-        
+
         <span class="mt-5">
           <div class="mx-auto mt-5">
           <%= f.submit yield(:button_text), class: "btn btn-lg btn-info col-10 col-sm-3 offset-sm-3 offset-1 mb-5 mb-sm-0" %>
@@ -130,27 +130,27 @@
 // var defaults = $("#reservation_started_at_4i option:selected").val();
 
 //   $("#reservation_start_time_4i option").remove();
-  
+
 //   var array = [...Array(11).keys()].map(i => ++i + 9);
- 
+
 //   $.each(array, function(index, value) {
-    
+
 //     if(defaults == value){
-    
+
 //       $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
-     
+
 //     }else{
-      
+
 //       $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
-       
+
 //     }
- 
+
 //   });
 
 
 
   var now = new Date();
-  
+
   function select_date(){
     var year = $("#reservation_start_time_1i").val();
     var month = $("#reservation_start_time_2i").val() - 1;
@@ -160,7 +160,7 @@
     var date = new Date(year, month, day, hour, min);
     return date;
   }
-  
+
   // var two_month_date = new Date(now.getFullYear(), now.getMonth()+2, now.getDate(), now.getHours(), now.getMinutes());
   function alert(now,date){
     if(now > date){
@@ -178,74 +178,74 @@
     select_date();
     // alert(now,select_date(),two_month_date);
   });
-  
+
   $("#reservation_start_time_2i").change(function() {
     select_date();
     // alert(now,select_date(),two_month_date);
   });
-  
+
   $("#reservation_start_time").change(function() {
     select_date();
     // alert(now,select_date(),two_month_date);
   });
-  
+
   $("#reservation_start_time_4i").change(function() {
     select_date();
     // alert(now,select_date(),two_month_date);
   });
-  
+
   $("#reservation_start_5i").change(function() {
     select_date();
     // alert(now,select_date(),two_month_date);
   });
-  
+
   // $(document).on('hidden.bs.modal', '.modal', function(){
   //   $(this).removeData('bs.modal').empty();
   // });
-  
-  
-  
-  
-  
+
+
+
+
+
 
 
 $(function() {
-  
-  
+
+
   var defaults = $("#reservation_start_time_4i option:selected").val();
 
   $("#reservation_start_time_4i option").remove();
-  
+
   var array = [...Array(11).keys()].map(i => ++i + 9);
- 
+
   $.each(array, function(index, value) {
-    
+
     if(defaults == value){
-    
+
        $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
-     
+
     }else{
-      
+
        $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
-       
+
     }
- 
+
   });
 
-  
-  
+
+
   // select要素を予め取得しておく
   var $new_menu_id = $('#new_menu_id');
   var $new_course_name = $('#new_course_name');
   var $new_course_time = $('#new_course_time');
- 
+
   // メニュー選択時にコースに選択肢を設定
   $new_menu_id.change(function(e) {
     var reservation_courses = [];
     var new_menu_id = $new_menu_id.val();
-    
+
     $('#new_course_name').children().remove();
-    
+
     // 選択したメニューに紐づくコースの配列を取得
     $.each(gon.course_array, function(index, value) {
       if (value[0] == new_menu_id){
@@ -256,19 +256,19 @@ $(function() {
     // htmlにコースの選択肢のブランクオプションをセット
     var $option_tag = $('<option>').val('').text('選択してください');
       $new_course_name.append($option_tag);
-    
+
     // htmlにコースの選択肢を追加
     reservation_courses.forEach(function(course_name) {
       var $option_tag = $('<option>').val(course_name).text(course_name);
       $new_course_name.append($option_tag);
     });
   });
-  
-  
+
+
   $new_course_name.change(function(e) {
     var new_menu_id = $new_menu_id.val();
     var new_course_name = $new_course_name.val();
-    
+
     // 選択したコースに紐づくコース時間を取得
     $.each(gon.course_time_array, function(index, value) {
       if (value[0] == new_menu_id && value[1] == new_course_name){
@@ -279,9 +279,9 @@ $(function() {
     console.log(reservation_course);
       $new_course_time.val(reservation_course);
   });
-  
-  
-  
+
+
+
 });
 
 

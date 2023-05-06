@@ -22,7 +22,7 @@
         </div>
         <div class="form-group row">
             <%= f.label "メールアドレス", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
-            <%= f.text_field :user_email, class: 'form-control col-sm-6', required: "required" %>
+            <%= f.email_field :user_email, class: 'form-control col-sm-6', required: "required" %>
         </div>
          <div class="form-group row">
             <%= f.label "電話番号", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
@@ -43,16 +43,16 @@
         <div class="form-group row">
           <%= f.label "コース時間", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
           <%= f.text_field :request_course_time, class: 'form-control col-sm-6', readonly: "readonly" %>
-        </div>  
+        </div>
         <div class="form-group row">
           <%= f.label "StartTime", class: "label-login col-sm-2 lead text-center mr-4 text-sm-right offset-sm-1" %>
           <%= raw sprintf(f.datetime_select(
-                                        :start_time, 
+                                        :start_time,
                                         minute_step: 30,
                                         start_year: Time.now.year,
                                         end_year: Time.now.since(12.month).year,
                                         use_month_numbers: true,
-                                        date_separator: '%s', 
+                                        date_separator: '%s',
                                         time_separator: "%s",
                                         datetime_separator: '%s'), '年','月', '日',"時")
           %>分
@@ -83,67 +83,67 @@
 
 <script>
 $(function() {
-  
+
   var defaults = $("#reservation_start_time_4i option:selected").val();
 
   $("#reservation_start_time_4i option").remove();
-  
+
   var array = [...Array(11).keys()].map(i => ++i + 9);
- 
+
   $.each(array, function(index, value) {
-    
+
     if(defaults == value){
-    
+
        $('#reservation_start_time_4i').append(`<option value="${value}" selected>${value}</option>`);
-     
+
     }else{
-      
+
        $('#reservation_start_time_4i').append(`<option value="${value}">${value}</option>`);
-       
+
     }
- 
+
   });
-  
+
   // select要素を予め取得しておく
   var $reservation_menu_id = $('#reservation_menu_id');
   var $reservation_course_name = $('#reservation_course_name');
   var $reservation_request_course_time = $('#reservation_request_course_time');
-  
+
   //モーダル開いた時にコースを取得
   var $option_tag = $('<option>').val(gon.course_name).text(gon.course_name);
   $reservation_course_name.append($option_tag);
- 
+
   // メニュー選択時にコースに選択肢を設定
   $reservation_menu_id.change(function(e) {
     var reservation_courses = [];
     var reservation_menu_id = $reservation_menu_id.val();
-    
+
     $('#reservation_course_name').children().remove();
-    
+
     // 選択したメニューに紐づくコースの配列を取得
     $.each(gon.course_array, function(index, value) {
       if (value[0] == reservation_menu_id){
         reservation_courses.push(value[1]);
       }
 　　});
-    
+
     // htmlにコースの選択肢のブランクオプションをセット
     var $option_tag = $('<option>').val('').text('選択してください');
       $reservation_course_name.append($option_tag);
-    
+
     // htmlにコースの選択肢を追加
     reservation_courses.forEach(function(course_name) {
-      
+
       var $option_tag = $('<option>').val(course_name).text(course_name);
       $reservation_course_name.append($option_tag);
     });
   });
-  
-  
+
+
   $reservation_course_name.change(function(e) {
     var reservation_menu_id = $reservation_menu_id.val();
     var reservation_course_name = $reservation_course_name.val();
-    
+
     // 選択したコースに紐づくコース時間を取得
     $.each(gon.course_time_array, function(index, value) {
       if (value[0] == reservation_menu_id && value[1] == reservation_course_name){
@@ -154,9 +154,9 @@ $(function() {
     console.log(reservation_course);
       $reservation_request_course_time.val(reservation_course);
   });
-  
-  
-  
+
+
+
 });
 
 // $(document).on('hidden.bs.modal', '.modal', function(){
