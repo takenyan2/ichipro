@@ -12,9 +12,8 @@ class Reservation < ApplicationRecord
   validate :make_a_reservation_is_valid_on_reserved_time
 
 	 def make_a_reservation_is_valid_on_reserved_time
-	   #byebug
     if (start_time.present? && finish_time.present?) && Reservation.where("start_time < ? and finish_time > ?",finish_time + (30 * 60), start_time - (30 * 60)).where.not(id: self.id).present?
-      errors[:base] << "入力された時間はすでに予約が入っています。"
+      errors.add(:started_at, "入力された時間はすでに予約が入っています。")
     end
   end
 
