@@ -47,12 +47,12 @@
             <td class="center"><%= reservation.course.course_time %></td>
           <!-- 予約情報モーダル -->
           <td class="center">
-            
+
               <%= link_to(all_reservations_show_path(reservation), remote: true, class: "btn btn-lg btn-outline-info d-block d-md-inline-block rounded-circle px-2 py-1 mx-2") do %>
                 <i class="fas fa-arrow-up"></i>
               <% end %>
-             
-            
+
+
             </td>
           </tr>
         <% end %>
@@ -60,7 +60,7 @@
     </table>
   </div>
   <span class="mx-auto">
-  <%= will_paginate(@reservations, class: "pagination justify-content-center my-5", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+  <%= paginate @reservations %>
   </span>
 </div>
 

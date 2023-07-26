@@ -196,3 +196,24 @@ ul.time-field {
   padding: 4px;
   width: 20rem;
 }
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination>li>a {
+  color: #696969;
+  padding: 10px;
+  margin: 10px;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}

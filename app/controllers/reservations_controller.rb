@@ -126,7 +126,7 @@ class ReservationsController < ApplicationController
   end
 
   def all_index
-    @reservations = Reservation.paginate(page: params[:page], per_page: 20).search(params[:search], params[:search_date], params[:search_history]).order(start_time: :asc)
+    @reservations = Reservation.search(params[:search], params[:search_date], params[:search_history]).order(start_time: :asc).page(params[:page]).per(10)
   end
 
   def all_show
